@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026 디지털기반과학교육연구회 한 해의 기록</title>
+<script>(function(){try{var y=new URLSearchParams(location.search).get('y');if(y==='2025'){document.documentElement.dataset.y='2025';document.title='2025 디지털기반과학교육연구회 한 해의 기록'}}catch(e){}})();</script>
 <meta name="description" content="군포의왕 디지털기반과학교육연구회 2026 연간 활동. 자체워크숍 7회, 도연구회 연계 6회, 함께하는 연구 활동 4건.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
@@ -343,6 +344,27 @@ h1,h2,h3,p{margin:0}
 .bar nav .menu hr{border:0;border-top:1px solid var(--line);margin:6px 4px}
 .h-big.one{white-space:nowrap}
 @media (max-width:700px){.h-big.one{white-space:normal}}
+
+/* ---------- 연도 전환 ---------- */
+.yr{flex:none;display:flex;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line)}
+.yr a{font-size:13.5px;font-weight:700;text-decoration:none;color:var(--muted);padding:5px 12px;border-radius:999px;line-height:1.2}
+.yr a:hover{color:var(--text)}
+html:not([data-y="2025"]) #y26,html[data-y="2025"] #y25{background:var(--text);color:var(--night)}
+html[data-y="2025"]{--night:#0B1E22;--night-2:#11302F;--night-3:#18403D;--line:rgba(232,250,245,.12);--line-2:rgba(232,250,245,.22);--text:#EEF8F5;--muted:#9EC4BC;--dim:#6F9A92;--night-rgb:11,30,34}
+html[data-y="2025"] .bar{background:linear-gradient(var(--night) 30%,rgba(11,30,34,0))}
+html[data-y="2025"] .rc .bg::after{background:linear-gradient(180deg,rgba(11,30,34,.2),rgba(11,30,34,.92) 70%)}
+html[data-y="2025"] .item .shot .cnt,html[data-y="2025"] .mosaic .lbl{background:rgba(11,30,34,.82)}
+html[data-y="2025"] .next div{background:rgba(17,48,47,.8)}
+html[data-y="2025"] .year{background:linear-gradient(90deg,#1E8C8A,#3DDBB4 30%,#B8F06A 55%,#FFD23F 75%,#3DDBB4);background-size:220% 100%;-webkit-background-clip:text;background-clip:text}
+html[data-y="2025"] .scale .rail{background:linear-gradient(0deg,#0E5E63,#1E8C8A 30%,#3DDBB4 60%,#B8F06A 85%,#FFD23F)}
+html[data-y="2025"] .lb{background:#061416}
+.rep-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:28px}
+.rep-grid button{all:unset;cursor:zoom-in;position:relative;display:block;border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:var(--night-2);border:1px solid var(--line)}
+.rep-grid button:hover{border-color:var(--c)}
+.rep-grid img{width:100%;height:100%;object-fit:cover;display:block}
+.rep-grid span{position:absolute;left:6px;top:6px;font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
+@media (max-width:900px){.rep-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.rep-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -350,6 +372,7 @@ h1,h2,h3,p{margin:0}
 <header class="bar">
   <a class="org" href="#cover">군포의왕 디지털기반과학교육연구회</a>
   <nav aria-label="슬라이드 바로가기" id="topnav"></nav>
+  <div class="yr" role="group" aria-label="연도 선택"><a href="index.html" id="y26">2026</a><a href="index.html?y=2025" id="y25">2025</a></div>
   <button class="present-btn" id="presentBtn" type="button">발표 모드</button>
 </header>
 
@@ -379,6 +402,7 @@ h1,h2,h3,p{margin:0}
 <div class="help" id="help">← → 또는 스페이스로 넘기고, Esc로 끝냅니다</div>
 
 <script>
+const YEAR=document.documentElement.dataset.y==='2025'?2025:2026;
 /* =========================================================
    내용은 여기만 고치면 됩니다.
    - 사진: photo 에 이미지 주소(또는 같은 폴더의 파일 이름, 예: "photos/w4.jpg")
@@ -696,7 +720,7 @@ function timeline(){
 }
 
 function card(it,w){
-  const pics=it.ph?ph(it.ph):[];
+  const pics=it.pics||(it.ph?ph(it.ph):[]);
   const meta=`${w.n}차 워크숍 · ${md(w.date).m}월 ${md(w.date).d}일`;
   let top=ART[it.art](), g=null;
   if(pics.length||it.yt){
@@ -714,7 +738,7 @@ function card(it,w){
 function workshop(w){
   const {m,d}=md(w.date);
   const c=accentFor(w.n);
-  const meta=`<div class="ws-meta"><span class="hot">${m}월 ${d}일 (${w.day})${w.upcoming?' 예정':''}</span><span>${w.time}</span>${w.place?`<span>${esc(w.place)}</span>`:''}</div>`;
+  const meta=`<div class="ws-meta"><span class="hot">${m}월 ${d}일 (${w.day})${w.upcoming?' 예정':''}</span>${w.time?`<span>${w.time}</span>`:''}${w.place?`<span>${esc(w.place)}</span>`:''}</div>`;
   if(w.upcoming && !w.items){
     return `<section class="slide" id="w${w.n}" style="--g:${gradFor(w.n)};--c:${c}"><div class="in">
       <div class="soon"><div class="ws-num">${w.n}<small>차</small></div><div>${meta}<h2 class="ws-title">${esc(w.title)}</h2><p class="ws-lede">${esc(w.lede)}</p></div></div>
@@ -755,12 +779,12 @@ function mosaic(w){
   </div></section>`;
 }
 
-function rowSection(id,color,kicker,title,lede,list,src){
+function rowSection(id,color,kicker,title,lede,list,src,label='함께하는 연구 활동'){
   return `<section class="slide" id="${id}" style="--c:${color}"><div class="in">
     <p class="kicker" style="color:${color}"><i></i>${kicker}</p>
     <h2 class="h-big">${title}</h2><p class="lede">${lede}</p>
     <div class="row-cards" style="--n:${list.length>6?Math.ceil(list.length/2):list.length}">${list.map(e=>{const a=md(e.date);const range=e.end?` ~ ${+e.end.split('-')[0]}.${+e.end.split('-')[1]}`:'';
-      const ids=e.ph?ph(e.ph):[]; const g=ids.length?gal({items:ids,title:e.t,desc:e.p,meta:`함께하는 연구 활동 · ${a.m}월 ${a.d}일`,c:'var(--t)'}):null;
+      const ids=e.pics||(e.ph?ph(e.ph):[]); const g=ids.length?gal({items:ids,title:e.t,desc:e.p,meta:`${label} · ${a.m}월 ${a.d}일`,c:'var(--t)'}):null;
       const bg=ids.length?`<div class="bg"><img src="${IMG(ids[0].id)}" alt="${esc(ids[0].cap)}" loading="lazy" onerror="this.remove()"></div>`:'';
       return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}${e.doc?' doc':''}${e.upcoming?' rc-up':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일${e.upcoming?' · 예정':''}</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${ids.length?`<p class="phn">${e.doc?'연수 자료 '+ids.length+'쪽 보기':'사진 '+ids.length+'장 보기'}</p>`:''}</div>`}).join('')}</div>
   </div></section>`;
@@ -844,17 +868,194 @@ function ending(){
   </div></section>`;
 }
 
+/* ================= 2025 기록 ================= */
+const Y25_PHOTOS={
+  'y25-p614':[[0,"6월 14일 신과수 워크숍(광교중) — 「AI 수업친구와 함께하는 과학 수업 준비」 발표를 듣는 선생님들"],[1,"교실을 가득 채운 경기도 과학 선생님들, 노트북으로 바로 따라 만들기"],[2,"우리 연구회 발표 — ‘교사 제작에서 학생 제작으로’"],[3,"발표 뒤 실습 — Canva AI·Gemini로 개념 시각화 웹페이지 만들기"]],
+  'y25-w2':[[0,"PhET 회로 시뮬레이션 — 전압계를 연결해 저항에 걸린 전압 측정"]],
+  'y25-w3':[[0,"흥진중학교 학생들이 직접 조사하고 그린 ‘학교 숲 생태지도’"]],
+  'y25-w4':[[0,"「Science 스노클 챌린지」 — 복습 문제를 스노클AI로 풀고 시도 횟수와 성장을 기록"]],
+  'y25-w5':[[0,"동물과 에너지 논술형 문항 — 상황 제시 ‘소화불량’"],[1,"동물과 에너지 논술형 문항 — 상황 제시 ‘순환 문제’"]],
+  'y25-sgs':[[0,"신나는 과학수업 연구회 소개 포스터 — 연혁·방향·활동 방법"]],
+  'y25-festa':[[0,"경기교육연구 FESTA 2025 — 신과수 연구회 부스"]],
+  'y25-rep':[[0,"인공지능 시대, 어떻게 가르쳐야 할까요?"],[1,"미래 역량 강화를 위한 청사진: 학생주도형 디지털 기반 과학수업"],[2,"디지털 대전환 시대, 역량 중심의 새로운 모델"],[3,"연구 목표 · 핵심 모델 3요소 · 주요 성과"],[4,"우리의 전략: 4가지 핵심 요소를 통합하다"],[5,"계획–실행–성찰–확산: 함께 만들고 나누는 연구 문화"],[6,"이론을 현장 실천으로 연결하는 실습 중심 워크숍"],[7,"수업의 전 과정을 지원하는 AI·에듀테크 도구 포트폴리오"],[8,"탐구와 평가를 가속하는 디지털·AI 도구들"],[9,"학습의 엔진: ‘질문–탐구–표현–평가’의 선순환 모델"],[10,"Pillar 1 · 질문이 살아나는 교실: 프로젝트 기반 탐구 학습"],[11,"Pillar 2 · 추상적 개념을 손에 잡히게: 시뮬레이션과 시각화"],[12,"PhET 전기회로 수업 · 마이크로비트 냉각곡선 실험"],[13,"과학수사대 · 태양계 뉴스룸 · AI 기반 개념 시각화"],[14,"총괄평가용 하이러닝 · 형성평가용 스노클AI"],[15,"핵심 발견: 교사의 전문성과 AI를 결합한 하이브리드 평가 모델"],[16,"Pillar 4 · 교실을 넘어 세상으로: 생태전환교육과의 융합"],[17,"교사의 변화: 디지털 시대의 학습 설계자로"],[18,"학생의 성장: 미래 역량을 갖춘 자기주도적 학습자로"],[19,"교사의 성장을 지원하는 선순환 생태계"],[20,"교사와 학생 모두에게 의미 있는 성장"],[21,"하나의 모델, 무한한 가능성: 일반화 방안"],[22,"지속가능한 혁신을 위한 제언"]]
+};
+Object.assign(PHOTOS,Y25_PHOTOS);
+
+const W25=[
+  {n:1,date:"2025-05-23",day:"금",time:"",place:"",title:"질문과 탐구 중심 수업 설계",
+   lede:"과학수사대 프로젝트와 빅카인즈 태양계 뉴스룸 수업 사례로 학생이 질문을 만들고 탐구하며 표현하는 과정을 함께 설계했습니다. 젭퀴즈·블루킷·NotebookLM도 직접 써 봤습니다.",
+   items:[
+    {art:"share",pics:[{id:"y25-rep-10",cap:PHOTOS["y25-rep"][10][1]},{id:"y25-rep-13",cap:PHOTOS["y25-rep"][13][1]}],t:"과학수사대: 물질의 비밀을 밝히다",d:"2학년. ‘가상 화학 사건’ 현장의 미지 물질을 과학수사관이 되어 분석 — 질문 만들기 → 가설 → 실험 설계 → 모둠 브리핑"},
+    {art:"earth",t:"빅카인즈 활용 태양계 뉴스룸",d:"2학년. ‘화성 탐사’, ‘태양 흑점’ 기사를 빅카인즈로 검색·분석하고 탐구 질문을 만들어 뉴스 앵커처럼 브리핑"},
+    {art:"rubric",t:"게이미피케이션 · 자료 요약 도구",d:"젭퀴즈·블루킷으로 개념 정리, NotebookLM으로 자료 요약과 질문 생성 — 수업 단계별 활용 방안 논의"},
+    {art:"book",t:"독서토론",d:"교육 담론을 함께 읽고 연구회의 한 해 방향을 이야기"}]},
+  {n:2,date:"2025-07-11",day:"금",time:"",place:"",title:"AI 서·논술형 평가와 디지털 실험",
+   lede:"하이러닝 AI 서·논술형 평가 시스템에 각자 만든 문항을 넣어 AI 채점과 피드백을 확인하고, PhET·마이크로비트로 실물 실험과 디지털 도구를 결합한 수업 사례를 나눴습니다.",
+   items:[
+    {art:"ohm",ph:"y25-w2",t:"PhET 시뮬레이션 전기회로 수업",d:"2학년. 구리테이프로 실물 회로를 만든 뒤 PhET으로 문제 상황을 해결하고, 띵커벨 퀴즈로 바로 피드백"},
+    {art:"microbit",pics:[{id:"y25-rep-12",cap:PHOTOS["y25-rep"][12][1]}],t:"마이크로비트 · 하이러닝 냉각곡선 실험",d:"1학년. 물이 얼 때의 온도 변화를 측정 — 화이트보드에 가설 그래프를 먼저 그리고 모둠 결과를 실시간 공유"},
+    {art:"rubric",pics:[{id:"y25-rep-14",cap:PHOTOS["y25-rep"][14][1]},{id:"y25-rep-15",cap:PHOTOS["y25-rep"][15][1]}],t:"하이러닝 AI 서·논술형 평가 실습",d:"AI 1차 채점 → 교사 검토·보완 → 맞춤형 피드백. 정교한 루브릭이 채점의 정확도를 좌우함을 확인"},
+    {art:"plant",t:"환경교육 자료 공유 · 캔바AI·제미나이",d:"생태·환경 교육과 디지털 수업의 융합 방안, 캔바AI·제미나이 실습"}]},
+  {n:3,date:"2025-07-15",day:"화",time:"",place:"군포 흥진중학교",title:"생태학교 현장 탐방",
+   lede:"흥진중학교 ‘생태융합의 날’을 참관했습니다. 학생들이 손으로 그린 대형 학교 숲 생태지도를 보고, 텃밭에서 가지·고추·바질을 함께 수확했습니다.",
+   items:[
+    {art:"plant",pics:[...ph("y25-w3"),{id:"y25-rep-16",cap:PHOTOS["y25-rep"][16][1]}],t:"학교 숲 생태지도",d:"학생들이 교내 동식물을 조사하고 손으로 그려 완성한 대형 지도 — 학생 주도 협력 학습의 실제 사례"},
+    {art:"earth",t:"초막골 생태탐사 · 깃대종 보호",d:"군포의왕교육지원청 환경교육 자료(우리 회원이 개발 위원)를 소개하고 수업 자료 공유",link:["초막골 생태탐사 사이트","https://sites.google.com/view/chomakgol"]},
+    {art:"temp",t:"데이터 기반 생태 관찰 수업 구상",d:"온도·습도·토양 수분·CO₂ 센서로 환경 데이터를 모아 분석하는 융합 수업 설계"}]},
+  {n:4,date:"2025-08-28",day:"목",time:"",place:"군포중앙고등학교",title:"실험실 안전과 스노클 AI",
+   lede:"과학실험실 안전 연수 뒤 군포중앙고 실험실의 약품 보관, 소화기·비상 샤워, 보호 장비를 각자 학교와 비교해 점검했습니다. 동물과 에너지 단원 수업 사례와 스노클AI를 나눴습니다.",
+   items:[
+    {art:"lab",t:"과학실험실 안전 점검",d:"화학약품 보관 상태, 소화기·비상 샤워 시설, 보호 장비를 학교별 현황과 비교"},
+    {art:"snorkl",ph:"y25-w4",t:"스노클AI 형성평가",d:"2학년 동물과 에너지. 화면에 풀고 말로 설명하면 AI가 바로 피드백 — 녹화된 설명으로 사고 과정의 변화를 확인"},
+    {art:"micro",t:"AR 가상실험실 해부 실습",d:"태블릿으로 개구리·돼지·물고기의 내부 장기를 3차원으로 분리·회전하며 관찰"},
+    {art:"book",t:"제미나이 GEMS 스토리북",d:"주제만 주면 10쪽 동화책을 만들어 주는 기능 — 단원 개념을 이야기로 익히기"}]},
+  {n:5,date:"2025-11-21",day:"금",time:"",place:"",title:"AI 기반 서·논술형 문항 개발",
+   lede:"외부 전문 강사를 모시고 서·논술형 문항과 루브릭 설계를 실습했습니다. 동물과 에너지 단원 문항을 AI 평가 시스템에 넣어 점검하고 고쳤습니다.",
+   items:[
+    {art:"rubric",ph:"y25-w5",t:"서·논술형 문항 · 루브릭 설계 연수",d:"평가 요소별 3~5단계 수준을 구체적으로 — 루브릭이 세밀할수록 AI 채점과 피드백도 정확해짐"},
+    {art:"temp",t:"마이크로비트 열평형 실험",d:"온도가 다른 물을 섞으며 온도 변화를 실시간 측정해 열평형 개념 탐구"},
+    {art:"book",t:"독서토론",d:"「듀얼 브레인」(이선 몰릭) · 「대한민국 교육트렌드 2026」"}]}
+];
+const P25=[
+  {date:"2025-04-19",t:"신과수 워크숍 (1)",p:"초간단 옴의 법칙과 저항의 연결 · 달아 달아 프로젝트 · 파스퇴르 실험과 식물조직배양 · 스마트 망원경 천체 관측"},
+  {date:"2025-06-14",t:"신과수 워크숍 (2) — 우리 연구회 발표",p:"‘AI 수업친구’와 함께하는 과학 수업 준비(본 연구회 발표) · 블록코딩 열평형 탐구 · 태양계와 함께하는 마음 여행 · 21세기 학습과 수업의 과학",ph:"y25-p614",star:true},
+  {date:"2025-07-19",t:"신과수 워크숍 (3)",p:"디지털 활용 과학 탐구 수업 · 과학 토론 수업 · 수소 연료 전지 화학 반응 · 지질연대표 만들기"},
+  {date:"2025-08-08",t:"신과수 워크숍 (4)",p:"대한민국 미래교육박람회 참가 · 최신 에듀테크 동향 탐색"},
+  {date:"2025-09-06",t:"신과수 워크숍 (5)",p:"친밀한 수업재료 환경교육 · 드라이아이스 비눗방울 · 디지털 접안렌즈 현미경 관찰 · 포토리소그래피 모델 실험"},
+  {date:"2025-10-18",t:"신과수 워크숍 (6)",p:"1학생 1탐구 가설 만들기 · 마인크래프트 활용 수업(멘델의 유전 법칙) · 과일 전지 · 진로연계 과학박람회"},
+  {date:"2025-11-15",t:"경기교육연구 FESTA",p:"신과수 연구회 부스 운영 지원 · 지역연구회 활동 포스터 소개",pics:[...ph("y25-festa"),...ph("y25-sgs")]},
+  {date:"2025-12-03",t:"지역교육연구회 성과나눔회",p:"2025 연간 활동 성과 발표 · 수업 사례와 개발 자료 공유"},
+  {date:"2025-12-06",t:"신과수 워크숍 (7)",p:"마시멜로 챌린지 · GAI 파이썬 코딩(보일 법칙) · 디지털 도구 광합성 실험 · 쉽게 하는 확산 실험 · 성과 나눔과 차년도 계획"}
+];
+
+function cover25(){
+  return `<section class="slide cover" id="cover"><div class="frame"><b></b><b></b><b></b><b></b></div>
+  <div class="in">
+    <p class="who">군포의왕 디지털기반과학교육연구회</p>
+    <div class="year" aria-hidden="true">2025</div>
+    <h1>학생이 묻고, 디지털로 탐구하고,<br>AI 피드백으로 자라는 수업</h1>
+    <p class="topic">연구 주제 <b>학생주도형 디지털 기반 과학수업을 통한 미래 역량 강화 방안 연구</b></p>
+    <div class="stats">
+      <div><strong>5</strong><span>번의 정기 워크숍<br>(5월 ~ 11월)</span></div>
+      <div><strong>7</strong><span>번 경기도신과수연구회<br>연계 워크숍</span></div>
+      <div><strong>11</strong><span>가지 에듀테크·AI 도구를<br>직접 실습</span></div>
+      <div><strong>우수</strong><span>2025 지역교육연구회<br>우수연구회 선정</span></div>
+    </div>
+  </div>
+  <div class="scale" aria-hidden="true"><div class="lbl"><span>12월</span><span>4월</span></div><div class="rail"></div></div>
+  </section>`;
+}
+function theme25(){
+  const steps=[
+    ['질문 생성','실제 맥락에서 출발해 학생이 탐구하고 싶은 질문을 만듭니다.','과학수사대 · 태양계 뉴스룸 (1차)'],
+    ['탐구 설계','가설을 세우고 실험과 조사 과정을 직접 설계합니다.','PhET · 마이크로비트 냉각곡선 (2차)'],
+    ['디지털 실험·분석','데이터를 모으고 시각화해 결과를 논리적으로 표현합니다.','빅카인즈 · 하이러닝 화이트보드 · 센서'],
+    ['표현·평가','AI와 교사의 피드백으로 학습을 성찰하고 다음으로 나아갑니다.','하이러닝 AI 서·논술형 · 스노클AI']
+  ];
+  return `<section class="slide" id="theme"><div class="in">
+    <p class="kicker" style="color:var(--i6)"><i></i>2025 연구 주제</p>
+    <h2 class="h-big">학생주도형 디지털 기반 과학수업</h2>
+    <p class="lede">학생이 스스로 질문을 만들고 탐구를 설계하는 ‘질문 중심 탐구 수업’을 구조화하고, 에듀테크로 참여를 높이며, AI 평가 도구로 학생 맞춤형 피드백 체계를 만들어 ‘학습으로서의 평가’를 실현하고자 했습니다.</p>
+    <div class="model">${steps.map((s,k)=>`<div class="step" style="--g:${gradFor(k*2+1)}"><h3>${s[0]}</h3><p>${s[1]}</p><div class="where">${s[2]}</div></div>`).join('')}</div>
+    <p class="note-line">이 연구로 <b>2025 우수연구회</b>에 선정되었고, 2026년 「AI 기반 질문·탐구·피드백 연계 과학수업 모델 연구」로 이어졌습니다.</p>
+  </div></section>`;
+}
+function present25(){
+  const c='var(--p)'; const pics=ph('y25-p614');
+  const g=gal({items:pics,title:'AI 수업친구와 함께하는 과학 수업 준비',desc:'2025년 6월 14일 경기도신과수연구회 워크숍(광교중학교)에서 우리 연구회가 발표하고 실습을 안내했습니다.',meta:'신과수 워크숍 · 6월 14일',c});
+  const tools=[['Canva AI','키워드만 넣으면 웹페이지 시안을 만들고, 채팅으로 고쳐 ‘이온과 분자’ 페이지 완성'],['Gemini Canvas','HTML·CSS·JS 코드를 보며 수정 — 전압·저항을 바꾸면 전류가 변하는 옴의 법칙 시뮬레이션'],['Gemini·ChatGPT로 HTML','대화로 받은 코드를 .html로 저장하면 브라우저에서 바로 실행'],['CodePen + ChatGPT','소리, 움직이는 그래프, 드래그 앤 드롭 게임처럼 기능이 많은 페이지']];
+  return `<section class="slide" id="p614" style="--c:${c}"><div class="in">
+    <p class="kicker" style="color:${c}"><i></i>도연구회 발표 · 6월 14일</p>
+    <h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">AI 수업친구와 함께하는 과학 수업 준비</h2>
+    <div class="lec-split"><div class="photo4">${pics.map((p,k)=>`<figure><button type="button" data-g="${g}" data-i="${k}" aria-label="${esc(p.cap)} 크게 보기"><img src="${IMG(p.id)}" alt="${esc(p.cap)}" loading="lazy"></button><figcaption>${esc(p.cap)}</figcaption></figure>`).join('')}</div>
+    <div><h3 class="res-h">추상적인 개념을 눈에 보이게</h3><p class="res-p">이온과 분자, 옴의 법칙처럼 보이지 않는 개념을 AI로 웹페이지를 만들어 보여 주는 방법을 경기도 선생님들과 나눴습니다. 2026년 바이브 코딩 수업 웹앱의 출발점입니다.</p>
+    <ul class="res" style="grid-template-columns:1fr">${tools.map(t=>`<li><a style="cursor:default" tabindex="-1">${esc(t[0])}<span style="color:var(--muted);font-weight:500;white-space:normal;text-align:right;max-width:70%">${esc(t[1])}</span></a></li>`).join('')}</ul></div></div>
+  </div></section>`;
+}
+function report25(){
+  const c='var(--t)'; const pics=ph('y25-rep');
+  const g=gal({items:pics,title:'2025 연구 활동 보고',desc:'NotebookLM으로 정리한 2025 연구 활동 보고 슬라이드',meta:'2025 활동 보고서',c});
+  return `<section class="slide" id="report" style="--c:${c}"><div class="in">
+    <p class="kicker" style="color:${c}"><i></i>2025 활동 보고서</p>
+    <h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">한 해를 스물세 장으로 — 연구 활동 보고</h2>
+    <p class="lede">누르면 크게 넘겨 볼 수 있습니다.</p>
+    <div class="rep-grid">${pics.map((p,k)=>`<button type="button" data-g="${g}" data-i="${k}" aria-label="${esc(p.cap)}"><img src="${IMG(p.id)}" alt="${esc(p.cap)}" loading="lazy"><span>${k+1}</span></button>`).join('')}</div>
+  </div></section>`;
+}
+function tools25(){
+  const shelves=[
+    ['질문·탐구','데이터로 묻고 답하기',[['빅카인즈','1차'],['NotebookLM','1차'],['ChatGPT','1차·6월']]],
+    ['실험·시뮬레이션','보이지 않는 것을 보이게',[['PhET 시뮬레이션','2차'],['마이크로비트','2·5차'],['AR 가상실험실','4차']]],
+    ['AI 평가·피드백','평가가 곧 학습이 되도록',[['하이러닝 AI 서·논술형','2·5차'],['스노클AI','4차']]],
+    ['표현·참여','만들고, 겨루고, 나누기',[['Canva AI · Gemini','2차·6월'],['젭퀴즈 · 블루킷','1차'],['GEMS 스토리북','4차']]]
+  ];
+  const cols=['var(--i5)','var(--i6)','var(--t)','var(--p)'];
+  return `<section class="slide" id="tools"><div class="in">
+    <p class="kicker" style="color:var(--i6)"><i></i>2025년에 손에 든 도구</p>
+    <h2 class="h-big">수업의 처음부터 끝까지,<br>AI·에듀테크 도구를 엮었습니다</h2>
+    <div class="rack">${shelves.map((s,k)=>`<div class="shelf" style="--c:${cols[k]}"><h3>${s[0]}</h3><p>${s[1]}</p><ul>${s[2].map(x=>`<li>${x[0]}<em>${x[1]}</em></li>`).join('')}</ul></div>`).join('')}</div>
+  </div></section>`;
+}
+function ending25(){
+  return `<section class="slide end" id="end"><div class="glow"></div><div class="in" style="position:relative">
+    <p class="kicker" style="color:var(--i6)"><i></i>2025년이 남긴 것</p>
+    <h2 class="h-big">AI는 교사를 대신하지 않고,<br>교사의 역량을 키우는 파트너였습니다</h2>
+    <div class="next">
+      <div><b>결론</b><h3>탐구를 보이게, 피드백을 빠르게</h3><p>에듀테크와 AI는 탐구 과정을 가시화하고 피드백 문화를 바꾸는 촉진자였습니다. 다만 정교한 루브릭과 교사의 전문적 판단이 여전히 핵심이었습니다.</p></div>
+      <div><b>제언</b><h3>하이브리드 평가와 공유 플랫폼</h3><p>AI 1차 채점 → 교사 검토 → 맞춤형 피드백 모델을 정교화하고, 수업 자료와 평가 문항을 함께 쌓는 지역 평가 공동체를 만들 필요가 있습니다.</p></div>
+      <div><b>이어서</b><h3>2026년으로</h3><p>2026년에는 「AI 기반 질문·탐구·피드백 연계 과학수업 모델 연구」로 이어 갑니다. <a href="index.html">2026 기록 보기</a> · 2025년 자료실은 <a href="${SITE_2025}" target="_blank" rel="noopener">연구회 구글 사이트</a>에 있습니다.</p></div>
+    </div>
+    <p class="sign">2025년 기록은 연구회 구글 사이트와 활동 보고서를 옮겨 왔습니다.</p>
+  </div></section>`;
+}
+
+function timeline25(){
+  const Y=2025,start=new Date(Y,3,1), end=new Date(Y,11,31), span=end-start;
+  const pct=d=>((new Date(d)-start)/span*100);
+  const months=[4,5,6,7,8,9,10,11,12].map(m=>`<span style="left:${pct(`${Y}-${String(m).padStart(2,'0')}-15`)}%">${m}월</span>`).join('');
+  const grid=[5,6,7,8,9,10,11,12].map(m=>`<i class="grid" style="left:${pct(`${Y}-${String(m).padStart(2,'0')}-01`)}%"></i>`).join('');
+  const lane=(name,sub,color,evs)=>{const last=[-99,-99];
+    const chips=evs.map(e=>{const x=pct(e.date);let row=x-last[0]>=10?0:(x-last[1]>=10?1:(last[0]<last[1]?0:1));last[row]=x;
+      return `<a class="ev ${row?'dn':'up'}" style="left:${x}%" href="#${e.id}"><span class="chip"><b>${md(e.date).m}.${md(e.date).d}</b>${esc(e.short)}</span></a>`}).join('');
+    return `<div class="lane" style="--c:${color}"><div class="lane-name">${name}<small>${sub}</small></div><div class="track">${grid}${chips}</div></div>`;};
+  const W=W25.map(w=>({date:w.date,short:`${w.n}차 워크숍`,id:'w'+w.n}));
+  const P=P25.map(p=>({date:p.date,short:p.t.replace('신과수 워크숍 ','신과수 ').replace(' — 우리 연구회 발표',' 발표').replace('지역교육연구회 ',''),id:p.date==='2025-06-14'?'p614':'province'}));
+  const all=[...W25.map(w=>({date:w.date,t:`${w.n}차 워크숍`,s:w.title,c:'var(--w)'})),...P25.map(p=>({date:p.date,t:p.t,s:p.p,c:'var(--p)'}))].sort((a,b)=>a.date.localeCompare(b.date));
+  return `<section class="slide" id="timeline"><div class="in">
+    <p class="kicker" style="color:var(--w)"><i></i>한 해 타임라인</p>
+    <h2 class="h-big">4월부터 12월까지, 두 갈래로 움직였습니다</h2>
+    <div class="tl"><div class="tl-months">${months}</div>
+      ${lane('자체워크숍','정기 워크숍 5회','var(--w)',W)}
+      ${lane('도연구회 연계','신과수 · 성과 나눔','var(--p)',P)}
+    </div>
+    <ul class="tl-list">${all.map(e=>`<li style="--c:${e.c}"><time>${md(e.date).m}.${md(e.date).d}</time><div>${esc(e.t)}<small>${esc(e.s)}</small></div></li>`).join('')}</ul>
+  </div></section>`;
+}
+
+if(YEAR===2025){
+$('#deck').innerHTML = cover25()+theme25()+timeline25()+W25.map(workshop).join('')+present25()
+  + rowSection('province','var(--p)','도연구회 연계 · 경기도신과수연구회','신과수 워크숍 일곱 번, 그리고 성과 나눔',
+      '우리 연구회의 신과수 회원 선생님들이 도 단위 워크숍에 함께했습니다. 6월에는 우리 연구회가 발표를 맡았고, 11월 경기교육연구 FESTA에서는 신과수 부스 운영을 도왔습니다.',P25,'','경기도신과수연구회')
+  + report25() + tools25() + ending25();
+} else {
 $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('')
   + provinceIntro() + provinceWS()
   + rowSection('together','var(--t)','함께하는 연구 활동','연수실에서, 퇴근길 과학관에서, 주말 연수까지',
       '워크숍 밖에서도 함께 배웠습니다. 논술형·AI 서논술형 평가 연수로 평가를 다듬고, 여름에는 과천과학관 뇌과학 강연을, 가을에는 교육과정-수업-평가 통합설계와 개념기반 탐구수업 연수를 연구회 선생님과 함께 들었습니다.',TOGETHER)
   + tools() + appsSlide() + ending();
+}
 
 /* ---------- 상단 메뉴 (하위 메뉴) ---------- */
 (function(){
   const md2=d=>{const [,m,dd]=d.split('-');return `${+m}.${+dd}`};
   const W=[];WORKSHOPS.forEach(w=>{W.push({h:'#w'+w.n,s:md2(w.date),t:`${w.n}차 · ${w.special?'수석교사 초청 특강':w.title}`,up:w.upcoming});if(w.n===6)W.push({h:'#w6-photos',s:'',t:'6차 특강 사진과 나눔 자료'})});
-  const MENU=[
+  const W5=W25.map(w=>({h:'#w'+w.n,s:md2(w.date),t:`${w.n}차 · ${w.title}`}));
+  const MENU=YEAR===2025?[
+    ['연구 주제','#theme'],['한 해 타임라인','#timeline'],
+    ['자체워크숍','#w1',W5],
+    ['도연구회 연계','#province',[{h:'#p614',s:'6.14',t:'우리 연구회 발표 — AI 수업친구'},'-',...P25.map(e=>({h:e.date==='2025-06-14'?'#p614':'#province',s:md2(e.date),t:e.t}))]],
+    ['활동 보고서','#report'],['도구','#tools'],['2025년이 남긴 것','#end']
+  ]:[
     ['연구 주제','#theme'],['한 해 타임라인','#timeline'],
     ['자체워크숍','#w1',W],
     ['도연구회 연계','#province',[{h:'#province',s:'',t:'경기도신과수연구회 소개'},'-',...PROVINCE.map(e=>({h:'#province-ws',s:md2(e.date),t:e.t,up:e.upcoming}))]],
