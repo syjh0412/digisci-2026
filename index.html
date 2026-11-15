@@ -313,6 +313,7 @@ h1,h2,h3,p{margin:0}
 .hud button{font:inherit;font-size:13px;color:var(--text);background:var(--night-2);border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;cursor:pointer}
 .help{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:30;font-size:13.5px;color:var(--text);background:var(--night-3);border:1px solid var(--line-2);padding:8px 16px;border-radius:999px;opacity:0;transition:opacity .4s;pointer-events:none}
 .help.show{opacity:1}
+.rc.rc-up{border-style:dashed!important;background:transparent!important}
 </style>
 </head>
 <body>
@@ -450,10 +451,10 @@ const WORKSHOPS = [
     photo:"" },
   { n:7, date:"2026-10-27", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
     title:"수업과 함께 자라는 앱",
-    lede:"생성형 AI에게 말로 설명하며 수업에 꼭 맞는 도구를 직접 만드는 ‘바이브 코딩’을 해 보고, 회원들의 탐구 수업 사례를 나눴습니다.",
+    lede:"제목의 ‘앱’은 중1 「힘의 작용」 수업에서 쓰는 웹앱 「힘 탐정 사무소」입니다. 수업을 참관한 회원들과 수업나눔에서 이 앱을 소개한 것을 계기로, 생성형 AI에게 말로 설명하며 수업에 꼭 맞는 도구를 직접 만드는 ‘바이브 코딩’을 함께 해 보고 회원들의 탐구 수업 사례를 나눴습니다.",
     photo:"",
     items:[
-      {art:"vibe", t:"바이브 코딩으로 수업 맞춤형 도구 만들기", d:"코드를 몰라도 말로 설명해 수업용 앱을 만드는 방법"},
+      {art:"vibe", link:["힘 탐정 사무소 열기","https://syjh0412.github.io/question/"], t:"바이브 코딩으로 수업 맞춤형 도구 만들기", d:"사례: 힘 탐정 사무소 — 학생이 궁금한 점을 ‘사건’으로 접수하고, 친구 질문에 답하고, 차시마다 성찰을 남기는 질문·탐구·피드백 수업 앱. 교사는 반별 질문과 성찰을 모아 보고 AI로 정리. 코드를 몰라도 말로 설명해 만들고 수업하며 고쳐 갑니다"},
       {art:"lung", t:"호흡운동 원리 모형 만들기", d:"회원 사례 나눔 — 병과 풍선으로 가로막의 움직임 재현", who:"회원 사례"},
       {art:"ohm", ph:"ohm7", t:"옴의 법칙", d:"회원 사례 나눔 — 전압·전류·저항의 관계 탐구", who:"회원 사례"},
       {art:"boyle", t:"보일 법칙", d:"회원 사례 나눔 — 압력과 부피의 관계 탐구", who:"회원 사례"}
@@ -493,7 +494,8 @@ const TOGETHER = [
   {date:"2026-07-23", t:"과천과학관 ‘퇴근한 김에 번아웃 로그아웃’", short:"과천과학관", p:"KAIST 정재승 교수 「번아웃, 그리고 뇌과학으로 행복을 성찰하다」", ph:"t3"},
   {date:"2026-08-10", t:"디지털탐구도구 직무연수", short:"디지털탐구 연수", p:"여름방학 직무연수"},
   {date:"2026-10-24", t:"교육과정-수업-평가 통합설계 실행 연수", short:"통합설계 연수", p:"「AI 시대, 함께 설계하는 교육과정-수업-평가 통합설계」 · 경기도교육청, 롯데인재개발원 오산캠퍼스", ph:"t5", doc:true},
-  {date:"2026-10-30", end:"10-31", t:"개념기반 탐구수업 시작하기 연수", short:"개념기반 탐구수업", p:"경기도교육청 국제교육원 · 개념기반 교육과정과 탐구 학습, 개념기반 탐구수업·평가 설계", ph:"t6", doc:true}
+  {date:"2026-10-30", end:"10-31", t:"개념기반 탐구수업 시작하기 연수", short:"개념기반 탐구수업", p:"경기도교육청 국제교육원 · 개념기반 교육과정과 탐구 학습, 개념기반 탐구수업·평가 설계", ph:"t6", doc:true},
+  {date:"2026-11-21", t:"AI로 만드는 수업용 HTML 제작 방법 Zoom 나눔", short:"Zoom 나눔 (예정)", p:"재미있는 과학수업 만들기 카페 · 7차 워크숍 바이브 코딩을 이어 배우는 자리. 회원 6명 참여 신청", upcoming:true}
 ];
 
 /* ---------- 실험 일러스트 (SVG) ---------- */
@@ -596,7 +598,7 @@ function cover(){
     <h1>질문에서 데이터로, 데이터에서 피드백으로.<br>우리가 함께한 한 해의 기록</h1>
     <p class="topic">연구 주제 <b>AI 기반 질문·탐구·피드백 연계 과학수업 모델 연구</b></p>
     <div class="stats">
-      <div><strong>${HELD.length+PROVINCE.filter(e=>!e.upcoming).length+TOGETHER.length}</strong><span>번의 모임과 연수<br>(4월 ~ 10월)</span></div>
+      <div><strong>${HELD.length+PROVINCE.filter(e=>!e.upcoming).length+TOGETHER.filter(e=>!e.upcoming).length}</strong><span>번의 모임과 연수<br>(4월 ~ 10월)</span></div>
       <div><strong>${totalItems}</strong><span>가지 실험·수업 활동을<br>직접 해 봄</span></div>
       <div><strong>${PROVINCE.filter(e=>e.topics).length}</strong><span>번 경기도신과수연구회<br>워크숍에 함께함</span></div>
       <div><strong>7</strong><span>개 지역 교원에게<br>문을 연 특강</span></div>
@@ -714,10 +716,10 @@ function rowSection(id,color,kicker,title,lede,list,src){
   return `<section class="slide" id="${id}" style="--c:${color}"><div class="in">
     <p class="kicker" style="color:${color}"><i></i>${kicker}</p>
     <h2 class="h-big">${title}</h2><p class="lede">${lede}</p>
-    <div class="row-cards" style="--n:${list.length}">${list.map(e=>{const a=md(e.date);const range=e.end?` ~ ${+e.end.split('-')[0]}.${+e.end.split('-')[1]}`:'';
+    <div class="row-cards" style="--n:${list.length>6?Math.ceil(list.length/2):list.length}">${list.map(e=>{const a=md(e.date);const range=e.end?` ~ ${+e.end.split('-')[0]}.${+e.end.split('-')[1]}`:'';
       const ids=e.ph?ph(e.ph):[]; const g=ids.length?gal({items:ids,title:e.t,desc:e.p,meta:`함께하는 연구 활동 · ${a.m}월 ${a.d}일`,c:'var(--t)'}):null;
       const bg=ids.length?`<div class="bg"><img src="${IMG(ids[0].id)}" alt="${esc(ids[0].cap)}" loading="lazy" onerror="this.remove()"></div>`:'';
-      return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}${e.doc?' doc':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${ids.length?`<p class="phn">${e.doc?'연수 자료 '+ids.length+'쪽 보기':'사진 '+ids.length+'장 보기'}</p>`:''}</div>`}).join('')}</div>
+      return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}${e.doc?' doc':''}${e.upcoming?' rc-up':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일${e.upcoming?' · 예정':''}</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${ids.length?`<p class="phn">${e.doc?'연수 자료 '+ids.length+'쪽 보기':'사진 '+ids.length+'장 보기'}</p>`:''}</div>`}).join('')}</div>
   </div></section>`;
 }
 
