@@ -365,18 +365,25 @@ html[data-y="2025"] .lb{background:#061416}
 .rep-grid span{position:absolute;left:6px;top:6px;font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
 @media (max-width:900px){.rep-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:520px){.rep-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.shares{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:36px}
-.sh{position:relative;display:flex;flex-direction:column;padding:20px 18px 18px;border-radius:16px;background:var(--night-2);border:1px solid var(--line);text-decoration:none;min-height:230px;transition:transform .2s,border-color .2s}
-.sh:hover{transform:translateY(-3px);border-color:var(--t)}
-.sh-f{position:absolute;right:14px;top:14px;font-size:11px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:6px;background:rgba(61,219,180,.15);color:var(--t)}
+.shares{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:36px}
+.sh{display:flex;flex-direction:column;padding:14px 14px 16px;border-radius:16px;background:var(--night-2);border:1px solid var(--line)}
+.sh-th{all:unset;cursor:zoom-in;display:block;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:#fff;margin-bottom:14px}
+.sh-th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .3s}
+.sh-th:hover img{transform:scale(1.03)}
 .sh-k{font-size:13px;font-weight:700;color:var(--t)}
-.sh h3{font-size:18px;font-weight:750;letter-spacing:-.02em;line-height:1.35;margin-top:10px}
-.sh p{font-size:13.5px;color:var(--muted);margin-top:8px}
-.sh .go{margin-top:auto;padding-top:14px;font-size:13px;font-weight:700}
-@media (max-width:1100px){.shares{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:620px){.shares{grid-template-columns:1fr 1fr}}
+.sh h3{font-size:17px;font-weight:750;letter-spacing:-.02em;line-height:1.35;margin-top:6px}
+.sh p{font-size:13.5px;color:var(--muted);margin-top:6px}
+.sh-act{margin-top:auto;padding-top:14px;display:flex;gap:8px}
+.sh-act button,.sh-act a{font:inherit;font-size:13px;font-weight:700;padding:7px 12px;border-radius:999px;cursor:pointer;text-decoration:none}
+.sh-act button{border:0;background:var(--t);color:var(--night)}
+.sh-act a{border:1px solid var(--line-2);color:var(--text)}
+.sh-act a:hover{border-color:var(--t)}
+@media (max-width:1100px){.shares{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.shares{grid-template-columns:1fr}}
 .sh-aw{align-self:flex-start;margin-top:10px;font-size:13px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--i6);color:var(--night)}
 .sh.aw{border-color:var(--i6)}
+.lb-pdf{align-self:flex-start;font-size:14px;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid var(--c);color:var(--c);text-decoration:none}
+.lb-pdf[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -480,7 +487,7 @@ const WORKSHOPS = [
     lede:"학기말에 바로 쓸 수 있는 융합·창작 활동을 모았습니다. 오로라에이드와 달고나로 ‘맛있게’ 하는 과학탐구, 빛의 성질을 이용한 빛 아트, 옴의 법칙 키트와 디지털 영상현미경까지.",
     photo:"https://sites.google.com/sitesv-images-rt/AMxu72sxeajvOsIf4GPYvNYpEq_J2btWQdx_ARxDaQNlMYZ7hM0TCSjmtMkzN26Q9o64sGKzy98pUuwLnhnB68QRsZJtJD6HH10FVNqydG8RlVEE1z9NJRxAzYUw0kQrK3TZ-XsH7gozwz22fUyznqJ3I5uC61VGJXWzSPHUP8Ol4I2y_cV2MdEMVwChVU1gVcQer9cWVbsQMUR1sFNNBrc9C2raXLhiasPLy_qt2gHS=w1280",
     items:[
-      {art:"aurora", ph:"aurora", link:["활동 자료","https://drive.google.com/file/d/15Hp3PzXOAMntO9sJ8x_TFIre5Hu2r7kl/view"], t:"오로라에이드 만들기", d:"꽃차 색소가 산성 음료를 만나 색이 바뀌는 지시약 원리"},
+      {art:"aurora", ph:"aurora", link:["활동 자료 (PDF)","docs/aurora-ade.pdf"], t:"오로라에이드 만들기", d:"꽃차 색소가 산성 음료를 만나 색이 바뀌는 지시약 원리"},
       {art:"dalgona", ph:"dalgona", t:"달고나 만들기", d:"설탕이 녹고 탄산수소나트륨이 분해되며 부푸는 변화"},
       {art:"light", t:"빛 아트 창작", d:"빛의 성질(굴절·분산·합성)을 이용한 작품 만들기 지도"},
       {art:"ohm", t:"옴의 법칙 실험 키트", d:"전압과 전류를 재어 저항에 따라 기울기가 달라지는 그래프 확인"},
@@ -551,13 +558,11 @@ const APPS=[
 ];
 
 /* 공유 자료실 (구글 드라이브 공유 폴더) */
-const SHARE_FOLDER="https://drive.google.com/drive/folders/1IkWqFIPnNHSrKPhdxPnygv4943zD1meR";
 const SHARES=[
-  {id:"1hEB5b-24WL50lDJP4Dpgf5jen9Wra5Kf",k:"지도안",t:"과학과 교수·학습 과정안 — 힘의 작용 공개수업",u:"중1 · Ⅴ 힘의 작용 · 10.19 공개수업",f:"PDF"},
-  {id:"1iSqzFnOCcdfTMz5epnVPJNE6Uf6KcYZQ",k:"참관 안내",t:"공개수업 참관 안내지",u:"10.19 공개수업 · 「힘 탐정 사무소」",f:"PDF"},
-  {id:"1xHRciZPLC3rq-isgJ7Z_HMZV_fNkj6QP",k:"지도안",t:"공개수업 지도안 — 태양계 · 아라호",u:"중1 · Ⅶ-1 태양계 · 「아라호 관제센터」",f:"HWPX"},
-  {id:"15Hp3PzXOAMntO9sJ8x_TFIre5Hu2r7kl",k:"활동 자료",t:"오로라에이드 매직 랩",u:"3차 워크숍 · 오로라에이드 만들기",f:"PDF"},
-  {id:"1jE467yDQF66GpwOChDkvD6a6JdCZRKmf",k:"연구보고서",t:"2026 수업혁신사례연구대회 전국대회 1등급 수상작 연구보고서",u:"김신연 · [서식3] 연구보고서",f:"PDF",award:"🏆 전국 1등급"}
+  {doc:"lesson-force",pages:5,k:"지도안",t:"과학과 교수·학습 과정안 — 힘의 작용 공개수업",u:"중1 · Ⅴ 힘의 작용 · 10.19 공개수업",f:"PDF"},
+  {doc:"open-class-guide",pages:3,k:"참관 안내",t:"공개수업 참관 안내지",u:"10.19 공개수업 · 「힘 탐정 사무소」",f:"PDF"},
+  {doc:"lesson-araho",pages:3,k:"지도안",t:"공개수업 지도안 — 태양계 · 아라호",u:"중1 · Ⅶ-1 태양계 · 「아라호 관제센터」",f:"PDF"},
+  {doc:"aurora-ade",pages:12,wide:true,k:"활동 자료",t:"오로라에이드 매직 랩",u:"3차 워크숍 · 오로라에이드 만들기",f:"PDF"}
 ];
 
 /* 경기도신과수연구회(신과수) 워크숍 — 「2026 신과수 이야기」 포스터 내용 */
@@ -878,13 +883,17 @@ function appsSlide(){
 }
 
 function sharesSlide(){
+  const cards=SHARES.map(d=>{
+    const items=Array.from({length:d.pages},(_,k)=>({id:`doc-${d.doc}-${k}`,cap:`${d.t} — ${k+1}쪽`,tall:!d.wide}));
+    const g=gal({items,title:d.t,desc:d.u,meta:`공유 자료실 · ${d.k}`,c:'var(--t)',pdf:`docs/${d.doc}.pdf`});
+    return `<div class="sh${d.award?' aw':''}"><button type="button" class="sh-th${d.wide?' wide':''}" data-g="${g}" data-i="0" aria-label="${esc(d.t)} 열기"><img src="${IMG('doc-'+d.doc+'-0')}" alt="${esc(d.t)} 첫 쪽" loading="lazy"></button>
+      <span class="sh-k">${esc(d.k)}</span>${d.award?`<span class="sh-aw">${d.award}</span>`:''}<h3>${esc(d.t)}</h3><p>${esc(d.u)}</p>
+      <div class="sh-act"><button type="button" data-g="${g}" data-i="0">열기 · ${d.pages}쪽</button><a href="docs/${d.doc}.pdf" download>PDF 받기</a></div></div>`}).join('');
   return `<section class="slide" id="shares"><div class="in">
     <p class="kicker" style="color:var(--t)"><i></i>공유 자료실</p>
     <h2 class="h-big">지도안과 활동 자료, 가져다 쓰세요</h2>
-    <p class="lede">공개수업 지도안과 참관 안내지, 워크숍 활동 자료입니다. 누르면 구글 드라이브에서 열리고, 내려받을 수 있습니다.</p>
-    <div class="shares">${SHARES.map(d=>`<a class="sh${d.award?' aw':''}" href="https://drive.google.com/file/d/${d.id}/view" target="_blank" rel="noopener">
-      <span class="sh-f">${d.f}</span><span class="sh-k">${esc(d.k)}</span>${d.award?`<span class="sh-aw">${d.award}</span>`:''}<h3>${esc(d.t)}</h3><p>${esc(d.u)}</p><span class="go">열기 ↗</span></a>`).join('')}</div>
-    <p class="note-line"><a href="${SHARE_FOLDER}" target="_blank" rel="noopener" style="color:var(--t)">공유 폴더 전체 보기 ↗</a></p>
+    <p class="lede">공개수업 지도안과 참관 안내지, 워크숍 활동 자료입니다. 누르면 이 페이지에서 바로 넘겨 보고, PDF로 내려받을 수 있습니다.</p>
+    <div class="shares">${cards}</div>
   </div></section>`;
 }
 
@@ -1095,7 +1104,7 @@ $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('
     ['함께하는 연구','#together',TOGETHER.map(e=>({h:'#together',s:md2(e.date),t:e.t,up:e.upcoming}))],
     ['도구','#tools'],
     ['수업 웹앱','#apps',[{h:'#apps',s:'',t:'전체 보기'},'-',...APPS.map(a=>({h:`https://syjh0412.github.io/${a.r}/`,s:a.d.slice(2).replace('.','.'),t:a.t,ext:true}))]],
-    ['자료실','#shares',[{h:'#shares',s:'',t:'전체 보기'},'-',...SHARES.map(d=>({h:`https://drive.google.com/file/d/${d.id}/view`,s:d.f,t:d.t,ext:true}))]],
+    ['자료실','#shares',[{h:'#shares',s:'',t:'전체 보기'},'-',...SHARES.map(d=>({h:'#shares',s:d.f,t:d.t}))]],
     ['다음 이야기','#end']
   ];
   const item=x=>x==='-'?'<hr>':`<a href="${x.h}"${x.ext?' target="_blank" rel="noopener"':''}><small>${x.s}</small><span>${esc(x.t)}${x.up?'<em>예정</em>':''}${x.ext?' ↗':''}</span></a>`;
@@ -1130,6 +1139,7 @@ function lbRender(){
     $('#lbCap').textContent=it.cap;
   }
   $('#lbMeta').textContent=G.meta||''; $('#lbTitle').textContent=G.title; $('#lbDesc').textContent=G.desc||'';
+  let pd=$('#lbPdf'); if(!pd){pd=document.createElement('a');pd.id='lbPdf';pd.className='lb-pdf';pd.setAttribute('download','');$('#lbVid').after(pd);} pd.hidden=!G.pdf; if(G.pdf){pd.href=G.pdf;pd.textContent='PDF 내려받기';}
   const vb=$('#lbVid'); vb.hidden=!G.yt; vb.textContent=LB.v?'사진으로 돌아가기':'▶ 실험 영상 보기';
   $('#lbCount').textContent=G.items.length>1&&!LB.v?`${LB.i+1} / ${G.items.length}`:'';
   $('#lbThumbs').innerHTML=G.items.length>1?G.items.map((it,k)=>`<button type="button" data-k="${k}" aria-label="${esc(it.cap)}" aria-current="${!LB.v&&k===LB.i}"><img src="${IMG(it.id)}" alt=""></button>`).join(''):'';
