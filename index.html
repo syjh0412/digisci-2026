@@ -238,7 +238,7 @@ h1,h2,h3,p{margin:0}
 .lb-side{background:var(--night-2);border-left:1px solid var(--line);padding:76px 34px 30px;display:flex;flex-direction:column;gap:14px;overflow:auto}
 .lb-meta{font-size:15px;font-weight:700;color:var(--c)}
 .lb-side h3{font-size:clamp(26px,2.3vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.22}
-.lb-cap{font-size:clamp(20px,1.7vw,25px);font-weight:600;line-height:1.5;color:var(--text);padding:14px 0 14px 16px;border-left:4px solid var(--c)}
+.lb-cap{white-space:pre-line;font-size:clamp(20px,1.7vw,25px);font-weight:600;line-height:1.5;color:var(--text);padding:14px 0 14px 16px;border-left:4px solid var(--c)}
 .lb-desc{font-size:16.5px;color:var(--muted);line-height:1.65}
 .lb-vid{align-self:flex-start;font:inherit;font-size:16px;font-weight:700;color:#fff;background:var(--i4);border:0;border-radius:999px;padding:10px 18px;cursor:pointer}
 .lb-foot{margin-top:auto;padding-top:10px}
@@ -255,6 +255,36 @@ h1,h2,h3,p{margin:0}
 @media (max-width:860px){.lb{grid-template-columns:1fr;grid-template-rows:52vh auto;overflow:auto}.lb-stage{padding:56px 12px 12px}.lb-side{border-left:0;border-top:1px solid var(--line);padding:20px}.lb .pv,.lb .nx{width:42px;height:42px}}
 .item .more .vlink{font:inherit;font-size:13px;font-weight:700;color:var(--c);background:none;border:0;padding:0;cursor:pointer}
 .item .more .vlink:hover{text-decoration:underline}
+.lb-stage.tall{overflow:auto;align-items:flex-start;padding:24px 76px}
+.lb-stage.tall img{max-height:none;width:min(100%,1100px);height:auto}
+/* 신과수 */
+.sg-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:34px;border-top:1px solid var(--line-2)}
+.sg-facts div{padding:16px 18px 0 0}
+.sg-facts b{display:block;font-size:clamp(34px,3.6vw,52px);font-weight:850;letter-spacing:-.04em;line-height:1;color:var(--c)}
+.sg-facts b small{font-size:.4em;margin-left:3px;color:var(--text)}
+.sg-facts span{display:block;font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.sg-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:40px;align-items:center;margin-top:34px}
+.sg-hist{list-style:none;margin:0;padding:0;border-left:2px solid var(--line-2)}
+.sg-hist li{display:grid;grid-template-columns:86px 1fr;gap:12px;padding:7px 0 7px 18px;position:relative;font-size:16px}
+.sg-hist li::before{content:"";position:absolute;left:-6px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--night);border:2px solid var(--c)}
+.sg-hist b{color:var(--c);font-weight:800}
+.sg-poster{all:unset;cursor:zoom-in;position:relative;display:block;height:300px}
+.sg-poster img{position:absolute;top:0;height:270px;width:auto;border-radius:8px;box-shadow:0 14px 34px rgba(0,0,0,.45);left:calc(var(--k)*95px + 20px);transform:rotate(calc((var(--k) - 1)*4deg));transition:transform .3s}
+.sg-poster:hover img{transform:rotate(calc((var(--k) - 1)*6deg)) translateY(-6px)}
+.sg-poster span{position:absolute;bottom:0;left:20px;font-size:14px;font-weight:700;color:var(--c)}
+.sg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
+.sg-card{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:14px;background:var(--night-2);border:1px solid var(--line);border-radius:16px;padding:12px;align-items:start}
+.sg-card.star{border-color:var(--c)}
+.sg-thumb{all:unset;cursor:zoom-in;display:block;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--night)}
+.sg-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.sg-date{font-size:26px;font-weight:850;letter-spacing:-.03em;color:var(--c);line-height:1}
+.sg-date small{font-size:13px;font-weight:600;color:var(--muted);margin-left:6px}
+.sg-body h3{font-size:15px;font-weight:700;margin-top:6px;color:var(--muted)}
+.sg-body ol{margin:8px 0 0;padding-left:18px;font-size:14px;line-height:1.5}
+.sg-body li{margin:2px 0}
+.sg-p{font-size:14px;margin-top:8px}
+@media (max-width:1100px){.sg-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.sg-grid{grid-template-columns:1fr}.sg-facts{grid-template-columns:1fr 1fr}.sg-split{grid-template-columns:1fr}.sg-poster{height:260px}.sg-poster img{height:230px;left:calc(var(--k)*70px + 10px)}}
 /* 6차 특강 사진 */
 .lec-split{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px;align-items:start;margin-top:28px}
 .photo4{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -323,6 +353,7 @@ h1,h2,h3,p{margin:0}
    ========================================================= */
 /* 활동별로 고른 사진과 설명 — [사진 번호, 사진 설명]. 파일은 photos/<키>-<번호>.jpg */
 const PHOTOS = {
+  sgs:[[1,"「2026 신과수 이야기」 Vol.0 — 연혁 · 방향 · 방법"],[2,"「2026 신과수 이야기」 Vol.1 — 4월 · 6월 · 7월 워크숍"],[3,"「2026 신과수 이야기」 Vol.2 — 9월 · 10월 워크숍과 함께한 활동"]],
   thermal:[[2,"실험 준비 — 전도실험판(철판·구리판·플라스틱 판)과 대류관, 양초"],[4,"전도 관찰 — 전도실험판 끝을 뜨거운 물에 담그고 열화상 카메라로 촬영"],[0,"전도·대류·복사를 열화상 카메라로 관찰하는 방법 설명"]],
   temp:[[4,"무선 온도 센서 두 개의 그래프 — 뜨거운 쪽은 식고 차가운 쪽은 데워지며 만나는 열평형"],[7,"보온 용기에 꽂은 무선 온도 센서"],[8,"뜨거운 물을 부어 열평형 실험을 준비하는 회원들"],[1,"측정 화면을 띄워 그래프를 함께 읽는 시간"]],
   snorkl:[[0,"스노클AI 화면을 띄우고 활용 방법을 함께 살펴보기"],[2,"학생 풀이에 AI가 피드백하는 과정을 시연"]],
@@ -432,13 +463,19 @@ const WORKSHOPS = [
 ];
 const HELD = WORKSHOPS.filter(w=>!w.upcoming);
 
+/* 경기도신과수연구회(신과수) 워크숍 — 「2026 신과수 이야기」 포스터 내용 */
 const PROVINCE = [
-  {date:"2026-04-11", t:"도연구회 1차 워크숍", p:"신나는 과학수업 워크숍"},
-  {date:"2026-06-13", t:"도연구회 2차 워크숍", p:"신나는 과학수업 워크숍"},
-  {date:"2026-07-18", t:"도연구회 3차 워크숍", p:"군포의왕 연구회 발표", star:true},
-  {date:"2026-08-12", t:"도연구회 박람회", p:"도연구회와 함께 박람회 참여"},
-  {date:"2026-09-05", t:"도연구회 4차 워크숍", p:"신나는 과학수업 워크숍"},
-  {date:"2026-10-17", t:"도연구회 5차 워크숍", p:"신나는 과학수업 워크숍"}
+  {date:"2026-04-11", t:"신과수 1차 워크숍", p:"Google Flow 이미지 생성 외 4개 주제", ph:"sgsm-04",
+   topics:["Google Flow를 활용한 이미지 생성","자유낙하·포물선운동 분석 실험","지능형 과학실 on 과학탐구","진자운동과 줄의 마찰력 초간단 실험"]},
+  {date:"2026-06-13", t:"신과수 2차 워크숍", p:"에듀테크 열 출입 실험 외 4개 주제", ph:"sgsm-06",
+   topics:["에듀테크 기반 열 출입 실험 탐구","간섭계로 보는 양자지우개","오로라 에이드에 담긴 과학","바이브 코딩과 클로드 Cowork 활용 — 박형군(상원고)"]},
+  {date:"2026-07-18", t:"신과수 3차 워크숍", p:"열화상 카메라 탐구 외 4개 주제", ph:"sgsm-07",
+   topics:["열의 이동 (열화상 카메라 탐구)","원자력 사용후 핵연료 재처리 & 단열 실험","AI Claude로 만드는 순천만 습지 체험학습 게임","크로마토그래피 창의 실험"]},
+  {date:"2026-08-12", t:"박람회 함께 배우기", p:"8월 박람회 · 6월 자연사박물관 탐방", ph:"sgsm-with", short:"박람회"},
+  {date:"2026-09-05", t:"신과수 4차 워크숍", p:"기체의 압력과 부피 외 4개 주제", ph:"sgsm-09",
+   topics:["기체의 압력과 부피 관계","IB 과학 평가와 탐구 설계","음료수 한 병으로 하는 탐구 (전반사)","바이브코딩으로 수업 도구 만들기"]},
+  {date:"2026-10-17", t:"신과수 5차 워크숍", p:"물의 전기분해 외 5개 주제", ph:"sgsm-10",
+   topics:["물의 전기분해 탐구수업","보일·샤를의 법칙 실험","RAS로 케미 좋은 수업","자극과 반응 지식시장","특강: 기후위기, AI 시대와 원자력의 역할"]}
 ];
 const TOGETHER = [
   {date:"2026-06-09", end:"06-22", t:"논술형평가 핵심교원 연수", short:"논술형평가 연수", p:"논술형 평가 설계", ph:"t1"},
@@ -549,7 +586,7 @@ function cover(){
     <div class="stats">
       <div><strong>${HELD.length+PROVINCE.length+TOGETHER.length}</strong><span>번의 모임과 연수<br>(4월 ~ 10월)</span></div>
       <div><strong>${totalItems}</strong><span>가지 실험·수업 활동을<br>직접 해 봄</span></div>
-      <div><strong>${PROVINCE.length}</strong><span>번 경기도신과수연구회와<br>함께한 워크숍</span></div>
+      <div><strong>${PROVINCE.filter(e=>e.topics).length}</strong><span>번 경기도신과수연구회<br>워크숍에 함께함</span></div>
       <div><strong>7</strong><span>개 지역 교원에게<br>문을 연 특강</span></div>
     </div>
   </div>
@@ -586,7 +623,7 @@ function timeline(){
     return `<div class="lane" style="--c:${color}"><div class="lane-name">${name}<small>${sub}</small></div><div class="track">${grid}${plan}${chips}</div></div>`;
   };
   const W=WORKSHOPS.map(w=>({date:w.date,short:w.special?`${w.n}차 특강`:w.upcoming?`${w.n}차 (예정)`:`${w.n}차 워크숍`,id:'w'+w.n}));
-  const P=PROVINCE.map(p=>({date:p.date,short:p.star?'발표':p.t.replace('도연구회 ',''),id:'province'}));
+  const P=PROVINCE.map(p=>({date:p.date,short:p.short||p.t.replace('신과수 ',''),id:'province-ws'}));
   const Tg=TOGETHER.map(t=>({date:t.date,short:t.short||t.t,id:'together'}));
   const all=[...WORKSHOPS.map(w=>({date:w.date,t:`${w.n}차 워크숍`,s:w.title,c:'var(--w)'})),...PROVINCE.map(p=>({date:p.date,t:p.t,s:p.p,c:'var(--p)'})),...TOGETHER.map(t=>({date:t.date,t:t.t,s:t.p,c:'var(--t)'}))].sort((a,b)=>a.date.localeCompare(b.date));
   return `<section class="slide" id="timeline"><div class="in">
@@ -594,7 +631,7 @@ function timeline(){
     <h2 class="h-big">4월부터 11월까지, 세 갈래로 움직였습니다</h2>
     <div class="tl"><div class="tl-months">${months}</div>
       ${lane('자체워크숍','매월 화요일 저녁','var(--w)',W,'11~12월 보고서·성과 나눔')}
-      ${lane('도연구회 연계','경기도신과수연구회','var(--p)',P,'')}
+      ${lane('도연구회 연계','신나는 과학수업 연구회','var(--p)',P,'')}
       ${lane('함께하는 연구','연수와 탐방','var(--t)',Tg,'')}
     </div>
     <ul class="tl-list">${all.map(e=>`<li style="--c:${e.c}"><time>${md(e.date).m}.${md(e.date).d}</time><div>${esc(e.t)}<small>${esc(e.s)}</small></div></li>`).join('')}</ul>
@@ -672,6 +709,43 @@ function rowSection(id,color,kicker,title,lede,list,src){
   </div></section>`;
 }
 
+function provinceIntro(){
+  const c='var(--p)';
+  const g=gal({items:ph('sgs').map(x=>({...x,tall:true})),title:'2026 신과수 이야기',desc:'신나는 과학수업 연구회 활동 소개 포스터 (3쪽)',meta:'경기도신과수연구회',c});
+  const hist=[["2012","수석교사 과학 연구 모임으로 출발"],["2015","일반 과학 교사 모임으로 확대"],["2016","자유학기제 우수교사연구회 (장관 표창)"],["2022","경기도교육청 우수연구회"],["2023–26","2022 개정 중학교 과학 교과서 개발"],["2025","경기일보 우수연구회 소개 — 14년째 ‘과학교육의 길’"]];
+  return `<section class="slide" id="province" style="--c:${c}"><div class="in">
+    <p class="kicker" style="color:${c}"><i></i>도연구회 연계 · 경기도신과수연구회</p>
+    <h2 class="h-big">신나는 과학수업 연구회와 함께</h2>
+    <p class="lede">우리 연구회의 신과수 회원 선생님들이 도 단위 워크숍에 함께하며 다른 지역 선생님들과 수업을 나눴습니다. 신과수는 2012년 수석교사 연구 모임으로 시작해 올해 회원 219명이 된 경기도 과학교사 연구회입니다.</p>
+    <div class="sg-facts">
+      <div><b>219<small>명</small></b><span>2026 회원<br>(신규 38명 합류)</span></div>
+      <div><b>5<small>회</small></b><span>정기 워크숍<br>4·6·7·9·10월</span></div>
+      <div><b>4–5<small>개</small></b><span>워크숍마다 실습하는<br>수업·실험 사례</span></div>
+      <div><b>5<small>곳</small></b><span>지역연구회 연계<br>화성·오산, 수원, 성남, 용인, 군포의왕</span></div>
+    </div>
+    <div class="sg-split">
+      <ol class="sg-hist">${hist.map(h=>`<li><b>${h[0]}</b><span>${h[1]}</span></li>`).join('')}</ol>
+      <button type="button" class="sg-poster" data-g="${g}" data-i="0" aria-label="2026 신과수 이야기 포스터 크게 보기">
+        ${ph('sgs').map((x,k)=>`<img src="${IMG(x.id)}" alt="${esc(x.cap)}" loading="lazy" style="--k:${k}">`).join('')}
+        <span>「2026 신과수 이야기」 포스터 보기</span></button>
+    </div>
+  </div></section>`;
+}
+
+function provinceWS(){
+  const c='var(--p)';
+  const cards=PROVINCE.map(e=>{const a=md(e.date);const pic=ph(e.ph.split('-')[0]).find(x=>x.id===e.ph);
+    const g=gal({items:[{id:e.ph,cap:e.topics?e.topics.map((t,k)=>`${k+1}. ${t}`).join('\n'):e.p}],title:e.t,desc:'',meta:`경기도신과수연구회 · ${a.m}월 ${a.d}일`,c});
+    return `<article class="sg-card${e.star?' star':''}${e.topics?'':' mini'}"><button type="button" class="sg-thumb" data-g="${g}" data-i="0" aria-label="${esc(e.t)} 사진 크게 보기"><img src="${IMG(e.ph)}" alt="${esc(e.t)} 활동 사진" loading="lazy"></button>
+      <div class="sg-body"><p class="sg-date">${a.m}.${a.d}<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}</small></p><h3>${esc(e.t)}</h3>
+      ${e.topics?`<ol>${e.topics.map(t=>`<li>${esc(t)}</li>`).join('')}</ol>`:`<p class="sg-p">${esc(e.p)}</p>`}</div></article>`}).join('');
+  return `<section class="slide" id="province-ws" style="--c:${c}"><div class="in">
+    <p class="kicker" style="color:${c}"><i></i>신과수 워크숍 · 2026</p>
+    <h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">다섯 번의 워크숍, 스물한 가지 수업</h2>
+    <div class="sg-grid">${cards}</div>
+  </div></section>`;
+}
+
 function tools(){
   const shelves=[
     ['무선 센서','교과서 실험을 데이터로',[['온도','1·2차'],['압력','2·7차'],['대기압','2차'],['이산화탄소·산소','2차'],['연직수온','2차']]],
@@ -701,8 +775,7 @@ function ending(){
 }
 
 $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('')
-  + rowSection('province','var(--p)','도연구회 연계 워크숍','경기도신과수연구회와 함께, 지역을 넘어',
-      '도 단위 신나는 과학수업 연구회 워크숍에 꾸준히 참여해 다른 지역 선생님들과 수업을 나눴습니다. 7월에는 군포의왕 연구회가 직접 발표했습니다.',PROVINCE)
+  + provinceIntro() + provinceWS()
   + rowSection('together','var(--t)','함께하는 연구 활동','연수실에서, 그리고 퇴근길 과학관에서',
       '워크숍 밖에서도 함께 배웠습니다. 논술형·AI 서논술형 평가 연수로 평가를 다듬고, 여름에는 국립과천과학관 천체투영관에서 뇌과학 강연을 들었습니다.',TOGETHER)
   + tools() + ending();
@@ -713,7 +786,7 @@ const lb=$('#lb');
 function lbRender(){
   const G=GAL[LB.g], st=$('#lbStage');
   lb.style.setProperty('--c',G.c||'var(--i6)');
-  st.querySelector('iframe')?.remove();
+  st.querySelector('iframe')?.remove(); st.classList.remove('tall');
   const img=$('#lbImg'), multi=G.items.length>1&&!LB.v;
   $('#lbP').hidden=$('#lbN').hidden=!multi;
   if(LB.v||!G.items.length){
@@ -721,7 +794,7 @@ function lbRender(){
     if(G.yt){const f=document.createElement('iframe');f.src=`https://www.youtube-nocookie.com/embed/${G.yt}?autoplay=1&rel=0&start=${G.ys||0}`;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title=G.title+' 영상';st.prepend(f);}
     $('#lbCap').textContent='실험 영상';
   } else {
-    const it=G.items[LB.i]; img.hidden=false; img.src=IMG(it.id); img.alt=it.cap;
+    const it=G.items[LB.i]; img.hidden=false; img.src=IMG(it.id); img.alt=it.cap; st.classList.toggle('tall',!!it.tall); st.scrollTop=0;
     $('#lbCap').textContent=it.cap;
   }
   $('#lbMeta').textContent=G.meta||''; $('#lbTitle').textContent=G.title; $('#lbDesc').textContent=G.desc||'';
