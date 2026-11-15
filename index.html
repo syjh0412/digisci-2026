@@ -283,6 +283,9 @@ h1,h2,h3,p{margin:0}
 .sg-body ol{margin:8px 0 0;padding-left:18px;font-size:14px;line-height:1.5}
 .sg-body li{margin:2px 0}
 .sg-p{font-size:14px;margin-top:8px}
+.sg-card.soon{border-style:dashed;border-color:var(--line-2)}
+.sg-soon{aspect-ratio:4/3;border-radius:10px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 8px,transparent 8px 16px)}
+.sg-soon span{font-size:14px;font-weight:700;color:var(--c);border:1px solid var(--c);border-radius:999px;padding:4px 12px}
 @media (max-width:1100px){.sg-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.sg-grid{grid-template-columns:1fr}.sg-facts{grid-template-columns:1fr 1fr}.sg-split{grid-template-columns:1fr}.sg-poster{height:260px}.sg-poster img{height:230px;left:calc(var(--k)*70px + 10px)}}
 /* 6차 특강 사진 */
@@ -475,7 +478,8 @@ const PROVINCE = [
   {date:"2026-09-05", t:"신과수 4차 워크숍", p:"기체의 압력과 부피 외 4개 주제", ph:"sgsm-09",
    topics:["기체의 압력과 부피 관계","IB 과학 평가와 탐구 설계","음료수 한 병으로 하는 탐구 (전반사)","바이브코딩으로 수업 도구 만들기"]},
   {date:"2026-10-17", t:"신과수 5차 워크숍", p:"물의 전기분해 외 5개 주제", ph:"sgsm-10",
-   topics:["물의 전기분해 탐구수업","보일·샤를의 법칙 실험","RAS로 케미 좋은 수업","자극과 반응 지식시장","특강: 기후위기, AI 시대와 원자력의 역할"]}
+   topics:["물의 전기분해 탐구수업","보일·샤를의 법칙 실험","RAS로 케미 좋은 수업","자극과 반응 지식시장","특강: 기후위기, AI 시대와 원자력의 역할"]},
+  {date:"2026-12-05", t:"신과수 6차 워크숍", p:"올해 마지막 신과수 워크숍이 남아 있습니다.", upcoming:true, short:"6차 (예정)"}
 ];
 const TOGETHER = [
   {date:"2026-06-09", end:"06-22", t:"논술형평가 핵심교원 연수", short:"논술형평가 연수", p:"논술형 평가 설계", ph:"t1"},
@@ -584,7 +588,7 @@ function cover(){
     <h1>질문에서 데이터로, 데이터에서 피드백으로.<br>우리가 함께한 한 해의 기록</h1>
     <p class="topic">연구 주제 <b>AI 기반 질문·탐구·피드백 연계 과학수업 모델 연구</b></p>
     <div class="stats">
-      <div><strong>${HELD.length+PROVINCE.length+TOGETHER.length}</strong><span>번의 모임과 연수<br>(4월 ~ 10월)</span></div>
+      <div><strong>${HELD.length+PROVINCE.filter(e=>!e.upcoming).length+TOGETHER.length}</strong><span>번의 모임과 연수<br>(4월 ~ 10월)</span></div>
       <div><strong>${totalItems}</strong><span>가지 실험·수업 활동을<br>직접 해 봄</span></div>
       <div><strong>${PROVINCE.filter(e=>e.topics).length}</strong><span>번 경기도신과수연구회<br>워크숍에 함께함</span></div>
       <div><strong>7</strong><span>개 지역 교원에게<br>문을 연 특강</span></div>
@@ -628,9 +632,9 @@ function timeline(){
   const all=[...WORKSHOPS.map(w=>({date:w.date,t:`${w.n}차 워크숍`,s:w.title,c:'var(--w)'})),...PROVINCE.map(p=>({date:p.date,t:p.t,s:p.p,c:'var(--p)'})),...TOGETHER.map(t=>({date:t.date,t:t.t,s:t.p,c:'var(--t)'}))].sort((a,b)=>a.date.localeCompare(b.date));
   return `<section class="slide" id="timeline"><div class="in">
     <p class="kicker" style="color:var(--w)"><i></i>한 해 타임라인</p>
-    <h2 class="h-big">4월부터 11월까지, 세 갈래로 움직였습니다</h2>
+    <h2 class="h-big">4월부터 12월까지, 세 갈래로 움직였습니다</h2>
     <div class="tl"><div class="tl-months">${months}</div>
-      ${lane('자체워크숍','매월 화요일 저녁','var(--w)',W,'11~12월 보고서·성과 나눔')}
+      ${lane('자체워크숍','매월 화요일 저녁','var(--w)',W,'')}
       ${lane('도연구회 연계','신나는 과학수업 연구회','var(--p)',P,'')}
       ${lane('함께하는 연구','연수와 탐방','var(--t)',Tg,'')}
     </div>
@@ -719,7 +723,7 @@ function provinceIntro(){
     <p class="lede">우리 연구회의 신과수 회원 선생님들이 도 단위 워크숍에 함께하며 다른 지역 선생님들과 수업을 나눴습니다. 신과수는 2012년 수석교사 연구 모임으로 시작해 올해 회원 219명이 된 경기도 과학교사 연구회입니다.</p>
     <div class="sg-facts">
       <div><b>219<small>명</small></b><span>2026 회원<br>(신규 38명 합류)</span></div>
-      <div><b>5<small>회</small></b><span>정기 워크숍<br>4·6·7·9·10월</span></div>
+      <div><b>5<small>회</small></b><span>정기 워크숍 4·6·7·9·10월<br>+ 12월 5일 예정</span></div>
       <div><b>4–5<small>개</small></b><span>워크숍마다 실습하는<br>수업·실험 사례</span></div>
       <div><b>5<small>곳</small></b><span>지역연구회 연계<br>화성·오산, 수원, 성남, 용인, 군포의왕</span></div>
     </div>
@@ -734,14 +738,15 @@ function provinceIntro(){
 
 function provinceWS(){
   const c='var(--p)';
-  const cards=PROVINCE.map(e=>{const a=md(e.date);const pic=ph(e.ph.split('-')[0]).find(x=>x.id===e.ph);
+  const cards=PROVINCE.map(e=>{const a=md(e.date);
+    if(e.upcoming) return `<article class="sg-card soon"><div class="sg-soon"><span>예정</span></div><div class="sg-body"><p class="sg-date">${a.m}.${a.d}<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}</small></p><h3>${esc(e.t)}</h3><p class="sg-p">${esc(e.p)}</p></div></article>`;
     const g=gal({items:[{id:e.ph,cap:e.topics?e.topics.map((t,k)=>`${k+1}. ${t}`).join('\n'):e.p}],title:e.t,desc:'',meta:`경기도신과수연구회 · ${a.m}월 ${a.d}일`,c});
     return `<article class="sg-card${e.star?' star':''}${e.topics?'':' mini'}"><button type="button" class="sg-thumb" data-g="${g}" data-i="0" aria-label="${esc(e.t)} 사진 크게 보기"><img src="${IMG(e.ph)}" alt="${esc(e.t)} 활동 사진" loading="lazy"></button>
       <div class="sg-body"><p class="sg-date">${a.m}.${a.d}<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}</small></p><h3>${esc(e.t)}</h3>
       ${e.topics?`<ol>${e.topics.map(t=>`<li>${esc(t)}</li>`).join('')}</ol>`:`<p class="sg-p">${esc(e.p)}</p>`}</div></article>`}).join('');
   return `<section class="slide" id="province-ws" style="--c:${c}"><div class="in">
     <p class="kicker" style="color:${c}"><i></i>신과수 워크숍 · 2026</p>
-    <h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">다섯 번의 워크숍, 스물한 가지 수업</h2>
+    <h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">다섯 번의 워크숍, 스물한 가지 수업 — 12월에 한 번 더</h2>
     <div class="sg-grid">${cards}</div>
   </div></section>`;
 }
