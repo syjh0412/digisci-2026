@@ -314,6 +314,20 @@ h1,h2,h3,p{margin:0}
 .help{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:30;font-size:13.5px;color:var(--text);background:var(--night-3);border:1px solid var(--line-2);padding:8px 16px;border-radius:999px;opacity:0;transition:opacity .4s;pointer-events:none}
 .help.show{opacity:1}
 .rc.rc-up{border-style:dashed!important;background:transparent!important}
+.apps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:36px}
+.app{display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:var(--night-2);border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}
+.app:hover{transform:translateY(-3px);border-color:var(--p)}
+.app.star{border-color:var(--p)}
+.app .th{aspect-ratio:16/10;overflow:hidden;background:#000}
+.app .th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.app .bd{padding:12px 14px 14px;display:flex;flex-direction:column;flex:1}
+.app .dt{font-size:11px;color:var(--dim);letter-spacing:.04em}
+.app h3{font-size:16px;font-weight:750;letter-spacing:-.02em;margin-top:4px;line-height:1.3}
+.app .u{font-size:12px;color:var(--p);margin-top:3px;font-weight:600}
+.app p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+.app .go{margin-top:auto;padding-top:10px;font-size:12px;font-weight:700;color:var(--text)}
+@media (max-width:1100px){.apps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:620px){.apps{grid-template-columns:1fr 1fr}.app p:not(.u){display:none}}
 </style>
 </head>
 <body>
@@ -321,7 +335,7 @@ h1,h2,h3,p{margin:0}
 <header class="bar">
   <a class="org" href="#cover">군포의왕 디지털기반과학교육연구회</a>
   <nav aria-label="슬라이드 바로가기">
-    <a href="#theme">연구 주제</a><a href="#timeline">한 해 타임라인</a><a href="#w1">자체워크숍</a><a href="#province">도연구회 연계</a><a href="#together">함께하는 연구</a><a href="#tools">도구</a><a href="#end">다음 이야기</a>
+    <a href="#theme">연구 주제</a><a href="#timeline">한 해 타임라인</a><a href="#w1">자체워크숍</a><a href="#province">도연구회 연계</a><a href="#together">함께하는 연구</a><a href="#tools">도구</a><a href="#apps">수업 웹앱</a><a href="#end">다음 이야기</a>
   </nav>
   <button class="present-btn" id="presentBtn" type="button">발표 모드</button>
 </header>
@@ -472,6 +486,20 @@ const WORKSHOPS = [
     steps:["준비물 확인","부품 순서대로 놓기","클리커 보호캡 제거","LED 다리 방향 맞추기","짧은 다리 고정","건전지 연결·불빛 시험","프레임에 끼우기","검사받고 스티커 붙이기"] }
 ];
 const HELD = WORKSHOPS.filter(w=>!w.upcoming);
+
+/* 바이브 코딩으로 만든 수업 웹앱 (github.com/syjh0412) */
+const APPS=[
+  {r:"ai-theater", d:"2026.08", t:"AI 윤리 극장", u:"국립중앙과학관 연계 · AI 윤리", x:"여섯 개의 상영관에서 미래 기술의 두 얼굴을 관람하고 모둠 탐구 주제를 고릅니다"},
+  {r:"bio", d:"2026.08", t:"생물다양성 탐험", u:"중1 · 생물의 다양성", x:"생물다양성의 뜻과 5계 분류를 익히고 퀴즈로 확인합니다"},
+  {r:"bio-classification", d:"2026.08", t:"생물 분류 노선도", u:"중1 · 생물의 다양성", x:"관찰 기록만 보고 갈림길을 지나 생물 카드 27장을 다섯 계로 분류합니다"},
+  {r:"Stellar-Brightness", d:"2026.09", t:"별의 밝기 탐구실", u:"중2 · Ⅷ 별과 우주", x:"조도 센서로 잰 빛의 세기를 그래프로 바꾸고 별의 등급까지 이어 봅니다"},
+  {r:"ex", d:"2026.10", t:"우주 탐사 오디세이", u:"중1 · 태양계", x:"탐사선 OMEGA-1호의 5단계 암호를 4인 모둠이 태양계 개념으로 풀어냅니다"},
+  {r:"question", d:"2026.11", t:"힘 탐정 사무소", u:"중1 · 힘의 작용", x:"궁금한 점을 ‘사건’으로 접수하고 친구 질문에 답하며 차시마다 성찰을 남깁니다", star:true},
+  {r:"araho-solar", d:"2026.11", t:"아라호 관제센터", u:"중1 · Ⅶ-1 태양계와 태양 활동", x:"미션 학습, 태양 활동 시뮬레이터, 한 줄 논술로 이어지는 수업·논술 연습 앱"},
+  {r:"araho-earthmoon", d:"2026.11", t:"아라호 관제센터 시즌 2", u:"중1 · Ⅶ-2 지구와 달의 운동", x:"시즌 1의 세계관과 콜사인을 이어 받아 관측 추리와 교신으로 배웁니다"},
+  {r:"space-mission", d:"2026.11", t:"우주 탐사 기획단", u:"중2 · Ⅷ 별과 우주", x:"성공한 탐사가 남긴 ‘다음 질문’을 찾아 모둠이 새로운 탐사 임무를 제안합니다"},
+  {r:"gas-booth", d:"2026.11", t:"기체 실험 부스", u:"중1 · 기체의 성질", x:"압력·보일·샤를 법칙 실험 31가지를 골라 슬라이드로 설명하고 활동지를 인쇄합니다"}
+];
 
 /* 경기도신과수연구회(신과수) 워크숍 — 「2026 신과수 이야기」 포스터 내용 */
 const PROVINCE = [
@@ -779,6 +807,17 @@ function tools(){
   </div></section>`;
 }
 
+function appsSlide(){
+  return `<section class="slide" id="apps"><div class="in">
+    <p class="kicker" style="color:var(--p)"><i></i>바이브 코딩으로 만든 수업 웹앱</p>
+    <h2 class="h-big">말로 설명해 만들고,<br>수업하면서 고쳐 갑니다</h2>
+    <p class="lede">8월 「AI 윤리 극장」부터 지금까지, 단원과 수업 흐름에 맞춰 직접 만든 웹앱입니다. 누르면 새 창에서 열립니다. 회원 선생님들이 만든 앱도 이어서 모아 갑니다.</p>
+    <div class="apps">${APPS.map(a=>`<a class="app${a.star?' star':''}" href="https://syjh0412.github.io/${a.r}/" target="_blank" rel="noopener">
+      <div class="th"><img src="${IMG('app-'+a.r)}" alt="${esc(a.t)} 첫 화면" loading="lazy"></div>
+      <div class="bd"><span class="dt">${a.d}</span><h3>${esc(a.t)}</h3><p class="u">${esc(a.u)}</p><p>${esc(a.x)}</p><span class="go">열기 ↗</span></div></a>`).join('')}</div>
+  </div></section>`;
+}
+
 function ending(){
   return `<section class="slide end" id="end"><div class="glow"></div><div class="in" style="position:relative">
     <p class="kicker" style="color:var(--i6)"><i></i>다음 이야기</p>
@@ -796,7 +835,7 @@ $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('
   + provinceIntro() + provinceWS()
   + rowSection('together','var(--t)','함께하는 연구 활동','연수실에서, 퇴근길 과학관에서, 주말 연수까지',
       '워크숍 밖에서도 함께 배웠습니다. 논술형·AI 서논술형 평가 연수로 평가를 다듬고, 여름에는 과천과학관 뇌과학 강연을, 가을에는 교육과정-수업-평가 통합설계와 개념기반 탐구수업 연수를 연구회 선생님과 함께 들었습니다.',TOGETHER)
-  + tools() + ending();
+  + tools() + appsSlide() + ending();
 
 /* ---------- 라이트박스 ---------- */
 const LB={g:null,i:0,v:false};
