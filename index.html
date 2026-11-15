@@ -230,16 +230,41 @@ h1,h2,h3,p{margin:0}
 .soon{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,72px);align-items:center}
 .soon .ws-title{max-width:16ch}
 /* 라이트박스 */
-.lb{position:fixed;inset:0;z-index:60;background:rgba(8,6,20,.94);display:none;flex-direction:column;align-items:center;justify-content:center;padding:56px 70px 70px}
-.lb.open{display:flex}
-.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.lb .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;font-size:15px;color:var(--text)}
-.lb .cap small{color:var(--muted);margin-left:10px}
-.lb button{position:absolute;font:inherit;color:var(--text);background:rgba(255,255,255,.08);border:1px solid var(--line-2);border-radius:999px;cursor:pointer}
-.lb .x{top:16px;right:18px;padding:6px 14px;font-size:14px}
-.lb .pv,.lb .nx{top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:20px}
+.lb{position:fixed;inset:0;z-index:60;background:#0C0920;display:none;grid-template-columns:minmax(0,1fr) min(440px,34vw)}
+.lb.open{display:grid}
+.lb-stage{position:relative;display:flex;align-items:center;justify-content:center;padding:48px 76px;min-height:0}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb-stage iframe{width:100%;aspect-ratio:16/9;max-height:100%;border:0;border-radius:10px;background:#000}
+.lb-side{background:var(--night-2);border-left:1px solid var(--line);padding:76px 34px 30px;display:flex;flex-direction:column;gap:14px;overflow:auto}
+.lb-meta{font-size:15px;font-weight:700;color:var(--c)}
+.lb-side h3{font-size:clamp(26px,2.3vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.22}
+.lb-cap{font-size:clamp(20px,1.7vw,25px);font-weight:600;line-height:1.5;color:var(--text);padding:14px 0 14px 16px;border-left:4px solid var(--c)}
+.lb-desc{font-size:16.5px;color:var(--muted);line-height:1.65}
+.lb-vid{align-self:flex-start;font:inherit;font-size:16px;font-weight:700;color:#fff;background:var(--i4);border:0;border-radius:999px;padding:10px 18px;cursor:pointer}
+.lb-foot{margin-top:auto;padding-top:10px}
+.lb-count{font-size:15px;color:var(--muted);margin-bottom:8px}
+.lb-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.lb-thumbs button{all:unset;cursor:pointer;border-radius:8px;overflow:hidden;aspect-ratio:4/3;opacity:.5;transition:opacity .2s}
+.lb-thumbs button:hover{opacity:.85}
+.lb-thumbs button[aria-current="true"]{opacity:1;outline:3px solid var(--c);outline-offset:2px}
+.lb-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.lb button.x{position:absolute;top:18px;right:20px;font:inherit;font-size:15px;color:var(--text);background:rgba(255,255,255,.08);border:1px solid var(--line-2);border-radius:999px;padding:7px 16px;cursor:pointer;z-index:2}
+.lb .pv,.lb .nx{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;font:inherit;font-size:26px;color:var(--text);background:rgba(255,255,255,.1);border:1px solid var(--line-2);border-radius:999px;cursor:pointer}
 .lb .pv{left:14px}.lb .nx{right:14px}
-.lb .yt{position:absolute;top:16px;left:18px;padding:6px 14px;font-size:14px;color:#fff;background:var(--i4);border-radius:999px;text-decoration:none;font-weight:700}
+.lb [hidden]{display:none!important}
+@media (max-width:860px){.lb{grid-template-columns:1fr;grid-template-rows:52vh auto;overflow:auto}.lb-stage{padding:56px 12px 12px}.lb-side{border-left:0;border-top:1px solid var(--line);padding:20px}.lb .pv,.lb .nx{width:42px;height:42px}}
+.item .more .vlink{font:inherit;font-size:13px;font-weight:700;color:var(--c);background:none;border:0;padding:0;cursor:pointer}
+.item .more .vlink:hover{text-decoration:underline}
+/* 6차 특강 사진 */
+.lec-split{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px;align-items:start;margin-top:28px}
+.photo4{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.photo4 figure{margin:0}
+.photo4 button{all:unset;cursor:zoom-in;display:block;border-radius:12px;overflow:hidden;aspect-ratio:16/10;background:var(--night-2)}
+.photo4 img{width:100%;height:100%;object-fit:cover;display:block}
+.photo4 figcaption{font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.res-h{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.res-p{color:var(--muted);font-size:14.5px;margin-top:4px}
+@media (max-width:900px){.lec-split{grid-template-columns:1fr}}
 
 /* ---------- 발표 모드 ---------- */
 .present{scroll-snap-type:y mandatory}
@@ -273,12 +298,20 @@ h1,h2,h3,p{margin:0}
   <button type="button" id="exitBtn">발표 끝내기</button>
 </div>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
-  <a class="yt" id="lbYt" target="_blank" rel="noopener" hidden>영상 보기</a>
-  <button class="x" type="button" id="lbX">닫기</button>
-  <button class="pv" type="button" id="lbP" aria-label="이전 사진">‹</button>
-  <img id="lbImg" alt="">
-  <button class="nx" type="button" id="lbN" aria-label="다음 사진">›</button>
-  <div class="cap" id="lbCap"></div>
+  <div class="lb-stage" id="lbStage">
+    <img id="lbImg" alt="">
+    <button class="pv" type="button" id="lbP" aria-label="이전 사진">‹</button>
+    <button class="nx" type="button" id="lbN" aria-label="다음 사진">›</button>
+  </div>
+  <aside class="lb-side">
+    <p class="lb-meta" id="lbMeta"></p>
+    <h3 id="lbTitle"></h3>
+    <p class="lb-cap" id="lbCap"></p>
+    <p class="lb-desc" id="lbDesc"></p>
+    <button type="button" class="lb-vid" id="lbVid" hidden>▶ 실험 영상 보기</button>
+    <div class="lb-foot"><p class="lb-count" id="lbCount"></p><div class="lb-thumbs" id="lbThumbs"></div></div>
+  </aside>
+  <button class="x" type="button" id="lbX">닫기 ✕</button>
 </div>
 <div class="help" id="help">← → 또는 스페이스로 넘기고, Esc로 끝냅니다</div>
 
@@ -288,13 +321,29 @@ h1,h2,h3,p{margin:0}
    - 사진: photo 에 이미지 주소(또는 같은 폴더의 파일 이름, 예: "photos/w4.jpg")
    - 새 워크숍: WORKSHOPS 배열에 하나 더 추가
    ========================================================= */
-/* 사진: photos 폴더의 <키>-<번호>.jpg (구글사이트에서 옮겨 온 현장 사진) */
-const PHOTOS = {"keycap": 1, "thermal": 6, "temp": 11, "snorkl": 4, "soap": 8, "boyle": 5, "cloud": 4, "photo": 8, "ocean": 2, "ramen": 12, "aurora": 3, "dalgona": 1, "micro": 3, "light4": 4, "lecture": 25, "ohm7": 2, "t1": 2, "t2": 4, "t3": 9};
-/* 같은 사진이 여러 페이지에 올라간 경우 — 현장 사진 모음에서는 한 번만 보여 줍니다 */
-const DUP = new Set(["photo-1","photo-2","photo-3","photo-4","ocean-0","ocean-1","lecture-4"]);
-const NOMOSAIC = new Set(["ramen-0","ramen-1"]); /* 세로로 긴 근접 사진은 모음 타일에서 제외 */
+/* 활동별로 고른 사진과 설명 — [사진 번호, 사진 설명]. 파일은 photos/<키>-<번호>.jpg */
+const PHOTOS = {
+  thermal:[[2,"열화상 카메라로 관찰할 실험 장치 — 스탠드에 매단 색 띠와 금속 고리"],[4,"열화상 카메라 실험을 직접 시연하는 모습"],[0,"실험 장치를 둘러싸고 설명을 듣는 회원들"]],
+  temp:[[4,"무선 온도 센서 두 개의 그래프 — 뜨거운 쪽은 식고 차가운 쪽은 데워지며 만나는 열평형"],[7,"보온 용기에 꽂은 무선 온도 센서"],[8,"뜨거운 물을 부어 열평형 실험을 준비하는 회원들"],[1,"측정 화면을 띄워 그래프를 함께 읽는 시간"]],
+  snorkl:[[0,"스노클AI 화면을 띄우고 활용 방법을 함께 살펴보기"],[2,"학생 풀이에 AI가 피드백하는 과정을 시연"]],
+  soap:[[2,"드라이아이스가 승화한 기체로 둥글게 부풀어 오른 비누막"],[4,"비누막 두 개가 나란히 부풀어 오른 모습"],[1,"학생 수업 적용 — 비누막 거품을 관찰하는 학생들"]],
+  boyle:[[1,"보일 법칙 실험 테이블 — 압력 센서와 주사기, 측정 장비"],[0,"보일 법칙 실험 설명을 듣는 회원들"]],
+  cloud:[[0,"대기압·온도 센서 그래프 — 누를 때마다 기압이 오르내리는 모습"],[3,"센서를 연결한 용기를 눌러 기압 변화를 기록"]],
+  photo:[[5,"밀폐 용기 속 식물에 CO₂·O₂ 센서를 꽂고 LED 빛을 비추는 장치"],[7,"측정한 기체 농도 그래프를 화면에 띄워 해석"],[0,"광합성 실험 연수 모습"]],
+  ramen:[[3,"발열팩의 열로 끓여 낸 라면"],[2,"물을 부으면 열을 내는 발열팩"],[5,"온도 센서 그래프 — 발열 반응으로 온도가 계속 올라감"],[1,"발열팩으로 삶은 달걀"],[7,"학생 수업 적용 — 직접 끓인 라면을 나눠 먹는 학생들"]],
+  aurora:[[0,"파란 꽃차에 산성 음료를 붓는 순간 — 아래부터 색이 바뀜"],[1,"산성과 만나 분홍빛으로 변하는 중"],[2,"완성된 오로라에이드"]],
+  dalgona:[[0,"설탕과 탄산수소나트륨으로 만든 달고나"]],
+  micro:[[2,"디지털 영상현미경으로 본 식물 줄기 단면 — 화면으로 바로 함께 봄"],[0,"현미경 화면을 함께 보며 설명 듣기"]],
+  light4:[[1,"자석식 광학 키트 — 레이저 빛이 오목·볼록렌즈를 지나며 퍼지고 모임"],[0,"렌즈를 지나며 꺾이는 레이저 빛의 경로"],[2,"렌즈 위치를 바꾸며 빛의 경로를 관찰"]],
+  lecture:[[5,"김정식 수석교사의 특강 「에듀테크와 과학실험을 활용한 학생 참여형 과학수업」"],[13,"테슬라 코일 시연"],[20,"손전등과 렌즈로 하는 빛 실험 시연"],[19,"프레넬 렌즈 — 얇은 판 하나가 볼록렌즈 역할"],[15,"회원들이 실험 도구를 직접 만져 보는 시간"],[0,"인근 지역 교원까지 모여 가득 찬 과학실"]],
+  ohm7:[[0,"회원 수업 사례 — 온도에 따른 저항 변화 탐구"]],
+  t1:[[0,"논술형평가 문항과 채점 기준을 함께 설계"]],
+  t2:[[0,"하이러닝 AI 서·논술형 평가 시스템 실습"],[3,"연수 강의 모습"]],
+  t3:[[0,"국립과천과학관 천체투영관 ‘퇴근한 김에 번아웃 로그아웃’"],[8,"KAIST 정재승 교수 「번아웃, 그리고 뇌과학으로 행복을 성찰하다」"],[4,"강연 슬라이드 — 도파민 롤러코스터"]],
+  keycap:[[0,"원소 기호 네 개(K·S·Y·Bi)로 만든 LED 키캡 키링"]]
+};
 const IMG=(id)=>`photos/${id}.jpg`;
-const ph=k=>Array.from({length:PHOTOS[k]||0},(_,i)=>`${k}-${i}`);
+const ph=k=>(PHOTOS[k]||[]).map(([n,cap])=>({id:`${k}-${n}`,cap}));
 const SITE_2025 = "https://sites.google.com/view/digisci";
 const GS = "https://sites.google.com/view/digisci/2026-%ED%99%9C%EB%8F%99/";
 
@@ -304,22 +353,22 @@ const WORKSHOPS = [
     lede:"올해 첫 모임. 열화상 카메라와 무선 온도 센서로 열의 이동을 직접 확인하고, 질문과 탐구 중심 수업 사례를 나눈 뒤 한 해 운영 방향을 함께 정했습니다.",
     photo:"https://sites.google.com/sitesv-images-rt/AMxu72v6ZzCqtAEo27nyd95RfT9JCoO-wAOCJTrBlBDfSE0SjixDTYtzmEWn5Wsi_L-_WlkMqPepFN3gVV9bHKihuCbz_uVyRgFxfEa0HYOyLRxxnKISDdGIN4HJg_CFTEf5C7Y4y2l_P2jEaaVW0qzvZixFga0PhcHLcmDTGWxxrP2jdr9KnjQB7FWOv1X3OcFMrMKx1WblRvwdkftxXhtkW6DHPCc10vmyE0gm3ZAt-QE=w1280",
     items:[
-      {art:"thermal", ph:"thermal", pi:2, t:"열화상카메라 활용 과학탐구", d:"온도를 색으로 바꿔 보여 주는 카메라로 열의 전달과 단열을 관찰"},
-      {art:"temp", ph:"temp", pi:4, t:"무선온도센서 활용 과학탐구", d:"태블릿에 실시간으로 그려지는 온도 그래프로 가열·냉각 과정을 기록"},
+      {art:"thermal", ph:"thermal", t:"열화상카메라 활용 과학탐구", d:"온도를 색으로 바꿔 보여 주는 카메라로 열의 전달과 단열을 관찰"},
+      {art:"temp", ph:"temp", t:"무선온도센서 활용 과학탐구", d:"태블릿에 실시간으로 그려지는 온도 그래프로 가열·냉각 과정을 기록"},
       {art:"snorkl", ph:"snorkl", t:"과정중심평가와 스노클AI", d:"학생이 말과 그림으로 설명한 풀이에 AI가 바로 피드백을 주는 도구"},
-      {art:"soap", ph:"soap", pi:2, yt:"W9qlQbdu06E", t:"비누막으로 보는 상태변화", d:"드라이아이스가 승화하며 생긴 기체로 비누막이 둥글게 부풀어 오르는 모습을 관찰. 학생 수업에도 적용"}
+      {art:"soap", ph:"soap", yt:"W9qlQbdu06E", t:"비누막으로 보는 상태변화", d:"드라이아이스가 승화하며 생긴 기체로 비누막이 둥글게 부풀어 오르는 모습을 관찰. 학생 수업에도 적용"}
     ]},
   { n:2, date:"2026-05-26", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
     title:"교과서 실험을 데이터로 다시 하다",
     lede:"「2022 개정 교육과정 내 무선 센서 활용 탐구 연수」. 교과서 속 실험을 무선 센서로 다시 해 보며 측정값을 그래프로 읽는 수업을 설계하고, 발열반응으로 라면까지 끓여 봤습니다.",
     photo:"https://sites.google.com/sitesv-images-rt/AMxu72vozcsUmhhnNyyBo40t7-q84XV1J6UEkVQfnIrWAO21qSLMs9Y5bk7tGQMcRCPWlnQIOG4ecFcAmPGe6azwTyqQMfSLNLq6YvJ00Jv8PpJyR9F1uQIdybAV3sdonWphZdPxT_K2SWFULoHfKh2GudlvSv8GEAiFbUnher4wm9Jfn-JWY0Rq3mcIydd7lsVxLirLsPCNA4IwD95Bw1O8Cz-4Nzv5KQmyOSUcJxR9x1s=w1280",
     items:[
-      {art:"boyle", ph:"boyle", pi:1, t:"압력 센서로 보는 보일 법칙", d:"주사기 부피를 바꾸며 압력을 재고 압력–부피 그래프를 그림"},
+      {art:"boyle", ph:"boyle", t:"압력 센서로 보는 보일 법칙", d:"주사기 부피를 바꾸며 압력을 재고 압력–부피 그래프를 그림"},
       {art:"cloud", ph:"cloud", yt:"QHL3X3l424g", t:"대기압·온도 센서로 구름 만들기", d:"공기가 팽창할 때 기압과 온도가 함께 떨어지는 순간을 포착"},
-      {art:"photo", ph:"photo", pi:5, t:"CO₂·O₂ 센서로 보는 광합성", d:"빛을 받은 식물 주변의 두 기체 농도가 엇갈려 변하는 모습을 측정"},
+      {art:"photo", ph:"photo", t:"CO₂·O₂ 센서로 보는 광합성", d:"빛을 받은 식물 주변의 두 기체 농도가 엇갈려 변하는 모습을 측정"},
       {art:"freeze", t:"온도 센서로 어는점 측정", d:"냉각 곡선의 평평한 구간에서 어는점을 찾아냄"},
-      {art:"ocean", ph:"ocean", t:"연직수온 센서로 보는 해수의 층", d:"깊이에 따른 수온을 재어 혼합층·수온약층·심해층을 그래프로 확인"},
-      {art:"ramen", ph:"ramen", pi:3, t:"발열반응 탐구 — 라면 끓이기", d:"발열팩의 반응열로 라면을 끓이고 달걀을 삶으며 온도 변화를 센서 그래프로 확인. 학생 수업에도 적용"}
+      {art:"ocean", t:"연직수온 센서로 보는 해수의 층", d:"깊이에 따른 수온을 재어 혼합층·수온약층·심해층을 그래프로 확인"},
+      {art:"ramen", ph:"ramen", t:"발열반응 탐구 — 라면 끓이기", d:"발열팩의 반응열로 라면을 끓이고 달걀을 삶으며 온도 변화를 센서 그래프로 확인. 학생 수업에도 적용"}
     ]},
   { n:3, date:"2026-06-23", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
     title:"맛있고, 빛나는 학기말 과학",
@@ -330,7 +379,7 @@ const WORKSHOPS = [
       {art:"dalgona", ph:"dalgona", t:"달고나 만들기", d:"설탕이 녹고 탄산수소나트륨이 분해되며 부푸는 변화"},
       {art:"light", t:"빛 아트 창작", d:"빛의 성질(굴절·분산·합성)을 이용한 작품 만들기 지도"},
       {art:"ohm", t:"옴의 법칙 실험 키트", d:"전압과 전류를 재어 저항에 따라 기울기가 달라지는 그래프 확인"},
-      {art:"micro", ph:"micro", pi:2, t:"디지털영상현미경 활용 탐구", d:"관찰 화면을 태블릿과 대형 화면에 바로 띄워 함께 보고 기록"}
+      {art:"micro", ph:"micro", t:"디지털영상현미경 활용 탐구", d:"관찰 화면을 태블릿과 대형 화면에 바로 띄워 함께 보고 기록"}
     ]},
   { n:4, date:"2026-07-14", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
     title:"1학기를 돌아보고 2학기를 설계하다",
@@ -338,7 +387,7 @@ const WORKSHOPS = [
     photo:"",
     items:[
       {art:"book", t:"독서 토론 「사라진 스푼」", d:"샘 킨 지음. 주기율표 원소에 얽힌 과학사 이야기를 함께 읽고 수업과 연결해 토론", link:["책 정보","https://www.yes24.com/product/goods/5866899"]},
-      {art:"light", ph:"light4", pi:1, t:"빛 탐구", d:"자석식 광학 키트로 레이저 빛이 볼록·오목렌즈를 지나며 꺾이는 경로를 관찰"},
+      {art:"light", ph:"light4", t:"빛 탐구", d:"자석식 광학 키트로 레이저 빛이 볼록·오목렌즈를 지나며 꺾이는 경로를 관찰"},
       {art:"rubric", t:"2학기 평가 계획 나눔", d:"논술형·수행평가 계획과 실험탐구 활동을 서로 공유"},
       {art:"lab", t:"미래형 과학실 구축 사례", d:"고천중학교 미래형 과학실 구축 과정과 신규 기자재 소개"}
     ]},
@@ -366,7 +415,7 @@ const WORKSHOPS = [
     items:[
       {art:"vibe", t:"바이브 코딩으로 수업 맞춤형 도구 만들기", d:"코드를 몰라도 말로 설명해 수업용 앱을 만드는 방법"},
       {art:"lung", t:"호흡운동 원리 모형 만들기", d:"회원 사례 나눔 — 병과 풍선으로 가로막의 움직임 재현", who:"회원 사례"},
-      {art:"ohm", ph:"ohm7", pi:1, t:"옴의 법칙", d:"회원 사례 나눔 — 전압·전류·저항의 관계 탐구", who:"회원 사례"},
+      {art:"ohm", ph:"ohm7", t:"옴의 법칙", d:"회원 사례 나눔 — 전압·전류·저항의 관계 탐구", who:"회원 사례"},
       {art:"boyle", t:"보일 법칙", d:"회원 사례 나눔 — 압력과 부피의 관계 탐구", who:"회원 사례"}
     ]},
   { n:8, date:"2026-11-24", day:"화", time:"17:00~19:00", place:"", upcoming:true,
@@ -483,11 +532,10 @@ const gradFor=n=>`linear-gradient(160deg,${HEAT[Math.min(n,7)]} 10%,${HEAT[Math.
 const accentFor=n=>HEAT[Math.min(n,6)];
 
 const totalItems=new Set(HELD.flatMap(w=>(w.items||[]).filter(i=>!i.who).map(i=>i.t))).size;
-const ALLPH=Object.entries(PHOTOS).reduce((a,[k,v])=>a+ph(k).filter(id=>!DUP.has(id)).length,0);
 
 /* ---------- 사진 갤러리 ---------- */
 const GAL=[];
-function gal(items,title,yt){GAL.push({items,title,yt});return GAL.length-1}
+function gal(o){GAL.push(o);return GAL.length-1}
 const imgTag=(id,w,alt,cls='')=>`<img class="${cls}" src="${IMG(id,w)}" alt="${esc(alt)}" loading="lazy" onerror="this.remove()">`;
 
 function cover(){
@@ -501,7 +549,7 @@ function cover(){
       <div><strong>${HELD.length+PROVINCE.length+TOGETHER.length}</strong><span>번의 모임과 연수<br>(4월 ~ 10월)</span></div>
       <div><strong>${totalItems}</strong><span>가지 실험·수업 활동을<br>직접 해 봄</span></div>
       <div><strong>${PROVINCE.length}</strong><span>번 경기도신과수연구회와<br>함께한 워크숍</span></div>
-      <div><strong>${ALLPH}</strong><span>장의 현장 사진으로<br>남긴 기록</span></div>
+      <div><strong>7</strong><span>개 지역 교원에게<br>문을 연 특강</span></div>
     </div>
   </div>
   <div class="scale" aria-hidden="true"><div class="lbl"><span>11월</span><span>4월</span></div><div class="rail"></div></div>
@@ -552,17 +600,18 @@ function timeline(){
   </div></section>`;
 }
 
-function card(it){
-  const ids=it.ph?ph(it.ph):[];
-  let top=ART[it.art]();
-  if(ids.length){
-    const g=gal(ids.map(id=>({id,label:it.t})),it.t,it.yt);
-    const pi=Math.min(it.pi||0,ids.length-1);
-    top=`<button class="shot" type="button" data-g="${g}" data-i="${pi}" aria-label="${esc(it.t)} 사진 ${ids.length}장 보기">${top.replace('class="art"','class="art" style="position:absolute;inset:0;width:100%;height:100%"')}${imgTag(ids[pi],640,it.t)}<span class="cnt">사진 ${ids.length}</span>${it.yt?'<span class="vid">▶ 영상</span>':''}</button>`;
-    top=top.replace(`<img class=""`,`<img class="" style="position:absolute;inset:0"`);
+function card(it,w){
+  const pics=it.ph?ph(it.ph):[];
+  const meta=`${w.n}차 워크숍 · ${md(w.date).m}월 ${md(w.date).d}일`;
+  let top=ART[it.art](), g=null;
+  if(pics.length||it.yt){
+    g=gal({items:pics,title:it.t,desc:it.d,meta,yt:it.yt,c:accentFor(w.n)});
+  }
+  if(pics.length){
+    top=`<button class="shot" type="button" data-g="${g}" data-i="0" aria-label="${esc(it.t)} 사진 크게 보기">${top.replace('class="art"','class="art" style="position:absolute;inset:0;width:100%;height:100%"')}<img src="${IMG(pics[0].id)}" alt="${esc(pics[0].cap)}" loading="lazy" style="position:absolute;inset:0" onerror="this.remove()">${pics.length>1?`<span class="cnt">사진 ${pics.length}</span>`:''}${it.yt?'<span class="vid">▶ 영상</span>':''}</button>`;
   }
   const more=[];
-  if(it.yt) more.push(`<a href="https://www.youtube.com/watch?v=${it.yt}" target="_blank" rel="noopener">실험 영상</a>`);
+  if(it.yt) more.push(`<button type="button" class="vlink" data-g="${g}" data-v="1">▶ 실험 영상 보기</button>`);
   if(it.link) more.push(`<a href="${it.link[1]}" target="_blank" rel="noopener">${esc(it.link[0])}</a>`);
   return `<article class="item">${top}<h3>${esc(it.t)}</h3><p>${esc(it.d)}</p>${it.who?`<span class="who">${esc(it.who)}</span>`:''}${more.length?`<div class="more">${more.join('')}</div>`:''}</article>`;
 }
@@ -577,9 +626,9 @@ function workshop(w){
     </div></section>`;
   }
   if(w.special==='lecture'){
-    const ids=ph(w.ph);
-    const g=ids.length?gal(ids.map(id=>({id,label:'김정식 수석교사 초청 특강'})),'6차 특강'):null;
-    const right=ids.length?`<button class="shot" type="button" data-g="${g}" data-i="0" style="all:unset;cursor:zoom-in;display:block;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--night-2);position:relative">${ART.lecture().replace('class="art"','class="art" style="position:absolute;inset:0;width:100%;height:100%"')}${imgTag(ids[0],1000,'6차 특강 현장').replace('<img class=""','<img class="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"')}</button>`:ART.lecture();
+    const pics=ph(w.ph);
+    w._g=pics.length?gal({items:pics,title:'수석교사 초청 특강',desc:w.title+' — '+w.speaker+' ('+w.affil+')',meta:`${w.n}차 워크숍 · ${m}월 ${d}일`,c}):null;
+    const right=pics.length?`<button class="shot" type="button" data-g="${w._g}" data-i="0" style="all:unset;cursor:zoom-in;display:block;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--night-2);position:relative">${ART.lecture().replace('class="art"','class="art" style="position:absolute;inset:0;width:100%;height:100%"')}<img src="${IMG(pics[0].id)}" alt="${esc(pics[0].cap)}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()"></button>`:ART.lecture();
     return `<section class="slide" id="w${w.n}" style="--g:${gradFor(w.n)};--c:${c}"><div class="in">
       <div class="ws-head"><div class="ws-num">${w.n}<small>차</small></div><div>${meta}<h2 class="ws-title">수석교사 초청 특강</h2></div></div>
       <div class="lecture"><div><blockquote>${esc(w.title)}</blockquote>
@@ -592,35 +641,22 @@ function workshop(w){
   return `<section class="slide" id="w${w.n}" style="--g:${gradFor(w.n)};--c:${c}"><div class="in">
     <div class="ws-head"><div class="ws-num">${w.n}<small>차</small></div>
       <div>${meta}<h2 class="ws-title">${esc(w.title)}</h2><p class="ws-lede">${esc(w.lede)}</p></div></div>
-    <div class="items" style="--cols:${Math.min(6,Math.max(5,w.items.length))}">${w.items.map(card).join('')}</div>
+    <div class="items" style="--cols:${Math.min(6,Math.max(5,w.items.length))}">${w.items.map(it=>card(it,w)).join('')}</div>
     ${w.steps?`<div class="steps"><b>키캡 만들기 순서</b><ol>${w.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>`:''}
   </div></section>` + mosaic(w);
 }
 
-/* 워크숍 현장 사진 모음 (사진이 6장 이상일 때) */
+/* 6차 특강: 현장 사진 4장 + 특강 자료 */
 function mosaic(w){
-  let groups;
-  if(w.special==='lecture') groups=[ph(w.ph).filter(id=>!DUP.has(id)).map(id=>({id,label:''}))];
-  else groups=(w.items||[]).filter(it=>it.ph).map(it=>ph(it.ph).filter(id=>!DUP.has(id)&&!NOMOSAIC.has(id)).map(id=>({id,label:it.t}))).filter(g=>g.length);
-  const full=groups.flat();
-  if(full.length<6) return '';
-  const cap=w.res?6:9, max=Math.min(cap, 3+3*Math.floor((full.length-3)/3)), pick=[];
-  const ptr=groups.map(()=>0);
-  // 첫 장: 사람들이 보이는 장면이 많은 첫 그룹의 첫 사진
-  while(pick.length<Math.min(max,full.length)){
-    let added=false;
-    groups.forEach((g,k)=>{ if(pick.length<max && ptr[k]<g.length){ const step=Math.max(1,Math.floor(g.length/Math.ceil(max/groups.length))); pick.push(g[ptr[k]]); ptr[k]+=step; added=true; } });
-    if(!added) break;
-  }
-  const g=gal(full,`${w.n}차 현장`);
-  const tiles=pick.map(p=>`<button type="button" data-g="${g}" data-i="${full.indexOf(p)}" aria-label="${esc(p.label||'현장 사진')} 크게 보기">${imgTag(p.id,900,p.label||`${w.n}차 현장`)}${p.label?`<span class="lbl">${esc(p.label)}</span>`:''}</button>`).join('');
+  if(!w.res||w._g==null) return '';
+  const pics=ph(w.ph).slice(1,5);
   const c=accentFor(w.n);
-  const title={1:'열화상 카메라부터 드라이아이스 비누막까지',2:'센서 다섯 개, 그리고 라면 한 냄비',3:'보랏빛 음료와 달고나, 현미경 화면',6:'과학교사들로 가득 찬 과학실'}[w.n]||`${w.n}차 워크숍 현장`;
-  const res=w.res?`<div><h3 style="font-size:20px;font-weight:800;letter-spacing:-.02em">특강에서 나눈 자료</h3><p style="color:var(--muted);font-size:14.5px;margin-top:4px">김정식·허명성의 과학사랑에서 바로 열어 볼 수 있습니다.</p><ul class="res" style="grid-template-columns:1fr">${w.res.map(r=>`<li><a href="${r[1]}" target="_blank" rel="noopener">${esc(r[0])}<span>열기</span></a></li>`).join('')}</ul></div>`:'';
+  const tiles=pics.map((p,k)=>`<figure><button type="button" data-g="${w._g}" data-i="${k+1}" aria-label="${esc(p.cap)} 크게 보기"><img src="${IMG(p.id)}" alt="${esc(p.cap)}" loading="lazy"></button><figcaption>${esc(p.cap)}</figcaption></figure>`).join('');
   return `<section class="slide" id="w${w.n}-photos" style="--c:${c}"><div class="in">
-    <div class="mosaic-head"><div><p class="kicker" style="color:${c}"><i></i>${w.n}차 워크숍 현장</p><h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">${title}</h2></div>
-    <p class="count"><b>${full.length}</b>장의 사진 · 누르면 크게 봅니다</p></div>
-    ${res?`<div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;align-items:start" class="split">${`<div class="mosaic" style="margin-top:30px">${tiles}</div>`}<div style="margin-top:30px">${res}</div></div>`:`<div class="mosaic">${tiles}</div>`}
+    <p class="kicker" style="color:${c}"><i></i>${w.n}차 특강 현장</p>
+    <h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">보고, 만지고, 바로 수업에 가져갈 것들</h2>
+    <div class="lec-split"><div class="photo4">${tiles}</div>
+    <div><h3 class="res-h">특강에서 나눈 자료</h3><p class="res-p">김정식·허명성의 과학사랑에서 바로 열어 볼 수 있습니다.</p><ul class="res" style="grid-template-columns:1fr">${w.res.map(r=>`<li><a href="${r[1]}" target="_blank" rel="noopener">${esc(r[0])}<span>열기</span></a></li>`).join('')}</ul></div></div>
   </div></section>`;
 }
 
@@ -629,9 +665,9 @@ function rowSection(id,color,kicker,title,lede,list,src){
     <p class="kicker" style="color:${color}"><i></i>${kicker}</p>
     <h2 class="h-big">${title}</h2><p class="lede">${lede}</p>
     <div class="row-cards" style="--n:${list.length}">${list.map(e=>{const a=md(e.date);const range=e.end?` ~ ${+e.end.split('-')[0]}.${+e.end.split('-')[1]}`:'';
-      const ids=e.ph?ph(e.ph):[]; const g=ids.length?gal(ids.map(id=>({id,label:e.t})),e.t):null;
-      const bg=ids.length?`<div class="bg">${imgTag(ids[0],700,e.t)}</div>`:'';
-      return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${ids.length?`<p class="phn">사진 ${ids.length}장</p>`:''}</div>`}).join('')}</div>
+      const ids=e.ph?ph(e.ph):[]; const g=ids.length?gal({items:ids,title:e.t,desc:e.p,meta:`함께하는 연구 활동 · ${a.m}월 ${a.d}일`,c:'var(--t)'}):null;
+      const bg=ids.length?`<div class="bg"><img src="${IMG(ids[0].id)}" alt="${esc(ids[0].cap)}" loading="lazy" onerror="this.remove()"></div>`:'';
+      return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${ids.length?`<p class="phn">사진 ${ids.length}장 보기</p>`:''}</div>`}).join('')}</div>
   </div></section>`;
 }
 
@@ -671,18 +707,35 @@ $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('
   + tools() + ending();
 
 /* ---------- 라이트박스 ---------- */
-const LB={g:null,i:0};
+const LB={g:null,i:0,v:false};
 const lb=$('#lb');
-function lbShow(){const G=GAL[LB.g];const it=G.items[LB.i];$('#lbImg').src=IMG(it.id,1800);$('#lbImg').alt=it.label||G.title;
-  $('#lbCap').innerHTML=`${esc(it.label||G.title)}<small>${LB.i+1} / ${G.items.length}</small>`;
-  const y=$('#lbYt'); if(G.yt){y.hidden=false;y.href='https://www.youtube.com/watch?v='+G.yt}else y.hidden=true;
-  const pre=G.items[(LB.i+1)%G.items.length]; if(pre){const im=new Image();im.src=IMG(pre.id)}}
-function lbOpen(g,i){LB.g=+g;LB.i=+i||0;lb.classList.add('open');lbShow();$('#lbX').focus()}
-function lbClose(){lb.classList.remove('open');$('#lbImg').removeAttribute('src')}
-function lbStep(d){const n=GAL[LB.g].items.length;LB.i=(LB.i+d+n)%n;lbShow()}
+function lbRender(){
+  const G=GAL[LB.g], st=$('#lbStage');
+  lb.style.setProperty('--c',G.c||'var(--i6)');
+  st.querySelector('iframe')?.remove();
+  const img=$('#lbImg'), multi=G.items.length>1&&!LB.v;
+  $('#lbP').hidden=$('#lbN').hidden=!multi;
+  if(LB.v||!G.items.length){
+    img.hidden=true; img.removeAttribute('src');
+    if(G.yt){const f=document.createElement('iframe');f.src=`https://www.youtube-nocookie.com/embed/${G.yt}?autoplay=1&rel=0`;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title=G.title+' 영상';st.prepend(f);}
+    $('#lbCap').textContent='실험 영상';
+  } else {
+    const it=G.items[LB.i]; img.hidden=false; img.src=IMG(it.id); img.alt=it.cap;
+    $('#lbCap').textContent=it.cap;
+  }
+  $('#lbMeta').textContent=G.meta||''; $('#lbTitle').textContent=G.title; $('#lbDesc').textContent=G.desc||'';
+  const vb=$('#lbVid'); vb.hidden=!G.yt; vb.textContent=LB.v?'사진으로 돌아가기':'▶ 실험 영상 보기';
+  $('#lbCount').textContent=G.items.length>1&&!LB.v?`${LB.i+1} / ${G.items.length}`:'';
+  $('#lbThumbs').innerHTML=G.items.length>1?G.items.map((it,k)=>`<button type="button" data-k="${k}" aria-label="${esc(it.cap)}" aria-current="${!LB.v&&k===LB.i}"><img src="${IMG(it.id)}" alt=""></button>`).join(''):'';
+}
+function lbOpen(g,i,v){LB.g=+g;LB.i=+i||0;LB.v=!!v||!GAL[LB.g].items.length;lb.classList.add('open');lbRender();$('#lbX').focus()}
+function lbClose(){lb.classList.remove('open');$('#lbStage').querySelector('iframe')?.remove();$('#lbImg').removeAttribute('src')}
+function lbStep(d){const n=GAL[LB.g].items.length;if(LB.v||n<2)return;LB.i=(LB.i+d+n)%n;lbRender()}
 $('#lbX').onclick=lbClose; $('#lbP').onclick=()=>lbStep(-1); $('#lbN').onclick=()=>lbStep(1);
-lb.addEventListener('click',e=>{if(e.target===lb)lbClose()});
-document.addEventListener('click',e=>{const t=e.target.closest('[data-g]');if(t){e.preventDefault();e.stopPropagation();lbOpen(t.dataset.g,t.dataset.i)}},true);
+$('#lbVid').onclick=()=>{LB.v=!LB.v;lbRender()};
+$('#lbThumbs').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b){LB.v=false;LB.i=+b.dataset.k;lbRender()}});
+$('#lbStage').addEventListener('click',e=>{if(e.target.id==='lbStage')lbClose()});
+document.addEventListener('click',e=>{if(e.target.closest('.lb'))return;const t=e.target.closest('[data-g]');if(t){e.preventDefault();e.stopPropagation();lbOpen(t.dataset.g,t.dataset.i,t.dataset.v)}},true);
 document.addEventListener('keydown',e=>{const t=e.target.closest&&e.target.closest('.rc[data-g]');if(t&&(e.key==='Enter'||e.key===' ')){e.preventDefault();lbOpen(t.dataset.g,t.dataset.i)}});
 
 /* ---------- 발표 모드 ---------- */
