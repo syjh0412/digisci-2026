@@ -356,7 +356,7 @@ const WORKSHOPS = [
       {art:"thermal", ph:"thermal", t:"열화상카메라 활용 과학탐구", d:"열화상 카메라로 눈에 보이지 않는 열의 이동을 촬영하고, 전도·대류·복사로 분류해 설명"},
       {art:"temp", ph:"temp", t:"무선온도센서 활용 과학탐구", d:"태블릿에 실시간으로 그려지는 온도 그래프로 가열·냉각 과정을 기록"},
       {art:"snorkl", ph:"snorkl", t:"과정중심평가와 스노클AI", d:"학생이 말과 그림으로 설명한 풀이에 AI가 바로 피드백을 주는 도구"},
-      {art:"soap", ph:"soap", yt:"W9qlQbdu06E", t:"비누막으로 보는 상태변화", d:"드라이아이스가 승화하며 생긴 기체로 비누막이 둥글게 부풀어 오르는 모습을 관찰. 학생 수업에도 적용"}
+      {art:"soap", ph:"soap", yt:"W9qlQbdu06E", ys:30, t:"비누막으로 보는 상태변화", d:"드라이아이스가 승화하며 생긴 기체로 비누막이 둥글게 부풀어 오르는 모습을 관찰. 학생 수업에도 적용"}
     ]},
   { n:2, date:"2026-05-26", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
     title:"교과서 실험을 데이터로 다시 하다",
@@ -605,7 +605,7 @@ function card(it,w){
   const meta=`${w.n}차 워크숍 · ${md(w.date).m}월 ${md(w.date).d}일`;
   let top=ART[it.art](), g=null;
   if(pics.length||it.yt){
-    g=gal({items:pics,title:it.t,desc:it.d,meta,yt:it.yt,c:accentFor(w.n)});
+    g=gal({items:pics,title:it.t,desc:it.d,meta,yt:it.yt,ys:it.ys||0,c:accentFor(w.n)});
   }
   if(pics.length){
     top=`<button class="shot" type="button" data-g="${g}" data-i="0" aria-label="${esc(it.t)} 사진 크게 보기">${top.replace('class="art"','class="art" style="position:absolute;inset:0;width:100%;height:100%"')}<img src="${IMG(pics[0].id)}" alt="${esc(pics[0].cap)}" loading="lazy" style="position:absolute;inset:0" onerror="this.remove()">${pics.length>1?`<span class="cnt">사진 ${pics.length}</span>`:''}${it.yt?'<span class="vid">▶ 영상</span>':''}</button>`;
@@ -717,7 +717,7 @@ function lbRender(){
   $('#lbP').hidden=$('#lbN').hidden=!multi;
   if(LB.v||!G.items.length){
     img.hidden=true; img.removeAttribute('src');
-    if(G.yt){const f=document.createElement('iframe');f.src=`https://www.youtube-nocookie.com/embed/${G.yt}?autoplay=1&rel=0`;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title=G.title+' 영상';st.prepend(f);}
+    if(G.yt){const f=document.createElement('iframe');f.src=`https://www.youtube-nocookie.com/embed/${G.yt}?autoplay=1&rel=0&start=${G.ys||0}`;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title=G.title+' 영상';st.prepend(f);}
     $('#lbCap').textContent='실험 영상';
   } else {
     const it=G.items[LB.i]; img.hidden=false; img.src=IMG(it.id); img.alt=it.cap;
