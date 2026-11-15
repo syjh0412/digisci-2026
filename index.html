@@ -375,6 +375,8 @@ html[data-y="2025"] .lb{background:#061416}
 .sh .go{margin-top:auto;padding-top:14px;font-size:13px;font-weight:700}
 @media (max-width:1100px){.shares{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:620px){.shares{grid-template-columns:1fr 1fr}}
+.sh-aw{align-self:flex-start;margin-top:10px;font-size:13px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--i6);color:var(--night)}
+.sh.aw{border-color:var(--i6)}
 </style>
 </head>
 <body>
@@ -555,7 +557,7 @@ const SHARES=[
   {id:"1iSqzFnOCcdfTMz5epnVPJNE6Uf6KcYZQ",k:"참관 안내",t:"공개수업 참관 안내지",u:"10.19 공개수업 · 「힘 탐정 사무소」",f:"PDF"},
   {id:"1xHRciZPLC3rq-isgJ7Z_HMZV_fNkj6QP",k:"지도안",t:"공개수업 지도안 — 태양계 · 아라호",u:"중1 · Ⅶ-1 태양계 · 「아라호 관제센터」",f:"HWPX"},
   {id:"15Hp3PzXOAMntO9sJ8x_TFIre5Hu2r7kl",k:"활동 자료",t:"오로라에이드 매직 랩",u:"3차 워크숍 · 오로라에이드 만들기",f:"PDF"},
-  {id:"1jE467yDQF66GpwOChDkvD6a6JdCZRKmf",k:"연구보고서",t:"2026 수업혁신사례연구대회 전국대회 출품작 연구보고서",u:"김신연 · [서식3] 연구보고서",f:"PDF"}
+  {id:"1jE467yDQF66GpwOChDkvD6a6JdCZRKmf",k:"연구보고서",t:"2026 수업혁신사례연구대회 전국대회 1등급 수상작 연구보고서",u:"김신연 · [서식3] 연구보고서",f:"PDF",award:"🏆 전국 1등급"}
 ];
 
 /* 경기도신과수연구회(신과수) 워크숍 — 「2026 신과수 이야기」 포스터 내용 */
@@ -880,8 +882,8 @@ function sharesSlide(){
     <p class="kicker" style="color:var(--t)"><i></i>공유 자료실</p>
     <h2 class="h-big">지도안과 활동 자료, 가져다 쓰세요</h2>
     <p class="lede">공개수업 지도안과 참관 안내지, 워크숍 활동 자료입니다. 누르면 구글 드라이브에서 열리고, 내려받을 수 있습니다.</p>
-    <div class="shares">${SHARES.map(d=>`<a class="sh" href="https://drive.google.com/file/d/${d.id}/view" target="_blank" rel="noopener">
-      <span class="sh-f">${d.f}</span><span class="sh-k">${esc(d.k)}</span><h3>${esc(d.t)}</h3><p>${esc(d.u)}</p><span class="go">열기 ↗</span></a>`).join('')}</div>
+    <div class="shares">${SHARES.map(d=>`<a class="sh${d.award?' aw':''}" href="https://drive.google.com/file/d/${d.id}/view" target="_blank" rel="noopener">
+      <span class="sh-f">${d.f}</span><span class="sh-k">${esc(d.k)}</span>${d.award?`<span class="sh-aw">${d.award}</span>`:''}<h3>${esc(d.t)}</h3><p>${esc(d.u)}</p><span class="go">열기 ↗</span></a>`).join('')}</div>
     <p class="note-line"><a href="${SHARE_FOLDER}" target="_blank" rel="noopener" style="color:var(--t)">공유 폴더 전체 보기 ↗</a></p>
   </div></section>`;
 }
