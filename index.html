@@ -328,15 +328,26 @@ h1,h2,h3,p{margin:0}
 .app .go{margin-top:auto;padding-top:10px;font-size:12px;font-weight:700;color:var(--text)}
 @media (max-width:1100px){.apps{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:620px){.apps{grid-template-columns:1fr 1fr}.app p:not(.u){display:none}}
+.bar nav{overflow:visible}
+.bar nav .dd{position:relative}
+.bar nav .dd>a::after{content:"";display:inline-block;width:5px;height:5px;margin-left:6px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:translateY(-3px) rotate(45deg);opacity:.6}
+.bar nav .menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-4px);min-width:250px;max-height:calc(100vh - 90px);overflow:auto;padding:8px;border-radius:14px;background:var(--night-2);border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.45);opacity:0;visibility:hidden;transition:opacity .15s,transform .15s,visibility .15s;z-index:30}
+.bar nav .menu::before{content:"";position:absolute;inset:-10px 0 auto 0;height:10px}
+.bar nav .dd.rt .menu{left:auto;right:0;transform:translate(0,-4px)}
+.bar nav .dd:hover .menu,.bar nav .dd:focus-within .menu,.bar nav .dd.open .menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.bar nav .dd.rt:hover .menu,.bar nav .dd.rt:focus-within .menu,.bar nav .dd.rt.open .menu{transform:translate(0,0)}
+.bar nav .menu a{display:flex;gap:10px;align-items:baseline;border-radius:9px;padding:8px 10px;white-space:normal;color:var(--text);font-size:14px;line-height:1.35}
+.bar nav .menu a small{flex:none;min-width:42px;font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums}
+.bar nav .menu a span{flex:1}
+.bar nav .menu a em{font-style:normal;font-size:11px;color:var(--i6);margin-left:4px}
+.bar nav .menu hr{border:0;border-top:1px solid var(--line);margin:6px 4px}
 </style>
 </head>
 <body>
 
 <header class="bar">
   <a class="org" href="#cover">군포의왕 디지털기반과학교육연구회</a>
-  <nav aria-label="슬라이드 바로가기">
-    <a href="#theme">연구 주제</a><a href="#timeline">한 해 타임라인</a><a href="#w1">자체워크숍</a><a href="#province">도연구회 연계</a><a href="#together">함께하는 연구</a><a href="#tools">도구</a><a href="#apps">수업 웹앱</a><a href="#end">다음 이야기</a>
-  </nav>
+  <nav aria-label="슬라이드 바로가기" id="topnav"></nav>
   <button class="present-btn" id="presentBtn" type="button">발표 모드</button>
 </header>
 
@@ -836,6 +847,33 @@ $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('
   + rowSection('together','var(--t)','함께하는 연구 활동','연수실에서, 퇴근길 과학관에서, 주말 연수까지',
       '워크숍 밖에서도 함께 배웠습니다. 논술형·AI 서논술형 평가 연수로 평가를 다듬고, 여름에는 과천과학관 뇌과학 강연을, 가을에는 교육과정-수업-평가 통합설계와 개념기반 탐구수업 연수를 연구회 선생님과 함께 들었습니다.',TOGETHER)
   + tools() + appsSlide() + ending();
+
+/* ---------- 상단 메뉴 (하위 메뉴) ---------- */
+(function(){
+  const md2=d=>{const [,m,dd]=d.split('-');return `${+m}.${+dd}`};
+  const W=[];WORKSHOPS.forEach(w=>{W.push({h:'#w'+w.n,s:md2(w.date),t:`${w.n}차 · ${w.special?'수석교사 초청 특강':w.title}`,up:w.upcoming});if(w.n===6)W.push({h:'#w6-photos',s:'',t:'6차 특강 사진과 나눔 자료'})});
+  const MENU=[
+    ['연구 주제','#theme'],['한 해 타임라인','#timeline'],
+    ['자체워크숍','#w1',W],
+    ['도연구회 연계','#province',[{h:'#province',s:'',t:'경기도신과수연구회 소개'},'-',...PROVINCE.map(e=>({h:'#province-ws',s:md2(e.date),t:e.t,up:e.upcoming}))]],
+    ['함께하는 연구','#together',TOGETHER.map(e=>({h:'#together',s:md2(e.date),t:e.t,up:e.upcoming}))],
+    ['도구','#tools'],
+    ['수업 웹앱','#apps',[{h:'#apps',s:'',t:'전체 보기'},'-',...APPS.map(a=>({h:`https://syjh0412.github.io/${a.r}/`,s:a.d.slice(2).replace('.','.'),t:a.t,ext:true}))]],
+    ['다음 이야기','#end']
+  ];
+  const item=x=>x==='-'?'<hr>':`<a href="${x.h}"${x.ext?' target="_blank" rel="noopener"':''}><small>${x.s}</small><span>${esc(x.t)}${x.up?'<em>예정</em>':''}${x.ext?' ↗':''}</span></a>`;
+  const nav=$('#topnav');
+  nav.innerHTML=MENU.map((m,k)=>m[2]?`<div class="dd${k>=MENU.length-3?' rt':''}"><a href="${m[1]}" aria-haspopup="true" aria-expanded="false">${m[0]}</a><div class="menu">${m[2].map(item).join('')}</div></div>`:`<a href="${m[1]}">${m[0]}</a>`).join('');
+  const close=()=>nav.querySelectorAll('.dd.open').forEach(d=>{d.classList.remove('open');d.firstElementChild.setAttribute('aria-expanded','false')});
+  nav.querySelectorAll('.dd>a').forEach(a=>a.addEventListener('click',e=>{
+    const d=a.parentElement;
+    if(!d.classList.contains('open')){e.preventDefault();close();d.classList.add('open');a.setAttribute('aria-expanded','true')}
+    else close();
+  }));
+  nav.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{close();a.blur()}));
+  document.addEventListener('click',e=>{if(!nav.contains(e.target))close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+})();
 
 /* ---------- 라이트박스 ---------- */
 const LB={g:null,i:0,v:false};
