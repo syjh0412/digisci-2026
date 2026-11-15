@@ -365,6 +365,16 @@ html[data-y="2025"] .lb{background:#061416}
 .rep-grid span{position:absolute;left:6px;top:6px;font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
 @media (max-width:900px){.rep-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:520px){.rep-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.shares{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:36px}
+.sh{position:relative;display:flex;flex-direction:column;padding:20px 18px 18px;border-radius:16px;background:var(--night-2);border:1px solid var(--line);text-decoration:none;min-height:230px;transition:transform .2s,border-color .2s}
+.sh:hover{transform:translateY(-3px);border-color:var(--t)}
+.sh-f{position:absolute;right:14px;top:14px;font-size:11px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:6px;background:rgba(61,219,180,.15);color:var(--t)}
+.sh-k{font-size:13px;font-weight:700;color:var(--t)}
+.sh h3{font-size:18px;font-weight:750;letter-spacing:-.02em;line-height:1.35;margin-top:10px}
+.sh p{font-size:13.5px;color:var(--muted);margin-top:8px}
+.sh .go{margin-top:auto;padding-top:14px;font-size:13px;font-weight:700}
+@media (max-width:1100px){.shares{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:620px){.shares{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -536,6 +546,16 @@ const APPS=[
   {r:"space-mission/expanding-universe", img:"expanding-universe", d:"2026.11", t:"팽창하는 우주 탐구실", u:"중2 · Ⅷ 별과 우주", x:"풍선 실험과 우주 시뮬레이터로 은하들이 서로 멀어지는 까닭을 모둠이 탐구합니다"},
   {r:"space-mission", d:"2026.11", t:"우주 탐사 기획단", u:"중2 · Ⅷ 별과 우주", x:"성공한 탐사가 남긴 ‘다음 질문’을 찾아 모둠이 새로운 탐사 임무를 제안합니다"},
   {r:"ai-theater", d:"2026.08", t:"AI 윤리 극장", u:"학년 공통 · AI 윤리 (국립중앙과학관 연계)", x:"여섯 개의 상영관에서 미래 기술의 두 얼굴을 관람하고 모둠 탐구 주제를 고릅니다"}
+];
+
+/* 공유 자료실 (구글 드라이브 공유 폴더) */
+const SHARE_FOLDER="https://drive.google.com/drive/folders/1IkWqFIPnNHSrKPhdxPnygv4943zD1meR";
+const SHARES=[
+  {id:"1hEB5b-24WL50lDJP4Dpgf5jen9Wra5Kf",k:"지도안",t:"과학과 교수·학습 과정안 — 힘의 작용 공개수업",u:"중1 · Ⅴ 힘의 작용 · 10.19 공개수업",f:"PDF"},
+  {id:"1iSqzFnOCcdfTMz5epnVPJNE6Uf6KcYZQ",k:"참관 안내",t:"공개수업 참관 안내지",u:"10.19 공개수업 · 「힘 탐정 사무소」",f:"PDF"},
+  {id:"1xHRciZPLC3rq-isgJ7Z_HMZV_fNkj6QP",k:"지도안",t:"공개수업 지도안 — 태양계 · 아라호",u:"중1 · Ⅶ-1 태양계 · 「아라호 관제센터」",f:"HWPX"},
+  {id:"15Hp3PzXOAMntO9sJ8x_TFIre5Hu2r7kl",k:"활동 자료",t:"오로라에이드 매직 랩",u:"3차 워크숍 · 오로라에이드 만들기",f:"PDF"},
+  {id:"1jE467yDQF66GpwOChDkvD6a6JdCZRKmf",k:"연구보고서",t:"2026 수업혁신사례연구대회 전국대회 출품작 연구보고서",u:"김신연 · [서식3] 연구보고서",f:"PDF"}
 ];
 
 /* 경기도신과수연구회(신과수) 워크숍 — 「2026 신과수 이야기」 포스터 내용 */
@@ -855,6 +875,17 @@ function appsSlide(){
   </div></section>`;
 }
 
+function sharesSlide(){
+  return `<section class="slide" id="shares"><div class="in">
+    <p class="kicker" style="color:var(--t)"><i></i>공유 자료실</p>
+    <h2 class="h-big">지도안과 활동 자료, 가져다 쓰세요</h2>
+    <p class="lede">공개수업 지도안과 참관 안내지, 워크숍 활동 자료입니다. 누르면 구글 드라이브에서 열리고, 내려받을 수 있습니다.</p>
+    <div class="shares">${SHARES.map(d=>`<a class="sh" href="https://drive.google.com/file/d/${d.id}/view" target="_blank" rel="noopener">
+      <span class="sh-f">${d.f}</span><span class="sh-k">${esc(d.k)}</span><h3>${esc(d.t)}</h3><p>${esc(d.u)}</p><span class="go">열기 ↗</span></a>`).join('')}</div>
+    <p class="note-line"><a href="${SHARE_FOLDER}" target="_blank" rel="noopener" style="color:var(--t)">공유 폴더 전체 보기 ↗</a></p>
+  </div></section>`;
+}
+
 function ending(){
   return `<section class="slide end" id="end"><div class="glow"></div><div class="in" style="position:relative">
     <p class="kicker" style="color:var(--i6)"><i></i>다음 이야기</p>
@@ -1042,7 +1073,7 @@ $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('
   + provinceIntro() + provinceWS()
   + rowSection('together','var(--t)','함께하는 연구 활동','연수실에서, 퇴근길 과학관에서, 주말 연수까지',
       '워크숍 밖에서도 함께 배웠습니다. 논술형·AI 서논술형 평가 연수로 평가를 다듬고, 여름에는 과천과학관 뇌과학 강연을, 가을에는 교육과정-수업-평가 통합설계와 개념기반 탐구수업 연수를 연구회 선생님과 함께 들었습니다.',TOGETHER)
-  + tools() + appsSlide() + ending();
+  + tools() + appsSlide() + sharesSlide() + ending();
 }
 
 /* ---------- 상단 메뉴 (하위 메뉴) ---------- */
@@ -1062,6 +1093,7 @@ $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('
     ['함께하는 연구','#together',TOGETHER.map(e=>({h:'#together',s:md2(e.date),t:e.t,up:e.upcoming}))],
     ['도구','#tools'],
     ['수업 웹앱','#apps',[{h:'#apps',s:'',t:'전체 보기'},'-',...APPS.map(a=>({h:`https://syjh0412.github.io/${a.r}/`,s:a.d.slice(2).replace('.','.'),t:a.t,ext:true}))]],
+    ['자료실','#shares',[{h:'#shares',s:'',t:'전체 보기'},'-',...SHARES.map(d=>({h:`https://drive.google.com/file/d/${d.id}/view`,s:d.f,t:d.t,ext:true}))]],
     ['다음 이야기','#end']
   ];
   const item=x=>x==='-'?'<hr>':`<a href="${x.h}"${x.ext?' target="_blank" rel="noopener"':''}><small>${x.s}</small><span>${esc(x.t)}${x.up?'<em>예정</em>':''}${x.ext?' ↗':''}</span></a>`;
