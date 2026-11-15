@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 디지털기반과학교육연구회 한 해의 기록</title>
+<meta name="description" content="군포의왕 디지털기반과학교육연구회 2026 연간 활동. 자체워크숍 7회, 도연구회 연계 6회, 함께하는 연구 활동 4건.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --night:#130F2A; --night-2:#1B1638; --night-3:#251E4A;
+  --line:rgba(243,240,250,.12); --line-2:rgba(243,240,250,.22);
+  --text:#F3F0FA; --muted:#ABA4C9; --dim:#7C76A0;
+  /* 열화상(iron) 팔레트: 차가움 → 뜨거움 */
+  --i1:#3A1C9E; --i2:#7A2BD9; --i3:#B4249C; --i4:#F0386B; --i5:#FF8C42; --i6:#FFD23F; --i7:#FFF4C2;
+  --heat:linear-gradient(90deg,var(--i1),var(--i2) 18%,var(--i3) 36%,var(--i4) 54%,var(--i5) 72%,var(--i6) 88%,var(--i7));
+  /* 활동 갈래 */
+  --w:#FF8C42; --p:#8F7BFF; --t:#3DDBB4;
+  --font:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--night);color:var(--text);font-family:var(--font);font-size:17px;line-height:1.6;word-break:keep-all;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--i6);outline-offset:3px;border-radius:4px}
+img{max-width:100%;display:block}
+h1,h2,h3,p{margin:0}
+
+/* ---------- 상단 바 ---------- */
+.bar{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--pad);background:linear-gradient(var(--night) 30%,rgba(19,15,42,0));}
+.bar .org{font-weight:700;font-size:15px;letter-spacing:-.01em;white-space:nowrap;text-decoration:none}
+.bar nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.bar nav a{font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.bar nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.present-btn{flex:none;font:inherit;font-size:14px;font-weight:700;color:var(--night);background:var(--i6);border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.present-btn:hover{background:var(--i7)}
+@media (max-width:980px){.bar nav{display:none}}
+
+/* ---------- 슬라이드 공통 ---------- */
+.slide{position:relative;min-height:100vh;padding:96px var(--pad) 64px;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line)}
+.slide > .in{width:100%;max-width:1320px;margin:0 auto}
+.kicker{font-size:15px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.kicker i{display:inline-block;width:22px;height:3px;border-radius:2px;background:currentColor}
+.h-big{font-size:clamp(34px,4.6vw,64px);font-weight:800;letter-spacing:-.035em;line-height:1.15}
+.lede{font-size:clamp(17px,1.4vw,20px);color:var(--muted);max-width:46ch;margin-top:18px;line-height:1.7}
+
+/* ---------- 1. 표지 ---------- */
+.cover{border-top:0;overflow:hidden;padding-top:110px}
+.cover .frame{position:absolute;inset:84px var(--pad) 40px;pointer-events:none}
+.cover .frame b{position:absolute;width:34px;height:34px;border:2px solid var(--line-2)}
+.cover .frame b:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+.cover .frame b:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.cover .frame b:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+.cover .frame b:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.cover .who{font-size:clamp(16px,1.5vw,20px);font-weight:600;color:var(--muted)}
+.year{font-size:clamp(130px,25vw,380px);font-weight:900;letter-spacing:-.065em;line-height:.86;margin:10px 0 0 -.04em;
+  background:var(--heat);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:heat 9s ease-in-out infinite alternate}
+@keyframes heat{from{background-position:0% 0}to{background-position:100% 0}}
+.cover h1{font-size:clamp(30px,4vw,58px);font-weight:800;letter-spacing:-.035em;line-height:1.15;margin-top:18px}
+.cover .topic{margin-top:16px;font-size:clamp(16px,1.35vw,19px);color:var(--muted);max-width:52ch}
+.cover .topic b{color:var(--text);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:44px;border-top:1px solid var(--line-2);max-width:1100px}
+.stats div{padding:16px 20px 0 0}
+.stats strong{display:block;font-size:clamp(36px,4.2vw,60px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.stats span{display:block;font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.scale{position:absolute;right:calc(var(--pad) + 26px);top:50%;transform:translateY(-50%);display:flex;gap:10px;align-items:stretch;height:46vh;font-size:12.5px;color:var(--muted)}
+.scale .rail{width:12px;border-radius:6px;background:linear-gradient(0deg,var(--i1),var(--i2) 18%,var(--i3) 36%,var(--i4) 54%,var(--i5) 72%,var(--i6) 88%,var(--i7))}
+.scale .lbl{display:flex;flex-direction:column;justify-content:space-between}
+@media (max-width:900px){.scale{display:none}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div{padding-bottom:16px}}
+@media (prefers-reduced-motion:reduce){.year{animation:none}}
+
+/* ---------- 2. 연구 주제 ---------- */
+.model{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:48px;counter-reset:st}
+.step{position:relative;padding:22px 22px 24px;border-radius:18px;background:var(--night-2);border:1px solid var(--line);min-height:220px;display:flex;flex-direction:column}
+.step::before{counter-increment:st;content:counter(st);font-size:56px;font-weight:900;letter-spacing:-.05em;line-height:1;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.step h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:14px}
+.step p{font-size:15px;color:var(--muted);margin-top:8px}
+.step .where{margin-top:auto;padding-top:16px;font-size:13.5px;color:var(--text);opacity:.85}
+.step:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:10px;height:10px;border-top:2px solid var(--line-2);border-right:2px solid var(--line-2);transform:translateY(-50%) rotate(45deg);z-index:1}
+.note-line{margin-top:26px;font-size:15px;color:var(--muted)}
+.note-line b{color:var(--i6)}
+@media (max-width:900px){.model{grid-template-columns:1fr 1fr}.step:not(:last-child)::after{display:none}}
+@media (max-width:520px){.model{grid-template-columns:1fr}}
+
+/* ---------- 3. 타임라인 ---------- */
+.tl{margin-top:44px;position:relative}
+.tl-months{position:relative;height:26px;margin-left:150px;font-size:13px;color:var(--dim)}
+.tl-months span{position:absolute;transform:translateX(-50%)}
+.lane{display:grid;grid-template-columns:150px 1fr;align-items:center;border-top:1px solid var(--line);min-height:128px}
+.lane:last-of-type{border-bottom:1px solid var(--line)}
+.lane-name{font-weight:800;font-size:17px;letter-spacing:-.02em;line-height:1.3;padding-right:12px}
+.lane-name small{display:block;font-weight:500;font-size:13px;color:var(--muted);margin-top:4px}
+.track{position:relative;height:128px}
+.track::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--c);opacity:.35}
+.track .grid{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.ev{position:absolute;transform:translateX(-6px);display:block;text-decoration:none;color:var(--text);white-space:nowrap}
+.ev.up{bottom:calc(50% + 6px)} .ev.dn{top:calc(50% + 6px)}
+.ev::before{content:"";position:absolute;left:0;width:2px;height:16px;background:var(--c)}
+.ev.up::before{bottom:-6px;transform:translateY(100%)}
+.ev.dn::before{top:-6px;transform:translateY(-100%)}
+.ev .chip{display:inline-block;padding:7px 11px 8px;border-radius:10px;background:var(--night-2);border:1px solid var(--line);border-left:3px solid var(--c);font-size:13.5px;line-height:1.25}
+.ev .chip b{display:block;font-size:12px;color:var(--c);font-weight:700;margin-bottom:2px}
+.ev:hover .chip{background:var(--night-3)}
+.plan-zone{position:absolute;top:0;bottom:0;right:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 8px,transparent 8px 16px);border-left:1px dashed var(--line-2)}
+.plan-zone span{position:absolute;bottom:10px;right:12px;font-size:12.5px;color:var(--muted);white-space:normal;max-width:120px;line-height:1.4;text-align:right}
+.tl-list{display:none}
+@media (max-width:900px){
+  .tl{display:none}
+  .tl-list{display:block;margin-top:28px;list-style:none;padding:0}
+  .tl-list li{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .tl-list time{font-weight:700;color:var(--c)}
+  .tl-list small{display:block;color:var(--muted);font-size:13px}
+}
+
+/* ---------- 4. 워크숍 ---------- */
+.ws-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(20px,4vw,56px);align-items:end}
+.ws-num{font-size:clamp(120px,15vw,220px);font-weight:900;letter-spacing:-.07em;line-height:.8;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em}
+.ws-num small{font-size:.22em;letter-spacing:-.02em;margin-left:.08em}
+.ws-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.ws-meta span{font-size:14px;padding:5px 12px;border-radius:999px;border:1px solid var(--line-2);color:var(--text)}
+.ws-meta span.hot{border-color:transparent;background:var(--c);color:var(--night);font-weight:700}
+.ws-title{font-size:clamp(30px,3.8vw,54px);font-weight:800;letter-spacing:-.035em;line-height:1.12}
+.ws-lede{font-size:clamp(16px,1.25vw,18.5px);color:var(--muted);margin-top:14px;max-width:58ch;line-height:1.7}
+.viewfinder{position:relative;width:clamp(200px,22vw,320px);aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--night-2)}
+.viewfinder img{width:100%;height:100%;object-fit:cover}
+.viewfinder::after{content:"";position:absolute;inset:10px;border:2px solid rgba(255,255,255,.7);
+  -webkit-mask:linear-gradient(#000 0 0) top left/22px 22px no-repeat,linear-gradient(#000 0 0) top right/22px 22px no-repeat,linear-gradient(#000 0 0) bottom left/22px 22px no-repeat,linear-gradient(#000 0 0) bottom right/22px 22px no-repeat;
+          mask:linear-gradient(#000 0 0) top left/22px 22px no-repeat,linear-gradient(#000 0 0) top right/22px 22px no-repeat,linear-gradient(#000 0 0) bottom left/22px 22px no-repeat,linear-gradient(#000 0 0) bottom right/22px 22px no-repeat}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+@media (min-width:1100px){.items{grid-template-columns:repeat(var(--cols,5),minmax(0,1fr))}}
+.items{gap:14px;margin-top:40px}
+.item{background:var(--night-2);border:1px solid var(--line);border-radius:16px;padding:14px 14px 18px;display:flex;flex-direction:column}
+.item .art{width:100%;height:auto;aspect-ratio:200/124;border-radius:10px;background:var(--night)}
+.item h3{font-size:17.5px;font-weight:750;letter-spacing:-.02em;margin-top:14px;line-height:1.35}
+.item p{font-size:14.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+.item .who{font-size:12.5px;color:var(--c);font-weight:700;margin-top:10px}
+@media (max-width:900px){.ws-head{grid-template-columns:1fr}.ws-num{font-size:120px}.viewfinder{width:100%}}
+
+/* 특강 슬라이드 */
+.lecture{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);align-items:center;margin-top:34px}
+.lecture blockquote{margin:0;font-size:clamp(28px,3.4vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.25}
+.lecture blockquote::before{content:"“";display:block;font-size:2.2em;line-height:.6;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.speaker{margin-top:26px;font-size:18px}
+.speaker b{font-size:22px;font-weight:800}
+.speaker span{color:var(--muted)}
+.regions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.regions span{padding:6px 12px;border-radius:999px;background:var(--night-2);border:1px solid var(--line);font-size:14.5px}
+.regions span.home{background:var(--c);color:var(--night);font-weight:700;border-color:transparent}
+.lecture .art{width:100%;height:auto;border-radius:16px;background:var(--night-2);border:1px solid var(--line)}
+@media (max-width:900px){.lecture{grid-template-columns:1fr}}
+
+/* ---------- 5. 도연구회 / 함께하는 연구 ---------- */
+.row-cards{display:grid;grid-template-columns:repeat(var(--n,6),minmax(0,1fr));gap:12px;margin-top:44px}
+.rc{position:relative;padding:20px 18px 22px;border-radius:16px;background:var(--night-2);border:1px solid var(--line);display:flex;flex-direction:column;min-height:220px;text-decoration:none}
+.rc .d{font-size:clamp(30px,2.8vw,42px);font-weight:850;letter-spacing:-.04em;line-height:1;color:var(--c)}
+.rc .d small{font-size:.42em;font-weight:600;color:var(--muted);letter-spacing:0;display:block;margin-top:6px}
+.rc h3{font-size:18px;font-weight:750;letter-spacing:-.02em;margin-top:auto;padding-top:24px;line-height:1.35}
+.rc p{font-size:14px;color:var(--muted);margin-top:6px}
+.rc.star{background:var(--c);border-color:transparent;color:var(--night)}
+.rc.star .d,.rc.star .d small,.rc.star p{color:var(--night)}
+.rc.star .d small{opacity:.7}
+.rc .go{position:absolute;top:18px;right:16px;font-size:12px;color:var(--dim)}
+.rc.star .go{color:rgba(19,15,42,.6)}
+@media (max-width:1100px){.row-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:620px){.row-cards{grid-template-columns:1fr 1fr}.rc{min-height:170px}}
+
+/* ---------- 6. 도구 ---------- */
+.rack{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:44px}
+.shelf{border-radius:18px;padding:22px;background:var(--night-2);border:1px solid var(--line)}
+.shelf h3{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.shelf p{font-size:14px;color:var(--muted);margin-top:4px}
+.shelf ul{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:8px}
+.shelf li{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.04)}
+.shelf li em{font-style:normal;font-size:13px;color:var(--c);white-space:nowrap;font-weight:700}
+@media (max-width:1000px){.rack{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.rack{grid-template-columns:1fr}}
+
+/* ---------- 7. 마무리 ---------- */
+.end{overflow:hidden}
+.end .glow{position:absolute;inset:auto -10% -40% -10%;height:80%;background:radial-gradient(60% 60% at 50% 100%,rgba(255,140,66,.35),rgba(240,56,107,.18) 45%,transparent 75%);pointer-events:none}
+.next{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:44px;position:relative}
+.next div{padding:22px;border-radius:18px;background:rgba(27,22,56,.8);border:1px solid var(--line);backdrop-filter:blur(6px)}
+.next b{display:block;font-size:14px;color:var(--i6);margin-bottom:8px}
+.next h3{font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.35}
+.next p{font-size:15px;color:var(--muted);margin-top:8px}
+.next a{color:var(--i6);text-decoration:underline;text-underline-offset:3px}
+.sign{margin-top:48px;font-size:14px;color:var(--dim);position:relative}
+@media (max-width:900px){.next{grid-template-columns:1fr}}
+
+/* 만들기 순서 */
+.steps{margin-top:22px;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.steps b{font-size:14px;color:var(--c);white-space:nowrap}
+.steps ol{list-style:none;counter-reset:s;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+.steps li{counter-increment:s;font-size:13.5px;padding:5px 11px;border-radius:999px;background:var(--night-2);border:1px solid var(--line)}
+.steps li::before{content:counter(s);font-weight:800;color:var(--c);margin-right:6px}
+/* ---------- 사진 ---------- */
+.item .shot{position:relative;display:block;width:100%;aspect-ratio:200/124;border-radius:10px;overflow:hidden;background:var(--night);border:0;padding:0;cursor:zoom-in}
+.item .shot img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.item .shot:hover img{transform:scale(1.04)}
+.item .shot .cnt{position:absolute;right:8px;bottom:8px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:rgba(19,15,42,.82);color:var(--text)}
+.item .shot .vid{position:absolute;left:8px;bottom:8px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--i4);color:#fff}
+.item .more{margin-top:10px;font-size:13px;display:flex;gap:10px;flex-wrap:wrap}
+.item .more a{color:var(--c);font-weight:700;text-decoration:none}
+.item .more a:hover{text-decoration:underline}
+.mosaic{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(80px,13vh,140px);gap:8px;margin-top:30px}
+.mosaic button{all:unset;cursor:zoom-in;border-radius:10px;overflow:hidden;background:var(--night-2);position:relative}
+.mosaic button:focus-visible{outline:3px solid var(--i6)}
+.mosaic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.mosaic button:hover img{transform:scale(1.04)}
+.mosaic button:nth-child(1){grid-column:span 3;grid-row:span 2}
+.mosaic button:nth-child(2),.mosaic button:nth-child(3){grid-column:span 3}
+.mosaic button:nth-child(n+4){grid-column:span 2}
+.mosaic .lbl{position:absolute;left:8px;bottom:8px;font-size:12px;padding:3px 9px;border-radius:999px;background:rgba(19,15,42,.82)}
+.mosaic-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.mosaic-head .count{font-size:15px;color:var(--muted)}
+.mosaic-head .count b{font-size:clamp(28px,3vw,40px);color:var(--c);font-weight:850;letter-spacing:-.03em;margin-right:4px}
+@media (max-width:700px){.mosaic{grid-template-columns:repeat(2,1fr)}.mosaic button:nth-child(n){grid-column:span 1;grid-row:span 1}.mosaic button:nth-child(1){grid-column:span 2;grid-row:span 2}}
+.res{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.res a{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-radius:10px;background:var(--night-2);border:1px solid var(--line);text-decoration:none;font-size:15px}
+.res a:hover{border-color:var(--c)}
+.res a span{color:var(--c);font-size:12.5px;white-space:nowrap;font-weight:700}
+@media (max-width:700px){.res{grid-template-columns:1fr}}
+.rc .bg{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
+.rc .bg img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.rc .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,15,42,.2),rgba(19,15,42,.92) 70%)}
+.rc > *:not(.bg){position:relative}
+.rc.has-ph{cursor:zoom-in}
+.rc .phn{font-size:12px;color:var(--text);opacity:.8;margin-top:6px}
+.soon{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.soon .ws-title{max-width:16ch}
+/* 라이트박스 */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(8,6,20,.94);display:none;flex-direction:column;align-items:center;justify-content:center;padding:56px 70px 70px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;font-size:15px;color:var(--text)}
+.lb .cap small{color:var(--muted);margin-left:10px}
+.lb button{position:absolute;font:inherit;color:var(--text);background:rgba(255,255,255,.08);border:1px solid var(--line-2);border-radius:999px;cursor:pointer}
+.lb .x{top:16px;right:18px;padding:6px 14px;font-size:14px}
+.lb .pv,.lb .nx{top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:20px}
+.lb .pv{left:14px}.lb .nx{right:14px}
+.lb .yt{position:absolute;top:16px;left:18px;padding:6px 14px;font-size:14px;color:#fff;background:var(--i4);border-radius:999px;text-decoration:none;font-weight:700}
+
+/* ---------- 발표 모드 ---------- */
+.present{scroll-snap-type:y mandatory}
+.present .slide{scroll-snap-align:start;min-height:100vh}
+.present .bar{opacity:0;pointer-events:none;transition:opacity .2s}
+.present body:hover .bar{opacity:0}
+.hud{position:fixed;right:22px;bottom:18px;z-index:30;display:none;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
+.present .hud{display:flex}
+.hud .track-p{width:120px;height:4px;border-radius:2px;background:var(--line)}
+.hud .track-p i{display:block;height:100%;border-radius:2px;background:var(--heat);background-size:120px 4px;width:0;transition:width .3s}
+.hud button{font:inherit;font-size:13px;color:var(--text);background:var(--night-2);border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;cursor:pointer}
+.help{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:30;font-size:13.5px;color:var(--text);background:var(--night-3);border:1px solid var(--line-2);padding:8px 16px;border-radius:999px;opacity:0;transition:opacity .4s;pointer-events:none}
+.help.show{opacity:1}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="org" href="#cover">군포의왕 디지털기반과학교육연구회</a>
+  <nav aria-label="슬라이드 바로가기">
+    <a href="#theme">연구 주제</a><a href="#timeline">한 해 타임라인</a><a href="#w1">자체워크숍</a><a href="#province">도연구회 연계</a><a href="#together">함께하는 연구</a><a href="#tools">도구</a><a href="#end">다음 이야기</a>
+  </nav>
+  <button class="present-btn" id="presentBtn" type="button">발표 모드</button>
+</header>
+
+<main id="deck"></main>
+
+<div class="hud" aria-live="polite">
+  <span id="hudCount">1 / 1</span>
+  <span class="track-p"><i id="hudBar"></i></span>
+  <button type="button" id="exitBtn">발표 끝내기</button>
+</div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
+  <a class="yt" id="lbYt" target="_blank" rel="noopener" hidden>영상 보기</a>
+  <button class="x" type="button" id="lbX">닫기</button>
+  <button class="pv" type="button" id="lbP" aria-label="이전 사진">‹</button>
+  <img id="lbImg" alt="">
+  <button class="nx" type="button" id="lbN" aria-label="다음 사진">›</button>
+  <div class="cap" id="lbCap"></div>
+</div>
+<div class="help" id="help">← → 또는 스페이스로 넘기고, Esc로 끝냅니다</div>
+
+<script>
+/* =========================================================
+   내용은 여기만 고치면 됩니다.
+   - 사진: photo 에 이미지 주소(또는 같은 폴더의 파일 이름, 예: "photos/w4.jpg")
+   - 새 워크숍: WORKSHOPS 배열에 하나 더 추가
+   ========================================================= */
+/* 사진: photos 폴더의 <키>-<번호>.jpg (구글사이트에서 옮겨 온 현장 사진) */
+const PHOTOS = {"keycap": 1, "thermal": 6, "temp": 11, "snorkl": 4, "soap": 8, "boyle": 5, "cloud": 4, "photo": 8, "ocean": 2, "ramen": 12, "aurora": 3, "dalgona": 1, "micro": 3, "light4": 4, "lecture": 25, "ohm7": 2, "t1": 2, "t2": 4, "t3": 9};
+/* 같은 사진이 여러 페이지에 올라간 경우 — 현장 사진 모음에서는 한 번만 보여 줍니다 */
+const DUP = new Set(["photo-1","photo-2","photo-3","photo-4","ocean-0","ocean-1","lecture-4"]);
+const NOMOSAIC = new Set(["ramen-0","ramen-1"]); /* 세로로 긴 근접 사진은 모음 타일에서 제외 */
+const IMG=(id)=>`photos/${id}.jpg`;
+const ph=k=>Array.from({length:PHOTOS[k]||0},(_,i)=>`${k}-${i}`);
+const SITE_2025 = "https://sites.google.com/view/digisci";
+const GS = "https://sites.google.com/view/digisci/2026-%ED%99%9C%EB%8F%99/";
+
+const WORKSHOPS = [
+  { n:1, date:"2026-04-28", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
+    title:"보이지 않는 열을 눈으로 보다",
+    lede:"올해 첫 모임. 열화상 카메라와 무선 온도 센서로 열의 이동을 직접 확인하고, 질문과 탐구 중심 수업 사례를 나눈 뒤 한 해 운영 방향을 함께 정했습니다.",
+    photo:"https://sites.google.com/sitesv-images-rt/AMxu72v6ZzCqtAEo27nyd95RfT9JCoO-wAOCJTrBlBDfSE0SjixDTYtzmEWn5Wsi_L-_WlkMqPepFN3gVV9bHKihuCbz_uVyRgFxfEa0HYOyLRxxnKISDdGIN4HJg_CFTEf5C7Y4y2l_P2jEaaVW0qzvZixFga0PhcHLcmDTGWxxrP2jdr9KnjQB7FWOv1X3OcFMrMKx1WblRvwdkftxXhtkW6DHPCc10vmyE0gm3ZAt-QE=w1280",
+    items:[
+      {art:"thermal", ph:"thermal", pi:2, t:"열화상카메라 활용 과학탐구", d:"온도를 색으로 바꿔 보여 주는 카메라로 열의 전달과 단열을 관찰"},
+      {art:"temp", ph:"temp", pi:4, t:"무선온도센서 활용 과학탐구", d:"태블릿에 실시간으로 그려지는 온도 그래프로 가열·냉각 과정을 기록"},
+      {art:"snorkl", ph:"snorkl", t:"과정중심평가와 스노클AI", d:"학생이 말과 그림으로 설명한 풀이에 AI가 바로 피드백을 주는 도구"},
+      {art:"soap", ph:"soap", pi:2, yt:"W9qlQbdu06E", t:"비누막으로 보는 상태변화", d:"드라이아이스가 승화하며 생긴 기체로 비누막이 둥글게 부풀어 오르는 모습을 관찰. 학생 수업에도 적용"}
+    ]},
+  { n:2, date:"2026-05-26", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
+    title:"교과서 실험을 데이터로 다시 하다",
+    lede:"「2022 개정 교육과정 내 무선 센서 활용 탐구 연수」. 교과서 속 실험을 무선 센서로 다시 해 보며 측정값을 그래프로 읽는 수업을 설계하고, 발열반응으로 라면까지 끓여 봤습니다.",
+    photo:"https://sites.google.com/sitesv-images-rt/AMxu72vozcsUmhhnNyyBo40t7-q84XV1J6UEkVQfnIrWAO21qSLMs9Y5bk7tGQMcRCPWlnQIOG4ecFcAmPGe6azwTyqQMfSLNLq6YvJ00Jv8PpJyR9F1uQIdybAV3sdonWphZdPxT_K2SWFULoHfKh2GudlvSv8GEAiFbUnher4wm9Jfn-JWY0Rq3mcIydd7lsVxLirLsPCNA4IwD95Bw1O8Cz-4Nzv5KQmyOSUcJxR9x1s=w1280",
+    items:[
+      {art:"boyle", ph:"boyle", pi:1, t:"압력 센서로 보는 보일 법칙", d:"주사기 부피를 바꾸며 압력을 재고 압력–부피 그래프를 그림"},
+      {art:"cloud", ph:"cloud", yt:"QHL3X3l424g", t:"대기압·온도 센서로 구름 만들기", d:"공기가 팽창할 때 기압과 온도가 함께 떨어지는 순간을 포착"},
+      {art:"photo", ph:"photo", pi:5, t:"CO₂·O₂ 센서로 보는 광합성", d:"빛을 받은 식물 주변의 두 기체 농도가 엇갈려 변하는 모습을 측정"},
+      {art:"freeze", t:"온도 센서로 어는점 측정", d:"냉각 곡선의 평평한 구간에서 어는점을 찾아냄"},
+      {art:"ocean", ph:"ocean", t:"연직수온 센서로 보는 해수의 층", d:"깊이에 따른 수온을 재어 혼합층·수온약층·심해층을 그래프로 확인"},
+      {art:"ramen", ph:"ramen", pi:3, t:"발열반응 탐구 — 라면 끓이기", d:"발열팩의 반응열로 라면을 끓이고 달걀을 삶으며 온도 변화를 센서 그래프로 확인. 학생 수업에도 적용"}
+    ]},
+  { n:3, date:"2026-06-23", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
+    title:"맛있고, 빛나는 학기말 과학",
+    lede:"학기말에 바로 쓸 수 있는 융합·창작 활동을 모았습니다. 오로라에이드와 달고나로 ‘맛있게’ 하는 과학탐구, 빛의 성질을 이용한 빛 아트, 옴의 법칙 키트와 디지털 영상현미경까지.",
+    photo:"https://sites.google.com/sitesv-images-rt/AMxu72sxeajvOsIf4GPYvNYpEq_J2btWQdx_ARxDaQNlMYZ7hM0TCSjmtMkzN26Q9o64sGKzy98pUuwLnhnB68QRsZJtJD6HH10FVNqydG8RlVEE1z9NJRxAzYUw0kQrK3TZ-XsH7gozwz22fUyznqJ3I5uC61VGJXWzSPHUP8Ol4I2y_cV2MdEMVwChVU1gVcQer9cWVbsQMUR1sFNNBrc9C2raXLhiasPLy_qt2gHS=w1280",
+    items:[
+      {art:"aurora", ph:"aurora", link:["활동 자료","https://drive.google.com/file/d/15Hp3PzXOAMntO9sJ8x_TFIre5Hu2r7kl/view"], t:"오로라에이드 만들기", d:"꽃차 색소가 산성 음료를 만나 색이 바뀌는 지시약 원리"},
+      {art:"dalgona", ph:"dalgona", t:"달고나 만들기", d:"설탕이 녹고 탄산수소나트륨이 분해되며 부푸는 변화"},
+      {art:"light", t:"빛 아트 창작", d:"빛의 성질(굴절·분산·합성)을 이용한 작품 만들기 지도"},
+      {art:"ohm", t:"옴의 법칙 실험 키트", d:"전압과 전류를 재어 저항에 따라 기울기가 달라지는 그래프 확인"},
+      {art:"micro", ph:"micro", pi:2, t:"디지털영상현미경 활용 탐구", d:"관찰 화면을 태블릿과 대형 화면에 바로 띄워 함께 보고 기록"}
+    ]},
+  { n:4, date:"2026-07-14", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
+    title:"1학기를 돌아보고 2학기를 설계하다",
+    lede:"샘 킨의 「사라진 스푼」을 함께 읽고 이야기한 뒤 빛 탐구 활동을 해 보고, 2학기 평가 계획과 실험탐구 활동을 나눴습니다. 새로 꾸민 고천중학교 미래형 과학실과 신규 기자재도 둘러봤습니다.",
+    photo:"",
+    items:[
+      {art:"book", t:"독서 토론 「사라진 스푼」", d:"샘 킨 지음. 주기율표 원소에 얽힌 과학사 이야기를 함께 읽고 수업과 연결해 토론", link:["책 정보","https://www.yes24.com/product/goods/5866899"]},
+      {art:"light", ph:"light4", pi:1, t:"빛 탐구", d:"자석식 광학 키트로 레이저 빛이 볼록·오목렌즈를 지나며 꺾이는 경로를 관찰"},
+      {art:"rubric", t:"2학기 평가 계획 나눔", d:"논술형·수행평가 계획과 실험탐구 활동을 서로 공유"},
+      {art:"lab", t:"미래형 과학실 구축 사례", d:"고천중학교 미래형 과학실 구축 과정과 신규 기자재 소개"}
+    ]},
+  { n:5, date:"2026-09-08", day:"화", time:"17:00~19:00", place:"산본중학교 3층 과학실",
+    title:"마이크로비트와 지구과학 탐구",
+    lede:"2학기 첫 모임은 산본중학교 과학실에서. 마이크로비트로 하는 과학탐구와 중·고등학교에서 활용하기 좋은 지구과학 탐구 실험을 다루고, 수업 사례와 독서토론을 이어갔습니다.",
+    photo:"",
+    items:[
+      {art:"microbit", t:"마이크로비트를 활용한 과학탐구", d:"작은 보드 하나로 센서 측정부터 결과 표시까지"},
+      {art:"earth", t:"지구과학 탐구 실험", d:"중·고등학교 수업에서 활용하기 좋은 지구과학 실험"},
+      {art:"share", t:"수업 사례 공유와 독서토론", d:"회원들의 수업 이야기와 함께 읽은 책 이야기"}
+    ]},
+  { n:6, date:"2026-09-22", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실", special:"lecture",
+    title:"에듀테크와 과학실험을 활용한 학생 참여형 과학수업",
+    speaker:"김정식 수석교사", affil:"이천사동중학교",
+    regions:["군포의왕","광명","안양과천","성남","수원","시흥","안산"],
+    ph:"lecture",
+    res:[["애니팡 학습용 게임 만들기","https://sciencelove.com/483001"],["학습용 도블게임 만들기","https://sciencelove.com/483125"],["움직이는 이모티콘(GIF) 만들기","https://sciencelove.com/483162"],["볼록렌즈로 상 만들기 — 프레넬 렌즈","https://sciencelove.com/483079"],["진자운동과 줄의 마찰력 실험","https://sciencelove.com/483132"],["수업시간에도 학생에게 선택권을 넘겨라","https://sciencelove.com/2693"]],
+    lede:"이천사동중학교 김정식 수석교사를 초청한 특강. 군포·의왕을 넘어 인근 교육지원청 관내 중·고등학교 교원에게도 문을 열었습니다.",
+    photo:"" },
+  { n:7, date:"2026-10-27", day:"화", time:"17:00~19:00", place:"고천중학교 3층 과학실",
+    title:"수업과 함께 자라는 앱",
+    lede:"올해 마지막 정기 워크숍. 생성형 AI에게 말로 설명하며 수업에 꼭 맞는 도구를 직접 만드는 ‘바이브 코딩’을 해 보고, 회원들의 탐구 수업 사례를 나눴습니다.",
+    photo:"",
+    items:[
+      {art:"vibe", t:"바이브 코딩으로 수업 맞춤형 도구 만들기", d:"코드를 몰라도 말로 설명해 수업용 앱을 만드는 방법"},
+      {art:"lung", t:"호흡운동 원리 모형 만들기", d:"회원 사례 나눔 — 병과 풍선으로 가로막의 움직임 재현", who:"회원 사례"},
+      {art:"ohm", ph:"ohm7", pi:1, t:"옴의 법칙", d:"회원 사례 나눔 — 전압·전류·저항의 관계 탐구", who:"회원 사례"},
+      {art:"boyle", t:"보일 법칙", d:"회원 사례 나눔 — 압력과 부피의 관계 탐구", who:"회원 사례"}
+    ]},
+  { n:8, date:"2026-11-24", day:"화", time:"17:00~19:00", place:"", upcoming:true,
+    title:"하늘을 보고, 원소를 누르고, 식물을 심다",
+    lede:"올해 마지막 자체워크숍. 스마트 망원경으로 저녁 하늘을 관측하고, 학기말 수업으로 좋은 원소기호 LED 키캡을 만들고, 작은 화분에 반려식물을 심어 봅니다.",
+    photo:"",
+    items:[
+      {art:"scope", t:"천체 관측", d:"Seestar S50 스마트 망원경과 셀레스트론 입문형 망원경으로 함께 관측하며 두 장비를 비교"},
+      {art:"keycap", ph:"keycap", t:"원소기호 LED 키캡 만들기", d:"원소 기호 네 개로 나만의 키캡 키링을 만들고, 누르면 LED가 반짝. 학기말 수업용"},
+      {art:"plant", t:"반려식물 키우기", d:"작은 화분과 모종을 준비해 교실에서 키울 반려식물을 심기"}
+    ],
+    steps:["준비물 확인","부품 순서대로 놓기","클리커 보호캡 제거","LED 다리 방향 맞추기","짧은 다리 고정","건전지 연결·불빛 시험","프레임에 끼우기","검사받고 스티커 붙이기"] }
+];
+const HELD = WORKSHOPS.filter(w=>!w.upcoming);
+
+const PROVINCE = [
+  {date:"2026-04-11", t:"도연구회 1차 워크숍", p:"신나는 과학수업 워크숍"},
+  {date:"2026-06-13", t:"도연구회 2차 워크숍", p:"신나는 과학수업 워크숍"},
+  {date:"2026-07-18", t:"도연구회 3차 워크숍", p:"군포의왕 연구회 발표", star:true},
+  {date:"2026-08-12", t:"도연구회 박람회", p:"도연구회와 함께 박람회 참여"},
+  {date:"2026-09-05", t:"도연구회 4차 워크숍", p:"신나는 과학수업 워크숍"},
+  {date:"2026-10-17", t:"도연구회 5차 워크숍", p:"신나는 과학수업 워크숍"}
+];
+const TOGETHER = [
+  {date:"2026-06-09", end:"06-22", t:"논술형평가 핵심교원 연수", short:"논술형평가 연수", p:"논술형 평가 설계", ph:"t1"},
+  {date:"2026-07-04", t:"AI 서논술형평가시스템 연수", short:"AI 서논술형 연수", p:"하이러닝 AI 평가", ph:"t2"},
+  {date:"2026-07-23", t:"과천과학관 ‘퇴근한 김에 번아웃 로그아웃’", short:"과천과학관", p:"KAIST 정재승 교수 「번아웃, 그리고 뇌과학으로 행복을 성찰하다」", ph:"t3"},
+  {date:"2026-08-10", t:"디지털탐구도구 직무연수", short:"디지털탐구 연수", p:"여름방학 직무연수"}
+];
+
+/* ---------- 실험 일러스트 (SVG) ---------- */
+const C={i1:'#3A1C9E',v:'#7A2BD9',m:'#B4249C',r:'#F0386B',o:'#FF8C42',y:'#FFD23F',w:'#FFF4C2',mint:'#3DDBB4',b:'#6C8CFF',g:'rgba(243,240,250,.25)',t:'#F3F0FA',mute:'#ABA4C9'};
+let uid=0;
+const S=(inner,vb='0 0 200 124')=>`<svg class="art" viewBox="${vb}" role="img" aria-hidden="true" font-family="inherit">${inner}</svg>`;
+const AX=`<path d="M26 12V106H190" stroke="${C.g}" stroke-width="1.5" fill="none"/>`;
+const T=(x,y,s,c=C.mute,sz=11,w=500,a='start')=>`<text x="${x}" y="${y}" fill="${c}" font-size="${sz}" font-weight="${w}" text-anchor="${a}">${s}</text>`;
+const L=(d,c,w=3,extra='')=>`<path d="${d}" stroke="${c}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round" ${extra}/>`;
+const ART={
+  thermal(){const i=++uid;return S(`<defs><radialGradient id="th${i}" cx="44%" cy="60%" r="66%"><stop offset="0" stop-color="${C.w}"/><stop offset=".14" stop-color="${C.y}"/><stop offset=".3" stop-color="${C.o}"/><stop offset=".48" stop-color="${C.r}"/><stop offset=".68" stop-color="${C.m}"/><stop offset=".86" stop-color="${C.v}"/><stop offset="1" stop-color="#1A0B45"/></radialGradient>
+    <linearGradient id="ts${i}" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1A0B45"/><stop offset=".3" stop-color="${C.m}"/><stop offset=".6" stop-color="${C.o}"/><stop offset="1" stop-color="${C.w}"/></linearGradient></defs>
+    <rect x="0" y="0" width="200" height="124" fill="url(#th${i})"/>
+    <path d="M60 46h52v40a12 12 0 0 1-12 12H72a12 12 0 0 1-12-12z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"/><path d="M112 56h8a10 10 0 0 1 0 20h-8" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+    ${L('M74 38c-4-6 4-10 0-16M86 38c-4-6 4-10 0-16M98 38c-4-6 4-10 0-16','rgba(255,255,255,.6)',2)}
+    <path d="M12 12h12M12 12v12M164 12h-12M164 12v12M12 112h12M12 112v-12M164 112h-12M164 112v-12" stroke="#fff" stroke-width="2" fill="none"/>
+    <rect x="176" y="14" width="10" height="96" rx="3" fill="url(#ts${i})"/>
+    ${T(140,30,'62.4℃','#fff',13,800,'end')}`)},
+  temp(){return S(AX+`<path d="M26 98C56 97 66 44 104 36S168 31 190 31V106H26Z" fill="${C.o}" opacity=".12"/>`+L('M26 98C56 97 66 44 104 36S168 31 190 31',C.o,3)+`<circle cx="190" cy="31" r="4" fill="${C.y}"/>`+T(32,22,'온도(℃)')+T(188,120,'시간',C.mute,11,500,'end')+`<rect x="128" y="62" width="56" height="26" rx="6" fill="rgba(255,255,255,.06)"/>`+T(156,80,'78.2℃',C.y,13,800,'middle'))},
+  snorkl(){let bars='';[10,22,14,30,18,26,12,24,16,8].forEach((h,k)=>bars+=`<rect x="${26+k*9}" y="${44-h/2}" width="5" height="${h}" rx="2.5" fill="${C.b}"/>`);
+    return S(`<rect x="12" y="14" width="122" height="60" rx="16" fill="rgba(108,140,255,.12)" stroke="${C.b}" stroke-width="2"/><path d="M34 74l-6 14 18-14" fill="rgba(108,140,255,.12)" stroke="${C.b}" stroke-width="2" stroke-linejoin="round"/>${bars}
+    <rect x="92" y="62" width="98" height="50" rx="14" fill="rgba(61,219,180,.14)" stroke="${C.mint}" stroke-width="2"/>${T(106,82,'AI 피드백',C.mint,12,800)}${L('M106 96l6 6 12-12',C.mint,3)}${L('M132 96h46M132 103h30',C.g,3)}`)},
+  soap(){const i=++uid;return S(`<defs><linearGradient id="sp${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.mint}"/><stop offset=".3" stop-color="${C.b}"/><stop offset=".55" stop-color="${C.m}"/><stop offset=".8" stop-color="${C.y}"/><stop offset="1" stop-color="${C.mint}"/></linearGradient></defs>
+    <circle cx="100" cy="58" r="44" fill="url(#sp${i})" opacity=".45"/><circle cx="100" cy="58" r="44" fill="none" stroke="url(#sp${i})" stroke-width="3"/>
+    <ellipse cx="82" cy="40" rx="12" ry="6" fill="#fff" opacity=".55" transform="rotate(-32 82 40)"/>${L('M100 102v18',C.mute,3)}<circle cx="100" cy="58" r="50" fill="none" stroke="${C.mute}" stroke-width="2" stroke-dasharray="2 6"/>`)},
+  boyle(){let d='';for(let x=40;x<=186;x+=3){const y=106-1700/(x-14);d+=(d?'L':'M')+x+' '+y.toFixed(1);}let dots='';[46,70,104,150].forEach(x=>{dots+=`<circle cx="${x}" cy="${(106-1700/(x-14)).toFixed(1)}" r="4.5" fill="${C.y}"/>`});
+    return S(AX+L(d,C.r,3)+dots+T(32,22,'압력 P')+T(188,120,'부피 V',C.mute,11,500,'end')+T(178,56,'PV = 일정',C.t,12,700,'end'))},
+  cloud(){return S(AX+L('M26 40H104C112 40 112 66 122 66H190',C.b,3)+L('M26 62H104C112 62 112 88 122 88H190',C.o,3)+T(32,34,'기압',C.b,11,700)+T(32,56,'온도',C.o,11,700)+`<path d="M138 30a10 10 0 0 1 14-10 13 13 0 0 1 24 4 9 9 0 0 1 2 18h-40a8 8 0 0 1 0-12z" fill="${C.t}" opacity=".9"/>`+L('M113 14v92',C.g,1.5,'stroke-dasharray="3 4"')+T(116,118,'팽창!',C.y,11,700))},
+  photo(){return S(AX+L('M26 30C70 34 110 80 190 92',C.r,3)+L('M26 94C70 90 110 44 190 30',C.mint,3)+T(36,24,'CO₂ ↓',C.r,12,800)+T(150,24,'O₂ ↑',C.mint,12,800)+`<path d="M150 70c18-16 36-6 36-6s-6 22-28 18c-4-1-8-6-8-12z" fill="${C.mint}" opacity=".3" stroke="${C.mint}" stroke-width="1.5"/>`+T(188,120,'시간',C.mute,11,500,'end'))},
+  freeze(){return S(AX+L('M26 70H190',C.g,1.5,'stroke-dasharray="4 4"')+L('M26 18C46 40 56 68 72 70H146C160 70 168 92 190 102',C.b,3)+`<rect x="88" y="52" width="44" height="14" rx="4" fill="rgba(108,140,255,.18)"/>`+T(110,63,'0℃ 유지',C.b,11,800,'middle')+T(32,22,'온도'))},
+  ocean(){const i=++uid;return S(`<defs><linearGradient id="oc${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4F8BFF" stop-opacity=".55"/><stop offset=".35" stop-color="#3A1C9E" stop-opacity=".5"/><stop offset="1" stop-color="#130F2A" stop-opacity=".2"/></linearGradient></defs>
+    <rect x="0" y="0" width="200" height="124" fill="url(#oc${i})"/>${L('M0 12q12-6 25 0t25 0 25 0 25 0 25 0 25 0 25 0 25 0',C.t,1.5)}
+    ${L('M150 14V38C150 58 74 58 62 78V118',C.y,3)}${L('M0 38H200M0 78H200',C.g,1,'stroke-dasharray="3 4"')}
+    ${T(10,30,'혼합층',C.t,11,700)}${T(10,62,'수온약층',C.t,11,700)}${T(10,100,'심해층',C.t,11,700)}${T(190,30,'수온 →',C.y,11,700,'end')}`)},
+  aurora(){const i=++uid;return S(`<defs><linearGradient id="au${i}" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#3B5BDB"/><stop offset=".45" stop-color="#8E4CE0"/><stop offset=".8" stop-color="#F05FA6"/><stop offset="1" stop-color="#FFB3D1"/></linearGradient></defs>
+    <path d="M66 26H134L124 114H76Z" fill="url(#au${i})" opacity=".9"/><path d="M62 14H138L126 116H74Z" fill="none" stroke="${C.t}" stroke-width="2" stroke-linejoin="round"/>
+    ${L('M118 4L106 70',C.t,3)}<circle cx="148" cy="26" r="16" fill="${C.y}" opacity=".95"/>${L('M148 12v28M134 26h28M138 16l20 20M158 16l-20 20','#C49B12',1.5)}
+    ${T(24,110,'pH',C.mute,11,700)}<rect x="24" y="30" width="10" height="70" rx="5" fill="url(#au${i})"/>`)},
+  dalgona(){return S(`<circle cx="100" cy="62" r="50" fill="#C9781F"/><circle cx="100" cy="62" r="42" fill="#E8A447"/><path d="M100 30l9 20 22 2-17 14 5 22-19-12-19 12 5-22-17-14 22-2z" fill="none" stroke="#7A4210" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="74" cy="78" r="3" fill="#F5C77A"/><circle cx="128" cy="44" r="2.5" fill="#F5C77A"/><circle cx="122" cy="86" r="3.5" fill="#F5C77A"/><circle cx="80" cy="44" r="2" fill="#F5C77A"/>`)},
+  light(){const cols=[C.r,C.o,C.y,C.mint,C.b,C.v];let fan='';cols.forEach((c,k)=>fan+=L(`M112 64L192 ${30+k*13}`,c,3));
+    return S(`<path d="M100 22L132 82H68Z" fill="rgba(255,255,255,.08)" stroke="${C.t}" stroke-width="2" stroke-linejoin="round"/>`+L('M8 74L94 60',C.w,4)+fan)},
+  ohm(){return S(AX+L('M26 106L120 18',C.y,3)+L('M26 106L190 50',C.mint,3)+T(124,22,'R₁',C.y,12,800)+T(178,44,'R₂',C.mint,12,800,'end')+T(32,22,'전압 V')+T(188,120,'전류 I',C.mute,11,500,'end'))},
+  micro(){const i=++uid;let cells='';for(let r=0;r<6;r++)for(let c=0;c<6;c++){const x=40+c*24+(r%2)*12,y=10+r*20;cells+=`<rect x="${x}" y="${y}" width="22" height="18" rx="3" fill="rgba(61,219,180,.12)" stroke="${C.mint}" stroke-width="1.2"/><circle cx="${x+11+(c%2?3:-3)}" cy="${y+9}" r="2.6" fill="${C.m}"/>`}
+    return S(`<defs><clipPath id="mc${i}"><circle cx="100" cy="62" r="52"/></clipPath></defs><g clip-path="url(#mc${i})"><rect width="200" height="124" fill="rgba(61,219,180,.05)"/>${cells}</g><circle cx="100" cy="62" r="52" fill="none" stroke="${C.t}" stroke-width="3"/>${L('M152 62h20M28 62h20',C.g,1.5)}`)},
+  book(){return S(`<path d="M100 30C80 18 46 18 26 24V104C46 98 80 98 100 110C120 98 154 98 174 104V24C154 18 120 18 100 30Z" fill="rgba(255,210,63,.08)" stroke="${C.y}" stroke-width="2.5" stroke-linejoin="round"/>${L('M100 30V110',C.y,2)}${L('M40 42h44M40 54h44M40 66h36M40 78h40M116 42h44M116 54h44M116 66h30',C.g,3)}<path d="M140 70h40a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8h-22l-10 8v-8h-8a8 8 0 0 1-8-8V78a8 8 0 0 1 8-8z" fill="${C.o}"/>${L('M150 85h4M160 85h4M170 85h4','#130F2A',3)}`)},
+  rubric(){let rows='';[0,1,2,3].forEach(k=>{const y=36+k*18;rows+=`<rect x="58" y="${y}" width="12" height="12" rx="3" fill="none" stroke="${C.mint}" stroke-width="2"/>`+(k<3?L(`M60 ${y+6}l3 3 6-7`,C.mint,2.5):'')+L(`M78 ${y+6}H${k%2?126:142}`,C.g,3)});
+    return S(`<rect x="44" y="18" width="112" height="100" rx="10" fill="rgba(255,255,255,.04)" stroke="${C.t}" stroke-width="2"/><rect x="78" y="10" width="44" height="16" rx="5" fill="${C.o}"/>${rows}`)},
+  lab(){return S(`<rect x="14" y="20" width="106" height="72" rx="8" fill="rgba(255,255,255,.04)" stroke="${C.t}" stroke-width="2"/>${L('M26 76C44 74 50 44 66 42S96 34 108 32',C.o,3)}<rect x="56" y="92" width="22" height="8" fill="${C.t}" opacity=".5"/>
+    <path d="M150 22v24l-20 40a8 8 0 0 0 7 12h46a8 8 0 0 0 7-12l-20-40V22" fill="none" stroke="${C.t}" stroke-width="2" stroke-linejoin="round"/><path d="M136 74h48l8 16a6 6 0 0 1-5 8h-54a6 6 0 0 1-5-8z" fill="${C.mint}" opacity=".55"/>${L('M144 22h32',C.t,2)}<circle cx="160" cy="84" r="3" fill="#fff" opacity=".7"/><circle cx="170" cy="78" r="2" fill="#fff" opacity=".7"/>${L('M0 112H200',C.g,2)}`)},
+  microbit(){const pat=['01010','11111','11111','01110','00100'];let leds='';pat.forEach((r,y)=>[...r].forEach((v,x)=>{leds+=`<rect x="${74+x*11}" y="${30+y*11}" width="6" height="6" rx="1.5" fill="${v=='1'?C.y:'rgba(255,255,255,.12)'}"/>`}));
+    return S(`<rect x="34" y="16" width="132" height="92" rx="14" fill="#221B48" stroke="${C.b}" stroke-width="2"/>${leds}<circle cx="52" cy="52" r="8" fill="none" stroke="${C.t}" stroke-width="2"/><circle cx="148" cy="52" r="8" fill="none" stroke="${C.t}" stroke-width="2"/>${T(52,56,'A',C.t,9,800,'middle')}${T(148,56,'B',C.t,9,800,'middle')}
+    ${[44,72,100,128,156].map((x,k)=>`<rect x="${x-6}" y="94" width="12" height="16" rx="2" fill="${k%2?'#C9A227':'#E8C547'}"/>`).join('')}`)},
+  earth(){return S(`<path d="M0 54Q50 44 100 54T200 52V124H0Z" fill="${C.y}" opacity=".55"/><path d="M0 72Q50 62 100 72T200 70V124H0Z" fill="${C.o}" opacity=".6"/><path d="M0 90Q50 82 100 92T200 88V124H0Z" fill="${C.m}" opacity=".65"/><path d="M0 106Q50 100 100 108T200 104V124H0Z" fill="${C.v}" opacity=".75"/>
+    ${L('M8 26h30l6-14 8 28 8-22 6 16 6-8 6 4h114',C.r,2.5)}${T(192,20,'지진파',C.r,11,700,'end')}`)},
+  share(){return S(`<path d="M20 22h84a12 12 0 0 1 12 12v26a12 12 0 0 1-12 12H48l-16 14V72H20A12 12 0 0 1 8 60V34a12 12 0 0 1 12-12z" fill="rgba(255,140,66,.16)" stroke="${C.o}" stroke-width="2"/>${L('M24 40h70M24 52h50',C.o,3)}
+    <path d="M180 48H96a12 12 0 0 0-12 12v26a12 12 0 0 0 12 12h56l16 14V98h12a12 12 0 0 0 12-12V60a12 12 0 0 0-12-12z" fill="rgba(61,219,180,.16)" stroke="${C.mint}" stroke-width="2"/>${L('M104 66h66M104 78h44',C.mint,3)}`)},
+  vibe(){let d='';for(let x=126;x<=184;x+=2){const y=100-260/(x-116);d+=(d?'L':'M')+x+' '+y.toFixed(1)}
+    return S(`<path d="M12 16h70a10 10 0 0 1 10 10v28a10 10 0 0 1-10 10H34l-12 10V64h-10A10 10 0 0 1 2 54V26a10 10 0 0 1 10-10z" fill="rgba(143,123,255,.18)" stroke="#8F7BFF" stroke-width="2"/>${T(12,36,'보일 법칙',C.t,11,700)}${T(12,52,'앱 만들어 줘',C.t,11,700)}
+    ${L('M96 54h12m-5-5 5 5-5 5',C.mute,2)}<rect x="112" y="12" width="82" height="104" rx="10" fill="rgba(255,255,255,.05)" stroke="${C.t}" stroke-width="2"/><circle cx="122" cy="22" r="2.5" fill="${C.r}"/><circle cx="130" cy="22" r="2.5" fill="${C.y}"/><circle cx="138" cy="22" r="2.5" fill="${C.mint}"/>
+    ${L(d,C.r,2.5)}${L('M122 108h62',C.g,3)}<circle cx="150" cy="108" r="5" fill="${C.y}"/>`)},
+  lung(){return S(`<path d="M68 22h64v10c14 6 22 18 22 34v40H46V66c0-16 8-28 22-34z" fill="rgba(255,255,255,.04)" stroke="${C.t}" stroke-width="2" stroke-linejoin="round"/>${L('M100 8V46M100 46L82 62M100 46L118 62',C.t,3)}
+    <ellipse cx="76" cy="74" rx="13" ry="16" fill="${C.r}" opacity=".65"/><ellipse cx="124" cy="74" rx="13" ry="16" fill="${C.r}" opacity=".65"/><path d="M46 106Q100 124 154 106" fill="none" stroke="${C.o}" stroke-width="3"/>${L('M100 110v10m-5-5 5 5 5-5',C.o,2.5)}${T(170,118,'가로막',C.o,11,700,'end')}`)},
+  scope(){let st='';[[30,20],[60,12],[150,16],[176,34],[120,8],[96,26]].forEach(([x,y],k)=>st+=`<circle cx="${x}" cy="${y}" r="${k%2?1.6:2.4}" fill="${C.w}"/>`);
+    return S(`<rect width="200" height="124" fill="rgba(58,28,158,.25)"/>${st}<circle cx="162" cy="30" r="12" fill="${C.y}" opacity=".9"/><circle cx="167" cy="26" r="10" fill="#1B1638"/>
+    <rect x="62" y="44" width="70" height="24" rx="6" fill="${C.t}" transform="rotate(-28 97 56)"/><rect x="122" y="30" width="14" height="22" rx="3" fill="${C.b}" transform="rotate(-28 129 41)"/>
+    ${L('M98 66L74 116M98 66L100 116M98 66L124 116',C.mute,3)}${L('M52 116h96',C.g,2)}`)},
+  keycap(){const el=[['K','#3DDBB4'],['S','#6CCB8A'],['Y','#A7D86C'],['Bi','#8CC63F']];let k='';el.forEach(([e,c],i)=>{const x=22+i*42;k+=`<rect x="${x}" y="46" width="36" height="40" rx="7" fill="${c}"/><rect x="${x+4}" y="50" width="28" height="26" rx="5" fill="rgba(255,255,255,.25)"/><text x="${x+18}" y="69" fill="#123" font-size="15" font-weight="800" text-anchor="middle">${e}</text>`});
+    return S(`${k}<rect x="18" y="84" width="170" height="10" rx="3" fill="rgba(255,255,255,.18)"/>${L('M188 70a10 10 0 1 1 0.1 0',C.t,2.5)}<circle cx="37" cy="36" r="5" fill="${C.y}" opacity=".9"/>${L('M37 22v6M27 36h-6M47 36h6M30 29l-4-4M44 29l4-4',C.y,2)}`)},
+  plant(){return S(`<path d="M78 80h44l-6 34H84z" fill="${C.o}" opacity=".85"/><rect x="74" y="74" width="52" height="10" rx="3" fill="${C.o}"/>
+    ${L('M100 76V44',C.mint,3)}<path d="M100 56c-18-2-28-14-28-26 14 0 26 8 28 26z" fill="${C.mint}" opacity=".75"/><path d="M100 48c16-2 26-12 26-24-14 0-24 8-26 24z" fill="${C.mint}"/>
+    ${L('M146 40c4 6 4 10 0 14M156 34c6 9 6 17 0 26',C.b,2)}<circle cx="140" cy="48" r="3" fill="${C.b}"/>`)},
+  ramen(){return S(`<path d="M30 58h140a6 6 0 0 1 6 6c0 26-30 46-76 46S24 90 24 64a6 6 0 0 1 6-6z" fill="${C.o}" opacity=".85"/><path d="M40 58c10-12 20 6 30-6s20 6 30-6 20 6 30-6 20 6 30-6" fill="none" stroke="${C.y}" stroke-width="3"/>${L('M70 46c-4-8 4-12 0-20M100 46c-4-8 4-12 0-20M130 46c-4-8 4-12 0-20',C.t,2.5)}${L('M150 8l-40 48M164 12l-40 46',C.mute,3)}`)},
+  lecture(){const i=++uid;return S(`<defs><linearGradient id="lc${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.y}" stop-opacity=".55"/><stop offset="1" stop-color="${C.y}" stop-opacity="0"/></linearGradient></defs>
+    <path d="M86 0h28l46 124H40z" fill="url(#lc${i})"/><rect x="74" y="70" width="52" height="46" rx="4" fill="#2A2258" stroke="${C.t}" stroke-width="2"/>${L('M100 70V52',C.t,3)}<rect x="94" y="38" width="12" height="18" rx="6" fill="${C.t}"/>
+    ${L('M124 40a16 16 0 0 1 0 22M132 34a26 26 0 0 1 0 34',C.y,2.5)}${L('M76 40a16 16 0 0 0 0 22M68 34a26 26 0 0 0 0 34',C.y,2.5)}`)}
+};
+
+/* ---------- 렌더링 ---------- */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const md=d=>{const [y,m,dd]=d.split('-').map(Number);return {m,d:dd}};
+/* 워크숍 번호가 커질수록 열화상 색이 뜨거워집니다 */
+const HEAT=['#3A1C9E','#7A2BD9','#B4249C','#F0386B','#FF8C42','#FFD23F','#FFF4C2','#FFFFFF'];
+const gradFor=n=>`linear-gradient(160deg,${HEAT[Math.min(n,7)]} 10%,${HEAT[Math.max(n-1,0)]} 95%)`;
+const accentFor=n=>HEAT[Math.min(n,6)];
+
+const totalItems=new Set(HELD.flatMap(w=>(w.items||[]).filter(i=>!i.who).map(i=>i.t))).size;
+const ALLPH=Object.entries(PHOTOS).reduce((a,[k,v])=>a+ph(k).filter(id=>!DUP.has(id)).length,0);
+
+/* ---------- 사진 갤러리 ---------- */
+const GAL=[];
+function gal(items,title,yt){GAL.push({items,title,yt});return GAL.length-1}
+const imgTag=(id,w,alt,cls='')=>`<img class="${cls}" src="${IMG(id,w)}" alt="${esc(alt)}" loading="lazy" onerror="this.remove()">`;
+
+function cover(){
+  return `<section class="slide cover" id="cover"><div class="frame"><b></b><b></b><b></b><b></b></div>
+  <div class="in">
+    <p class="who">군포의왕 디지털기반과학교육연구회</p>
+    <div class="year" aria-hidden="true">2026</div>
+    <h1>질문에서 데이터로, 데이터에서 피드백으로.<br>우리가 함께한 한 해의 기록</h1>
+    <p class="topic">연구 주제 <b>AI 기반 질문·탐구·피드백 연계 과학수업 모델 연구</b></p>
+    <div class="stats">
+      <div><strong>${HELD.length+PROVINCE.length+TOGETHER.length}</strong><span>번의 모임과 연수<br>(4월 ~ 10월)</span></div>
+      <div><strong>${totalItems}</strong><span>가지 실험·수업 활동을<br>직접 해 봄</span></div>
+      <div><strong>${PROVINCE.length}</strong><span>번 경기도신과수연구회와<br>함께한 워크숍</span></div>
+      <div><strong>${ALLPH}</strong><span>장의 현장 사진으로<br>남긴 기록</span></div>
+    </div>
+  </div>
+  <div class="scale" aria-hidden="true"><div class="lbl"><span>11월</span><span>4월</span></div><div class="rail"></div></div>
+  </section>`;
+}
+
+function theme(){
+  const steps=[
+    ['질문 생성','학생의 질문이 탐구의 출발점이 됩니다.','질문과 탐구 중심 수업 사례 나눔 (1차)'],
+    ['탐구 설계','변인을 정하고 무엇을 어떻게 잴지 계획합니다.','교과서 실험 다시 설계하기 (2차·3차)'],
+    ['디지털 실험·분석','무선 센서와 영상 도구로 데이터를 모으고 그래프로 읽습니다.','센서 6종 · 열화상 · 영상현미경 · 마이크로비트'],
+    ['표현·AI 피드백','학생의 설명에 AI가 즉시 피드백하고, 교사가 판단을 더합니다.','스노클AI · 하이러닝 AI 서논술형 평가']
+  ];
+  return `<section class="slide" id="theme"><div class="in">
+    <p class="kicker" style="color:var(--i6)"><i></i>2026 연구 주제</p>
+    <h2 class="h-big">AI 기반 질문·탐구·피드백<br>연계 과학수업 모델</h2>
+    <p class="lede">디지털 도구가 실험과 따로 놀고, 서·논술형 평가가 수업과 떨어져 있던 문제를 풀기 위해 네 단계를 하나의 흐름으로 묶었습니다. 워크숍은 이 흐름을 교사가 먼저 겪어 보는 자리였습니다.</p>
+    <div class="model">${steps.map((s,k)=>`<div class="step" style="--g:${gradFor(k*2+1)}"><h3>${s[0]}</h3><p>${s[1]}</p><div class="where">${s[2]}</div></div>`).join('')}</div>
+    <p class="note-line"><b>2025 우수연구회</b>로 선정된 「학생주도형 디지털 기반 과학수업」 연구를 이어, 올해는 경기도신과수연구회와 연계한 <b>연계형 연구회</b>로 활동했습니다.</p>
+  </div></section>`;
+}
+
+function timeline(){
+  const start=new Date(2026,2,1), end=new Date(2026,11,31), span=end-start;
+  const pct=d=>((new Date(d)-start)/span*100);
+  const months=[3,4,5,6,7,8,9,10,11,12].map(m=>`<span style="left:${pct(`2026-${String(m).padStart(2,'0')}-15`)}%">${m}월</span>`).join('');
+  const grid=[4,5,6,7,8,9,10,11,12].map(m=>`<i class="grid" style="left:${pct(`2026-${String(m).padStart(2,'0')}-01`)}%"></i>`).join('');
+  const lane=(name,sub,color,evs,planned)=>{
+    const last=[-99,-99];
+    const chips=evs.map(e=>{const x=pct(e.date);let row=x-last[0]>=10?0:(x-last[1]>=10?1:(last[0]<last[1]?0:1));last[row]=x;
+      return `<a class="ev ${row?'dn':'up'}" style="left:${x}%" href="#${e.id}"><span class="chip"><b>${md(e.date).m}.${md(e.date).d}</b>${esc(e.short)}</span></a>`}).join('');
+    const plan=planned?`<div class="plan-zone" style="left:${pct('2026-11-01')}%"><span>${planned}</span></div>`:'';
+    return `<div class="lane" style="--c:${color}"><div class="lane-name">${name}<small>${sub}</small></div><div class="track">${grid}${plan}${chips}</div></div>`;
+  };
+  const W=WORKSHOPS.map(w=>({date:w.date,short:w.special?`${w.n}차 특강`:w.upcoming?`${w.n}차 (예정)`:`${w.n}차 워크숍`,id:'w'+w.n}));
+  const P=PROVINCE.map(p=>({date:p.date,short:p.star?'발표':p.t.replace('도연구회 ',''),id:'province'}));
+  const Tg=TOGETHER.map(t=>({date:t.date,short:t.short||t.t,id:'together'}));
+  const all=[...WORKSHOPS.map(w=>({date:w.date,t:`${w.n}차 워크숍`,s:w.title,c:'var(--w)'})),...PROVINCE.map(p=>({date:p.date,t:p.t,s:p.p,c:'var(--p)'})),...TOGETHER.map(t=>({date:t.date,t:t.t,s:t.p,c:'var(--t)'}))].sort((a,b)=>a.date.localeCompare(b.date));
+  return `<section class="slide" id="timeline"><div class="in">
+    <p class="kicker" style="color:var(--w)"><i></i>한 해 타임라인</p>
+    <h2 class="h-big">4월부터 11월까지, 세 갈래로 움직였습니다</h2>
+    <div class="tl"><div class="tl-months">${months}</div>
+      ${lane('자체워크숍','매월 화요일 저녁','var(--w)',W,'11~12월 보고서·성과 나눔')}
+      ${lane('도연구회 연계','경기도신과수연구회','var(--p)',P,'')}
+      ${lane('함께하는 연구','연수와 탐방','var(--t)',Tg,'')}
+    </div>
+    <ul class="tl-list">${all.map(e=>`<li style="--c:${e.c}"><time>${md(e.date).m}.${md(e.date).d}</time><div>${esc(e.t)}<small>${esc(e.s)}</small></div></li>`).join('')}</ul>
+  </div></section>`;
+}
+
+function card(it){
+  const ids=it.ph?ph(it.ph):[];
+  let top=ART[it.art]();
+  if(ids.length){
+    const g=gal(ids.map(id=>({id,label:it.t})),it.t,it.yt);
+    const pi=Math.min(it.pi||0,ids.length-1);
+    top=`<button class="shot" type="button" data-g="${g}" data-i="${pi}" aria-label="${esc(it.t)} 사진 ${ids.length}장 보기">${top.replace('class="art"','class="art" style="position:absolute;inset:0;width:100%;height:100%"')}${imgTag(ids[pi],640,it.t)}<span class="cnt">사진 ${ids.length}</span>${it.yt?'<span class="vid">▶ 영상</span>':''}</button>`;
+    top=top.replace(`<img class=""`,`<img class="" style="position:absolute;inset:0"`);
+  }
+  const more=[];
+  if(it.yt) more.push(`<a href="https://www.youtube.com/watch?v=${it.yt}" target="_blank" rel="noopener">실험 영상</a>`);
+  if(it.link) more.push(`<a href="${it.link[1]}" target="_blank" rel="noopener">${esc(it.link[0])}</a>`);
+  return `<article class="item">${top}<h3>${esc(it.t)}</h3><p>${esc(it.d)}</p>${it.who?`<span class="who">${esc(it.who)}</span>`:''}${more.length?`<div class="more">${more.join('')}</div>`:''}</article>`;
+}
+
+function workshop(w){
+  const {m,d}=md(w.date);
+  const c=accentFor(w.n);
+  const meta=`<div class="ws-meta"><span class="hot">${m}월 ${d}일 (${w.day})${w.upcoming?' 예정':''}</span><span>${w.time}</span>${w.place?`<span>${esc(w.place)}</span>`:''}</div>`;
+  if(w.upcoming && !w.items){
+    return `<section class="slide" id="w${w.n}" style="--g:${gradFor(w.n)};--c:${c}"><div class="in">
+      <div class="soon"><div class="ws-num">${w.n}<small>차</small></div><div>${meta}<h2 class="ws-title">${esc(w.title)}</h2><p class="ws-lede">${esc(w.lede)}</p></div></div>
+    </div></section>`;
+  }
+  if(w.special==='lecture'){
+    const ids=ph(w.ph);
+    const g=ids.length?gal(ids.map(id=>({id,label:'김정식 수석교사 초청 특강'})),'6차 특강'):null;
+    const right=ids.length?`<button class="shot" type="button" data-g="${g}" data-i="0" style="all:unset;cursor:zoom-in;display:block;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--night-2);position:relative">${ART.lecture().replace('class="art"','class="art" style="position:absolute;inset:0;width:100%;height:100%"')}${imgTag(ids[0],1000,'6차 특강 현장').replace('<img class=""','<img class="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"')}</button>`:ART.lecture();
+    return `<section class="slide" id="w${w.n}" style="--g:${gradFor(w.n)};--c:${c}"><div class="in">
+      <div class="ws-head"><div class="ws-num">${w.n}<small>차</small></div><div>${meta}<h2 class="ws-title">수석교사 초청 특강</h2></div></div>
+      <div class="lecture"><div><blockquote>${esc(w.title)}</blockquote>
+        <p class="speaker"><b>${esc(w.speaker)}</b> <span>${esc(w.affil)}</span></p>
+        <p class="ws-lede">${esc(w.lede)}</p>
+        <div class="regions">${w.regions.map((r,k)=>`<span class="${k?'':'home'}">${r}</span>`).join('')}</div></div>
+        ${right}</div>
+    </div></section>` + mosaic(w);
+  }
+  return `<section class="slide" id="w${w.n}" style="--g:${gradFor(w.n)};--c:${c}"><div class="in">
+    <div class="ws-head"><div class="ws-num">${w.n}<small>차</small></div>
+      <div>${meta}<h2 class="ws-title">${esc(w.title)}</h2><p class="ws-lede">${esc(w.lede)}</p></div></div>
+    <div class="items" style="--cols:${Math.min(6,Math.max(5,w.items.length))}">${w.items.map(card).join('')}</div>
+    ${w.steps?`<div class="steps"><b>키캡 만들기 순서</b><ol>${w.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>`:''}
+  </div></section>` + mosaic(w);
+}
+
+/* 워크숍 현장 사진 모음 (사진이 6장 이상일 때) */
+function mosaic(w){
+  let groups;
+  if(w.special==='lecture') groups=[ph(w.ph).filter(id=>!DUP.has(id)).map(id=>({id,label:''}))];
+  else groups=(w.items||[]).filter(it=>it.ph).map(it=>ph(it.ph).filter(id=>!DUP.has(id)&&!NOMOSAIC.has(id)).map(id=>({id,label:it.t}))).filter(g=>g.length);
+  const full=groups.flat();
+  if(full.length<6) return '';
+  const cap=w.res?6:9, max=Math.min(cap, 3+3*Math.floor((full.length-3)/3)), pick=[];
+  const ptr=groups.map(()=>0);
+  // 첫 장: 사람들이 보이는 장면이 많은 첫 그룹의 첫 사진
+  while(pick.length<Math.min(max,full.length)){
+    let added=false;
+    groups.forEach((g,k)=>{ if(pick.length<max && ptr[k]<g.length){ const step=Math.max(1,Math.floor(g.length/Math.ceil(max/groups.length))); pick.push(g[ptr[k]]); ptr[k]+=step; added=true; } });
+    if(!added) break;
+  }
+  const g=gal(full,`${w.n}차 현장`);
+  const tiles=pick.map(p=>`<button type="button" data-g="${g}" data-i="${full.indexOf(p)}" aria-label="${esc(p.label||'현장 사진')} 크게 보기">${imgTag(p.id,900,p.label||`${w.n}차 현장`)}${p.label?`<span class="lbl">${esc(p.label)}</span>`:''}</button>`).join('');
+  const c=accentFor(w.n);
+  const title={1:'열화상 카메라부터 드라이아이스 비누막까지',2:'센서 다섯 개, 그리고 라면 한 냄비',3:'보랏빛 음료와 달고나, 현미경 화면',6:'과학교사들로 가득 찬 과학실'}[w.n]||`${w.n}차 워크숍 현장`;
+  const res=w.res?`<div><h3 style="font-size:20px;font-weight:800;letter-spacing:-.02em">특강에서 나눈 자료</h3><p style="color:var(--muted);font-size:14.5px;margin-top:4px">김정식·허명성의 과학사랑에서 바로 열어 볼 수 있습니다.</p><ul class="res" style="grid-template-columns:1fr">${w.res.map(r=>`<li><a href="${r[1]}" target="_blank" rel="noopener">${esc(r[0])}<span>열기</span></a></li>`).join('')}</ul></div>`:'';
+  return `<section class="slide" id="w${w.n}-photos" style="--c:${c}"><div class="in">
+    <div class="mosaic-head"><div><p class="kicker" style="color:${c}"><i></i>${w.n}차 워크숍 현장</p><h2 class="h-big" style="font-size:clamp(28px,3.4vw,46px)">${title}</h2></div>
+    <p class="count"><b>${full.length}</b>장의 사진 · 누르면 크게 봅니다</p></div>
+    ${res?`<div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;align-items:start" class="split">${`<div class="mosaic" style="margin-top:30px">${tiles}</div>`}<div style="margin-top:30px">${res}</div></div>`:`<div class="mosaic">${tiles}</div>`}
+  </div></section>`;
+}
+
+function rowSection(id,color,kicker,title,lede,list,src){
+  return `<section class="slide" id="${id}" style="--c:${color}"><div class="in">
+    <p class="kicker" style="color:${color}"><i></i>${kicker}</p>
+    <h2 class="h-big">${title}</h2><p class="lede">${lede}</p>
+    <div class="row-cards" style="--n:${list.length}">${list.map(e=>{const a=md(e.date);const range=e.end?` ~ ${+e.end.split('-')[0]}.${+e.end.split('-')[1]}`:'';
+      const ids=e.ph?ph(e.ph):[]; const g=ids.length?gal(ids.map(id=>({id,label:e.t})),e.t):null;
+      const bg=ids.length?`<div class="bg">${imgTag(ids[0],700,e.t)}</div>`:'';
+      return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${ids.length?`<p class="phn">사진 ${ids.length}장</p>`:''}</div>`}).join('')}</div>
+  </div></section>`;
+}
+
+function tools(){
+  const shelves=[
+    ['무선 센서','교과서 실험을 데이터로',[['온도','1·2차'],['압력','2·7차'],['대기압','2차'],['이산화탄소·산소','2차'],['연직수온','2차']]],
+    ['보는 도구','보이지 않던 것을 화면으로',[['열화상 카메라','1차'],['디지털 영상현미경','3차'],['광학 키트','4차'],['마이크로비트','5차'],['Seestar S50 스마트 망원경','8차']]],
+    ['AI 평가·피드백','평가가 곧 학습이 되도록',[['스노클AI','1차'],['하이러닝 AI 서논술형','7.4 연수'],['논술형평가 설계','6월 연수']]],
+    ['만드는 AI','수업에 맞는 도구를 직접',[['바이브 코딩','7차'],['생성형 AI 대화','7차'],['이 발표 페이지','바이브 코딩']]]
+  ];
+  const cols=['var(--i5)','var(--i6)','var(--t)','var(--p)'];
+  return `<section class="slide" id="tools"><div class="in">
+    <p class="kicker" style="color:var(--i6)"><i></i>올해 손에 든 도구</p>
+    <h2 class="h-big">센서로 재고, 화면으로 보고,<br>AI로 되돌려 주었습니다</h2>
+    <div class="rack">${shelves.map((s,k)=>`<div class="shelf" style="--c:${cols[k]}"><h3>${s[0]}</h3><p>${s[1]}</p><ul>${s[2].map(x=>`<li>${x[0]}<em>${x[1]}</em></li>`).join('')}</ul></div>`).join('')}</div>
+  </div></section>`;
+}
+
+function ending(){
+  return `<section class="slide end" id="end"><div class="glow"></div><div class="in" style="position:relative">
+    <p class="kicker" style="color:var(--i6)"><i></i>다음 이야기</p>
+    <h2 class="h-big">수업에서 다시 만나는<br>질문과 데이터</h2>
+    <div class="next">
+      <div><b>11월 ~ 12월</b><h3>연구보고서와 성과 나눔</h3><p>한 해의 수업 사례를 보고서로 정리하고, 경기교육연구 페스타 등에서 성과를 나눕니다.</p></div>
+      <div><b>함께해요</b><h3>관내 중·고 과학교사 누구나</h3><p>매년 3월 가입 안내 공문이 나갑니다. 학기 중 워크숍에도 언제든 참여할 수 있습니다. 문의는 경기도교육청 업무메신저로 고천중학교 김신연에게.</p></div>
+      <div><b>지난 기록</b><h3>2025 활동과 연구 자료실</h3><p>과학수사대·태양계 뉴스룸 수업 사례, AI 평가 자료는 <a href="${SITE_2025}" target="_blank" rel="noopener">2025 연구회 사이트</a>에 있습니다.</p></div>
+    </div>
+    <p class="sign">이 페이지는 7차 워크숍에서 다룬 바이브 코딩으로 만들었습니다.</p>
+  </div></section>`;
+}
+
+$('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('')
+  + rowSection('province','var(--p)','도연구회 연계 워크숍','경기도신과수연구회와 함께, 지역을 넘어',
+      '도 단위 신나는 과학수업 연구회 워크숍에 꾸준히 참여해 다른 지역 선생님들과 수업을 나눴습니다. 7월에는 군포의왕 연구회가 직접 발표했습니다.',PROVINCE)
+  + rowSection('together','var(--t)','함께하는 연구 활동','연수실에서, 그리고 퇴근길 과학관에서',
+      '워크숍 밖에서도 함께 배웠습니다. 논술형·AI 서논술형 평가 연수로 평가를 다듬고, 여름에는 국립과천과학관 천체투영관에서 뇌과학 강연을 들었습니다.',TOGETHER)
+  + tools() + ending();
+
+/* ---------- 라이트박스 ---------- */
+const LB={g:null,i:0};
+const lb=$('#lb');
+function lbShow(){const G=GAL[LB.g];const it=G.items[LB.i];$('#lbImg').src=IMG(it.id,1800);$('#lbImg').alt=it.label||G.title;
+  $('#lbCap').innerHTML=`${esc(it.label||G.title)}<small>${LB.i+1} / ${G.items.length}</small>`;
+  const y=$('#lbYt'); if(G.yt){y.hidden=false;y.href='https://www.youtube.com/watch?v='+G.yt}else y.hidden=true;
+  const pre=G.items[(LB.i+1)%G.items.length]; if(pre){const im=new Image();im.src=IMG(pre.id)}}
+function lbOpen(g,i){LB.g=+g;LB.i=+i||0;lb.classList.add('open');lbShow();$('#lbX').focus()}
+function lbClose(){lb.classList.remove('open');$('#lbImg').removeAttribute('src')}
+function lbStep(d){const n=GAL[LB.g].items.length;LB.i=(LB.i+d+n)%n;lbShow()}
+$('#lbX').onclick=lbClose; $('#lbP').onclick=()=>lbStep(-1); $('#lbN').onclick=()=>lbStep(1);
+lb.addEventListener('click',e=>{if(e.target===lb)lbClose()});
+document.addEventListener('click',e=>{const t=e.target.closest('[data-g]');if(t){e.preventDefault();e.stopPropagation();lbOpen(t.dataset.g,t.dataset.i)}},true);
+document.addEventListener('keydown',e=>{const t=e.target.closest&&e.target.closest('.rc[data-g]');if(t&&(e.key==='Enter'||e.key===' ')){e.preventDefault();lbOpen(t.dataset.g,t.dataset.i)}});
+
+/* ---------- 발표 모드 ---------- */
+const html=document.documentElement, slides=[...document.querySelectorAll('.slide')];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let idx=0;
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.5){idx=slides.indexOf(e.target);hud()}})},{threshold:[.5,.75]});
+slides.forEach(s=>io.observe(s));
+function hud(){$('#hudCount').textContent=`${idx+1} / ${slides.length}`;$('#hudBar').style.width=((idx+1)/slides.length*100)+'%'}
+function go(i){idx=Math.max(0,Math.min(slides.length-1,i));slides[idx].scrollIntoView({behavior:reduce?'auto':'smooth'});hud()}
+function setPresent(on){html.classList.toggle('present',on);
+  if(on){html.requestFullscreen&&html.requestFullscreen().catch(()=>{});const h=$('#help');h.classList.add('show');setTimeout(()=>h.classList.remove('show'),2600);go(idx)}
+  else if(document.fullscreenElement){document.exitFullscreen()}}
+$('#presentBtn').onclick=()=>setPresent(true);
+$('#exitBtn').onclick=()=>setPresent(false);
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&html.classList.contains('present'))html.classList.remove('present')});
+document.addEventListener('keydown',e=>{
+  if(lb.classList.contains('open')){if(e.key==='Escape'){lbClose()}else if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();lbStep(1)}else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();lbStep(-1)}return}
+  if(e.target.closest('input,textarea'))return;
+  if(e.key==='p'||e.key==='P'){setPresent(!html.classList.contains('present'));return}
+  if(!html.classList.contains('present'))return;
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(idx+1)}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(idx-1)}
+  else if(e.key==='Home'){e.preventDefault();go(0)}
+  else if(e.key==='End'){e.preventDefault();go(slides.length-1)}
+  else if(e.key==='Escape'){setPresent(false)}
+});
+document.addEventListener('click',e=>{ if(html.classList.contains('present')&&!lb.classList.contains('open')&&!e.target.closest('a,button,[data-g],.lb')){go(idx+(e.clientX<innerWidth*0.25?-1:1))} });
+hud();
+</script>
+</body>
+</html>
