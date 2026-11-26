@@ -430,6 +430,8 @@ const YEAR=document.documentElement.dataset.y==='2025'?2025:2026;
    ========================================================= */
 /* 활동별로 고른 사진과 설명 — [사진 번호, 사진 설명]. 파일은 photos/<키>-<번호>.jpg */
 const PHOTOS = {
+  ohm1015:[[0,"옴의 법칙 수업공개 — 모둠별로 회로를 꾸미고 센서로 전압·전류 측정"],[1,"측정값으로 그린 그래프를 대형 화면에 띄워 함께 확인"],[2,"수업 장면 — 미래형 과학실에서 모둠별 탐구"]],
+  oc1130:[[0,"참관 안내 1쪽 — 수업 개요와 9차시 여행 일정"],[1,"참관 안내 2쪽 — 두 실험대와 참관 포인트"],[2,"교수·학습 과정안(약안)"]],
   igneous:[[0,"화성암을 만드는 7가지 광물 입자 — 석영·사장석·정장석·흑운모·각섬석·휘석·감람석"],[1,"화성암 체험학습지 — 광물 조성 그래프에서 폭을 재어 비례식(예: 4.8 : 100 = 3 : x, x = 62.5%)으로 비율을 구하고, 그 비율대로 입자를 섞어 섬록암·반려암·감람암을 붙임"]],
   spoon:[[0,"함께 읽은 책 「사라진 스푼」 (샘 킨 지음, 이충호 옮김, 해나무)"]],
   festa:[[0,"경기교육연구 페스타 2026 — 「피움 PIUM」 연구가 피어나는 날 (11. 28. 토, 수원컨벤션센터 전시홀)"],[1,"페스타 한눈에 보기 — 164개 연구회, 330여 동 부스"]],
@@ -581,6 +583,7 @@ const SHARES=[
   {doc:"innovation-report",pages:27,k:"연구보고서",t:"2026 수업혁신사례연구대회 전국대회 1등급 수상작",u:"김신연 · S.T.A.R. 루틴 기반 미래형 과학 수업을 통한 E.C.H.O. 역량 강화하기",f:"PDF",award:"🏆 전국 1등급"},
   {doc:"ai-humanities",pages:10,k:"연구보고서",t:"AI-인문학 융합 수업모델 개발 및 평가 방안 연구",u:"편O희 외 · 전문적학습공동체(PLC) 연구 활동 보고서 · AI 채점·피드백·향상도 분석",f:"PDF"},
   {doc:"lesson-force",pages:5,k:"공개수업 지도안",t:"힘의 작용 — 힘 탐정 사무소",u:"김신연 · 중1 · 10.19 수업나눔한마당",f:"PDF"},
+  {doc:"open-class-1130",pages:3,k:"참관 안내",t:"공개수업 참관 안내지 — 통통 입자 여행 · 센서 연구소",u:"김신연 · 11.30 미래형 과학실 수업공개 · 중1 Ⅵ 기체의 성질 · 보일 법칙 · 교수·학습 과정안(약안) 포함",f:"PDF"},
   {doc:"open-class-guide",pages:3,k:"참관 안내",t:"공개수업 참관 안내지",u:"김신연 · 10.19 수업나눔한마당 · 「힘 탐정 사무소」",f:"PDF"},
   {doc:"lesson-ohm",pages:1,k:"공개수업 지도안",t:"옴의 법칙 — MBL 센서로 찾는 전압·전류·저항",u:"김O정 · 중2 · 10.15 깊이 있는 수업 나눔",f:"PDF"},
   {doc:"lesson-jung",pages:1,k:"공개수업 지도안",t:"생태계평형 — 참새와 메뚜기 개체군의 주기적 변동",u:"정O은 · 고1 통합과학2 · 10.29 · 웹앱 모의실험",f:"PDF"},
@@ -629,11 +632,11 @@ const TOGETHER = [
   {date:"2026-07-04", t:"AI 서논술형평가시스템 연수", short:"AI 서논술형 연수", p:"하이러닝 AI 평가", ph:"t2"},
   {date:"2026-07-23", t:"과천과학관 ‘퇴근한 김에 번아웃 로그아웃’", short:"과천과학관", p:"KAIST 정재승 교수 「번아웃, 그리고 뇌과학으로 행복을 성찰하다」", ph:"t3"},
   {date:"2026-08-10", t:"디지털 탐구도구 활용 과학교사 직무연수", short:"디지털탐구 연수", p:"군포의왕교육지원청 여름방학 직무연수(7시간) · AC 호텔 바이 메리어트 서울 금정. 중등 분반 오후 「디지털 탐구도구를 활용한 중등 과학 수업」은 우리 연구회 회원 김O정 선생님(덕장중)이 강사로 진행했습니다", note:"연구회 회원 8명 참여", ph:"t4", doc:true},
-  {date:"2026-10-15", t:"수업나눔한마당 공개수업 — 옴의 법칙", short:"옴의 법칙 공개수업", p:"덕장중 김O정 선생님이 중2 옴의 법칙 탐구 수업을 수업나눔한마당 수업공개로 열었습니다. 지도안은 자료실에 있습니다"},
+  {date:"2026-10-15", t:"수업나눔한마당 공개수업 — 옴의 법칙", short:"옴의 법칙 공개수업", p:"덕장중 김O정 선생님이 중2 옴의 법칙 탐구 수업을 수업나눔한마당 수업공개로 열었습니다. 지도안은 자료실에 있습니다", ph:"ohm1015"},
   {date:"2026-10-19", t:"수업나눔한마당 공개수업 — 힘의 작용", short:"수업나눔한마당", p:"「힘의 작용」 13차시 ‘수사 검증 회의’(힘 탐정 사무소)를 공개했습니다. 이 앱이 7차 워크숍 바이브 코딩의 출발점이 되었습니다", ph:"open"},
   {date:"2026-10-24", t:"교육과정-수업-평가 통합설계 실행 연수", short:"통합설계 연수", p:"「AI 시대, 함께 설계하는 교육과정-수업-평가 통합설계」 · 경기도교육청, 롯데인재개발원 오산캠퍼스", ph:"t5", doc:true},
   {date:"2026-10-30", end:"10-31", t:"개념기반 탐구수업 시작하기 연수", short:"개념기반 탐구수업", p:"경기도교육청 국제교육원 · 개념기반 교육과정과 탐구 학습, 개념기반 탐구수업·평가 설계", ph:"t6", doc:true},
-  {date:"2026-11-30", t:"미래형 과학실 수업공개 — 보일 법칙", short:"미래형 과학실 수업공개 (예정)", p:"「기체의 부피를 바꾸면 압력은 왜 달라질까?」 무선 압력 센서와 바이브코딩 웹앱으로 하는 탐구 · 3차시 센서 연구소. 고천중학교 미래형 과학실, 6교시", upcoming:true}
+  {date:"2026-11-30", t:"미래형 과학실 수업공개 — 보일 법칙", short:"미래형 과학실 수업공개 (예정)", p:"「기체의 부피를 바꾸면 압력은 왜 달라질까?」 무선 압력 센서와 바이브코딩 웹앱으로 하는 탐구 · 3차시 센서 연구소. 고천중학교 미래형 과학실, 6교시", upcoming:true, ph:"oc1130", doc:true, dl:"참관 안내"}
 ];
 
 /* ---------- 실험 일러스트 (SVG) ---------- */
@@ -857,7 +860,7 @@ function rowSection(id,color,kicker,title,lede,list,src,label='함께하는 연�
     <div class="row-cards" style="--n:${list.length>6?Math.ceil(list.length/2):list.length}">${list.map(e=>{const a=md(e.date);const range=e.end?` ~ ${+e.end.split('-')[0]}.${+e.end.split('-')[1]}`:'';
       const ids=e.pics||(e.ph?ph(e.ph):[]); const g=ids.length?gal({items:ids,title:e.t,desc:e.p,meta:`${label} · ${a.m}월 ${a.d}일`,c:'var(--t)'}):null;
       const bg=ids.length?`<div class="bg"><img src="${IMG(ids[0].id)}" alt="${esc(ids[0].cap)}" loading="lazy" onerror="this.remove()"></div>`:'';
-      return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}${e.doc?' doc':''}${e.upcoming?' rc-up':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일${e.upcoming?' · 예정':''}</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${e.note?`<p class="rcn">${esc(e.note)}</p>`:''}${ids.length?`<p class="phn">${e.doc?'연수 자료 '+ids.length+'쪽 보기':'사진 '+ids.length+'장 보기'}</p>`:''}</div>`}).join('')}</div>
+      return `<div class="rc${e.star?' star':''}${ids.length?' has-ph':''}${e.doc?' doc':''}${e.upcoming?' rc-up':''}"${ids.length?` data-g="${g}" data-i="0" role="button" tabindex="0" aria-label="${esc(e.t)} 사진 보기"`:''}>${bg}<div class="d">${a.m}.${a.d}${range?`<small>${range} 까지</small>`:`<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}요일${e.upcoming?' · 예정':''}</small>`}</div><h3>${esc(e.t)}</h3><p>${esc(e.p)}</p>${e.note?`<p class="rcn">${esc(e.note)}</p>`:''}${ids.length?`<p class="phn">${e.doc?(e.dl||'연수 자료')+' '+ids.length+'쪽 보기':'사진 '+ids.length+'장 보기'}</p>`:''}</div>`}).join('')}</div>
   </div></section>`;
 }
 
