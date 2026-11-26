@@ -556,8 +556,10 @@ const WORKSHOPS = [
 const HELD = WORKSHOPS.filter(w=>!w.upcoming);
 
 /* 바이브 코딩으로 만든 수업 웹앱 (github.com/syjh0412) */
+const appURL=a=>a.href||`https://syjh0412.github.io/${a.r}/`;
 const APPS=[
   {r:"bio-classification", d:"2026.08", t:"생물 분류 노선도", u:"중1 · 생물의 다양성", x:"관찰 기록만 보고 갈림길을 지나 생물 카드 27장을 다섯 계로 분류합니다"},
+  {r:"state-change", href:"https://mickeybio91.github.io/state-change/", d:"2026.09", t:"물질의 상태 변화 탐구 실험실", u:"중1 · Ⅳ 물질의 상태 변화", by:"김O희 선생님", x:"얼음 가열·수증기 냉각을 시뮬레이션하며 입자 움직임을 관찰하고, 손으로 그린 온도 변화 그래프를 정답 그래프와 비교합니다"},
   {r:"question", d:"2026.11", t:"힘 탐정 사무소", u:"중1 · Ⅴ 힘의 작용", x:"궁금한 점을 ‘사건’으로 접수하고 친구 질문에 답하며 차시마다 성찰을 남깁니다", star:true},
   {r:"gas-trip", d:"2026.11", t:"통통 입자 여행", u:"중1 · Ⅵ 기체의 성질", x:"입자 가이드가 되어 9차시 여행지를 돌며 압력·보일·샤를 법칙을 입자로 설명하고 도장을 모읍니다"},
   {r:"gas-booth", d:"2026.11", t:"기체 실험 부스", u:"중1 · 기체의 성질", x:"압력·보일·샤를 법칙 실험 31가지를 골라 슬라이드로 설명하고 활동지를 인쇄합니다"},
@@ -570,7 +572,8 @@ const APPS=[
   {r:"space-mission/expanding-universe", img:"expanding-universe", d:"2026.11", t:"팽창하는 우주 탐구실", u:"중2 · Ⅷ 별과 우주", x:"풍선 실험과 우주 시뮬레이터로 은하들이 서로 멀어지는 까닭을 모둠이 탐구합니다"},
   {r:"space-mission", d:"2026.11", t:"우주 탐사 기획단", u:"중2 · Ⅷ 별과 우주", x:"성공한 탐사가 남긴 ‘다음 질문’을 찾아 모둠이 새로운 탐사 임무를 제안합니다"},
   {r:"ai-theater", d:"2026.08", t:"AI 윤리 극장", u:"학년 공통 · AI 윤리 (국립중앙과학관 연계)", x:"여섯 개의 상영관에서 미래 기술의 두 얼굴을 관람하고 모둠 탐구 주제를 고릅니다"},
-  {r:"seoulland", d:"2026.10", t:"서울랜드 체험학습", u:"중1 · 현장체험학습 (10.8)", x:"모둠 등록·일정·안전 안내부터 힘 탐정 사무소 출동까지 담은 체험학습 도우미. 지금은 참관(보기 전용) 화면만 열려 있습니다"}
+  {r:"seoulland", d:"2026.10", t:"서울랜드 체험학습", u:"중1 · 현장체험학습 (10.8)", x:"모둠 등록·일정·안전 안내부터 힘 탐정 사무소 출동까지 담은 체험학습 도우미. 지금은 참관(보기 전용) 화면만 열려 있습니다"},
+  {r:"solubility", href:"https://claude.ai/artifact/TF6HfQSvn28YiAfS1BowdL", d:"2026.11", t:"탄소화합물 용해도 예측기", u:"화학 동아리 활동", by:"회원 선생님과 화학 동아리 학생들", x:"SMILES로 표현한 탄소화합물의 구조를 분석해 물에 대한 용해도를 예측합니다. 실제 화합물 데이터로 학습한 교육용 통계 모델"}
 ];
 
 /* 공유 자료실 (구글 드라이브 공유 폴더) */
@@ -917,9 +920,9 @@ function appsSlide(){
     <p class="kicker" style="color:var(--p)"><i></i>바이브 코딩으로 만든 수업 웹앱</p>
     <h2 class="h-big one">말로 설명해 만들고, 수업하면서 고쳐 갑니다</h2>
     <p class="lede">8월 「AI 윤리 극장」부터 지금까지, 단원과 수업 흐름에 맞춰 직접 만든 웹앱을 학년·단원 순으로 모았습니다. 누르면 새 창에서 열립니다. 회원 선생님들이 만든 앱도 이어서 모아 갑니다.</p>
-    <div class="apps">${APPS.map(a=>`<a class="app${a.star?' star':''}" href="https://syjh0412.github.io/${a.r}/" target="_blank" rel="noopener">
+    <div class="apps">${APPS.map(a=>`<a class="app${a.star?' star':''}" href="${appURL(a)}" target="_blank" rel="noopener">
       <div class="th"><img src="${IMG('app-'+(a.img||a.r))}" alt="${esc(a.t)} 첫 화면" loading="lazy"></div>
-      <div class="bd"><span class="dt">${a.d}</span><h3>${esc(a.t)}</h3><p class="u">${esc(a.u)}</p><p>${esc(a.x)}</p><span class="go">열기 ↗</span></div></a>`).join('')}</div>
+      <div class="bd"><span class="dt">${a.d}</span><h3>${esc(a.t)}</h3><p class="u">${esc(a.u)}</p>${a.by?`<p class="u" style="opacity:.85">만든 이 · ${esc(a.by)}</p>`:''}<p>${esc(a.x)}</p><span class="go">열기 ↗</span></div></a>`).join('')}</div>
   </div></section>`;
 }
 
@@ -1144,7 +1147,7 @@ $('#deck').innerHTML = cover()+theme()+timeline()+WORKSHOPS.map(workshop).join('
     ['도연구회 연계','#province',[{h:'#province',s:'',t:'경기도신과수연구회 소개'},'-',...PROVINCE.map(e=>({h:'#province-ws',s:md2(e.date),t:e.t,up:e.upcoming}))]],
     ['함께하는 연구','#together',TOGETHER.map(e=>({h:'#together',s:md2(e.date),t:e.t,up:e.upcoming}))],
     ['도구','#tools'],
-    ['수업 웹앱','#apps',[{h:'#apps',s:'',t:'전체 보기'},'-',...APPS.map(a=>({h:`https://syjh0412.github.io/${a.r}/`,s:a.d.slice(2).replace('.','.'),t:a.t,ext:true}))]],
+    ['수업 웹앱','#apps',[{h:'#apps',s:'',t:'전체 보기'},'-',...APPS.map(a=>({h:appURL(a),s:a.d.slice(2).replace('.','.'),t:a.t,ext:true}))]],
     ['자료실','#shares',[{h:'#shares',s:'',t:'전체 보기'},'-',...SHARES.map(d=>({h:'#shares',s:d.f,t:d.t}))]],
     ['다음 이야기','#end']
   ];
