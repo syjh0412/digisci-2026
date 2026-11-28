@@ -312,6 +312,10 @@ h1,h2,h3,p{margin:0}
 .present .bar{opacity:0;pointer-events:none;transition:opacity .2s}
 .present body:hover .bar{opacity:0}
 .short .slide:not(.s5){display:none}
+.qr{display:none;position:fixed;left:18px;top:18px;z-index:31;flex-direction:column;align-items:center;gap:3px;padding:7px 7px 5px;background:#fff;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,.35);text-decoration:none}
+.present .qr{display:flex}
+.qr img{width:104px;height:104px;display:block}
+.qr span{font-size:11.5px;font-weight:700;color:#1a1530;letter-spacing:-.01em}
 .hud #hudTime{display:none;font-variant-numeric:tabular-nums;font-weight:700;color:var(--text)}
 .short .hud #hudTime{display:inline}
 .hud #hudTime.over{color:#ff6b6b}
@@ -429,6 +433,7 @@ html[data-y="2025"] .lb{background:#061416}
   </aside>
   <button class="x" type="button" id="lbX">닫기 ✕</button>
 </div>
+<a class="qr" href="https://syjh0412.github.io/digisci-2026/" target="_blank" rel="noopener" aria-label="연구회 홈페이지 QR 코드"><img src="photos/qr-site.svg" alt="연구회 홈페이지 QR 코드"><span>홈페이지</span></a>
 <div class="help" id="help">← → 또는 스페이스로 넘기고, Esc로 끝냅니다</div>
 
 <script>
