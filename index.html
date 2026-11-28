@@ -641,7 +641,7 @@ const PROVINCE = [
    topics:["기체의 압력과 부피 관계","IB 과학 평가와 탐구 설계","음료수 한 병으로 하는 탐구 (전반사)","바이브코딩으로 수업 도구 만들기"]},
   {date:"2026-10-17", t:"신과수 5차 워크숍", p:"물의 전기분해 외 5개 주제", ph:"sgsm-10",
    topics:["물의 전기분해 탐구수업","보일·샤를의 법칙 실험","RAS로 케미 좋은 수업","자극과 반응 지식시장","특강: 기후위기, AI 시대와 원자력의 역할"]},
-  {date:"2026-11-28", t:"경기교육연구 페스타 2026", p:"신과수 부스 참여 · 수원컨벤션센터 전시홀. 「2026 신과수 이야기」 포스터로 한 해 활동을 나눕니다.", upcoming:true, short:"페스타 (예정)", ph:"festa"},
+  {date:"2026-11-28", t:"경기교육연구 페스타 2026", p:"수원컨벤션센터 전시홀의 신과수 부스에 우리 연구회 회원들이 함께 참여했습니다. 「2026 신과수 이야기」 포스터로 한 해 활동을 나누고, 다른 지역 선생님들과 수업 이야기를 주고받았습니다.", short:"페스타", ph:"festa"},
   {date:"2026-12-05", t:"신과수 6차 워크숍", p:"올해 마지막 신과수 워크숍이 남아 있습니다.", upcoming:true, short:"6차 (예정)"}
 ];
 const TOGETHER = [
@@ -909,6 +909,8 @@ function provinceWS(){
   const cards=PROVINCE.map(e=>{const a=md(e.date);
     if(e.upcoming){ const fx=e.ph?ph(e.ph).map(x=>({...x,tall:true})).concat(ph('sgs').map(x=>({...x,tall:true}))):[]; const fg=fx.length?gal({items:fx,title:e.t,desc:e.p,meta:`경기도신과수연구회 · ${a.m}월 ${a.d}일 예정`,c}):null;
     return `<article class="sg-card soon">${fx.length?`<button type="button" class="sg-thumb" data-g="${fg}" data-i="0" aria-label="${esc(e.t)} 포스터 보기" style="position:relative"><img src="${IMG(fx[0].id)}" alt="${esc(fx[0].cap)}" style="object-position:top"><span class="sg-tag">예정</span></button>`:`<div class="sg-soon"><span>예정</span></div>`}<div class="sg-body"><p class="sg-date">${a.m}.${a.d}<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}</small></p><h3>${esc(e.t)}</h3><p class="sg-p">${esc(e.p)}</p></div></article>`;}
+    if(PHOTOS[e.ph]){ const fx=ph(e.ph).concat(e.ph==='festa'?ph('sgs'):[]); const fg=gal({items:fx,title:e.t,desc:e.p,meta:`경기도신과수연구회 · ${a.m}월 ${a.d}일`,c});
+    return `<article class="sg-card mini"><button type="button" class="sg-thumb" data-g="${fg}" data-i="0" aria-label="${esc(e.t)} 사진 크게 보기"><img src="${IMG(fx[0].id)}" alt="${esc(fx[0].cap)}" loading="lazy" style="object-position:top"></button><div class="sg-body"><p class="sg-date">${a.m}.${a.d}<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}</small></p><h3>${esc(e.t)}</h3><p class="sg-p">${esc(e.p)}</p></div></article>`;}
     const g=gal({items:[{id:e.ph,cap:e.topics?e.topics.map((t,k)=>`${k+1}. ${t}`).join('\n'):e.p}],title:e.t,desc:'',meta:`경기도신과수연구회 · ${a.m}월 ${a.d}일`,c});
     return `<article class="sg-card${e.star?' star':''}${e.topics?'':' mini'}"><button type="button" class="sg-thumb" data-g="${g}" data-i="0" aria-label="${esc(e.t)} 사진 크게 보기"><img src="${IMG(e.ph)}" alt="${esc(e.t)} 활동 사진" loading="lazy"></button>
       <div class="sg-body"><p class="sg-date">${a.m}.${a.d}<small>${['일','월','화','수','목','금','토'][new Date(e.date).getDay()]}</small></p><h3>${esc(e.t)}</h3>
@@ -966,7 +968,7 @@ function ending(){
     <p class="kicker" style="color:var(--i6)"><i></i>다음 이야기</p>
     <h2 class="h-big">수업에서 다시 만나는<br>질문과 데이터</h2>
     <div class="next">
-      <div><b>11월 ~ 12월</b><h3>연구보고서와 성과 나눔</h3><p>한 해의 수업 사례를 보고서로 정리합니다. 11월 28일 「경기교육연구 페스타 2026」(수원컨벤션센터)에는 신과수가 부스로 참여해 한 해 활동을 나눕니다.</p></div>
+      <div><b>11월 ~ 12월</b><h3>연구보고서와 성과 나눔</h3><p>한 해의 수업 사례를 보고서로 정리합니다. 11월 28일 「경기교육연구 페스타 2026」(수원컨벤션센터)에서는 신과수 부스에 함께 참여해 한 해 활동을 나눴습니다.</p></div>
       <div><b>함께해요</b><h3>관내 중·고 과학교사 누구나</h3><p>매년 3월 가입 안내 공문이 나갑니다. 학기 중 워크숍에도 언제든 참여할 수 있습니다. 문의는 경기도교육청 업무메신저로 고천중학교 김신연에게.</p></div>
       <div><b>지난 기록</b><h3>2025 활동과 연구 자료실</h3><p>과학수사대·태양계 뉴스룸 수업 사례, AI 평가 자료는 <a href="${SITE_2025}" target="_blank" rel="noopener">2025 연구회 사이트</a>에 있습니다.</p></div>
     </div>
