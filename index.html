@@ -382,6 +382,7 @@ html[data-y="2025"] .lb{background:#061416}
 .sh-th{all:unset;cursor:zoom-in;display:block;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:#fff;margin-bottom:14px}
 .sh-th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .3s}
 .sh-th:hover img{transform:scale(1.03)}
+.sh-th.wide img{object-fit:contain;background:#fff}
 .sh-k{font-size:13px;font-weight:700;color:var(--t)}
 .sh h3{font-size:17px;font-weight:750;letter-spacing:-.02em;line-height:1.35;margin-top:6px}
 .sh p{font-size:13.5px;color:var(--muted);margin-top:6px}
@@ -615,6 +616,7 @@ function noName(u){return u
 const SHARES=[
   {doc:"innovation-report",pages:27,k:"연구보고서",t:"2026 수업혁신사례연구대회 전국대회 1등급 수상작",ico:"🏆",u:"김신연 · S.T.A.R. 루틴 기반 미래형 과학 수업을 통한 E.C.H.O. 역량 강화하기",f:"PDF"},
   {doc:"ai-humanities",pages:10,k:"연구보고서",t:"AI-인문학 융합 수업모델 개발 및 평가 방안 연구",u:"편O희 외 · 전문적학습공동체(PLC) 연구 활동 보고서 · AI 채점·피드백·향상도 분석",f:"PDF"},
+  {doc:"heat-0718",pages:35,wide:true,k:"발표 자료",t:"눈에 보이는 열 — 열화상 카메라로 보는 열의 이동",u:"김신연 · 신과수 3차 워크숍(7.18) · 초5·중1·고등 역학과 에너지 교육과정 연계, 교과서별 열 실험, 방사율 유의점, 전도·대류·복사 실험 세팅과 준비물",f:"PDF"},
   {doc:"lesson-force",pages:5,k:"공개수업 지도안",t:"힘의 작용 — 힘 탐정 사무소",u:"김신연 · 중1 · 10.19 수업나눔한마당",f:"PDF"},
   {doc:"open-class-1130",pages:3,k:"참관 안내",t:"공개수업 참관 안내지 — 통통 입자 여행 · 센서 연구소",u:"김신연 · 11.30 미래형 과학실 수업공개 · 중1 Ⅵ 기체의 성질 · 보일 법칙 · 교수·학습 과정안(약안) 포함",f:"PDF"},
   {doc:"open-class-guide",pages:3,k:"참관 안내",t:"공개수업 참관 안내지",u:"김신연 · 10.19 수업나눔한마당 · 「힘 탐정 사무소」",f:"PDF"},
@@ -653,7 +655,7 @@ const PROVINCE = [
   {date:"2026-06-13", t:"신과수 2차 워크숍", p:"에듀테크 열 출입 실험 외 4개 주제", ph:"sgsm-06",
    topics:["에듀테크 기반 열 출입 실험 탐구","간섭계로 보는 양자지우개","오로라 에이드에 담긴 과학","바이브 코딩과 클로드 Cowork 활용 — 박형군(상원고)"]},
   {date:"2026-07-18", t:"신과수 3차 워크숍", p:"열화상 카메라 탐구 외 4개 주제", ph:"sgsm-07",
-   topics:["열의 이동 (열화상 카메라 탐구)","원자력 사용후 핵연료 재처리 & 단열 실험","AI Claude로 만드는 순천만 습지 체험학습 게임","크로마토그래피 창의 실험"]},
+   topics:["열의 이동 (열화상 카메라 탐구) — 김신연(고천중)","원자력 사용후 핵연료 재처리 & 단열 실험","AI Claude로 만드는 순천만 습지 체험학습 게임","크로마토그래피 창의 실험"]},
   {date:"2026-08-12", t:"박람회 함께 배우기", p:"8월 박람회 · 6월 자연사박물관 탐방", ph:"sgsm-with", short:"박람회"},
   {date:"2026-09-05", t:"신과수 4차 워크숍", p:"기체의 압력과 부피 외 4개 주제", ph:"sgsm-09",
    topics:["기체의 압력과 부피 관계","IB 과학 평가와 탐구 설계","음료수 한 병으로 하는 탐구 (전반사)","바이브코딩으로 수업 도구 만들기"]},
