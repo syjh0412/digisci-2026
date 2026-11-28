@@ -595,6 +595,16 @@ const APPS=[
 ];
 
 /* 공유 자료실 (구글 드라이브 공유 폴더) */
+/* 자료실 카드에는 이름을 빼고 보여 준다(열었을 때 설명에는 그대로) */
+function noName(u){return u
+  .replace(/^[가-힣O]{2,3}(?: 외)? · /,'')
+  .replace(/^[가-힣]{3} (수업 사례 · )/,'$1')
+  .replace(/카페에 대구 [가-힣O]+ 선생님이 공유한 자료를/,'카페에 공유된 자료를')
+  .replace(/\((?:범서고 )?[가-힣O]{3} 선생님 자료\)/g,'')
+  .replace(/\([가-힣O]{3} 수석교사·[가-힣O]{3} 선생님 자료\)/g,'')
+  .replace(/\([가-힣]+중 [가-힣O]{3} 수석교사 수업 사례 재구성\)/,'(수석교사 수업 사례 재구성)')
+  .replace(/신과수 워크숍 [가-힣O]{3} 선생님 자료/,'신과수 워크숍 자료')
+  .replace(/(카페|포럼|워크숍) 재구성/,'$1 자료 재구성')}
 const SHARES=[
   {doc:"innovation-report",pages:27,k:"연구보고서",t:"2026 수업혁신사례연구대회 전국대회 1등급 수상작",ico:"🏆",u:"김신연 · S.T.A.R. 루틴 기반 미래형 과학 수업을 통한 E.C.H.O. 역량 강화하기",f:"PDF"},
   {doc:"ai-humanities",pages:10,k:"연구보고서",t:"AI-인문학 융합 수업모델 개발 및 평가 방안 연구",u:"편O희 외 · 전문적학습공동체(PLC) 연구 활동 보고서 · AI 채점·피드백·향상도 분석",f:"PDF"},
@@ -953,7 +963,7 @@ function sharesSlide(){
     const items=Array.from({length:d.pages},(_,k)=>({id:`doc-${d.doc}-${k}`,cap:`${d.t} — ${k+1}쪽`,tall:!d.wide}));
     const g=gal({items,title:d.t,desc:d.u,meta:`공유 자료실 · ${d.k}`,c:'var(--t)',pdf:`docs/${d.doc}.pdf`});
     return `<div class="sh${d.award?' aw':''}"><button type="button" class="sh-th${d.wide?' wide':''}" data-g="${g}" data-i="0" aria-label="${esc(d.t)} 열기"><img src="${IMG('doc-'+d.doc+'-0')}" alt="${esc(d.t)} 첫 쪽" loading="lazy"></button>
-      <span class="sh-k">${esc(d.k)}</span>${d.award?`<span class="sh-aw">${d.award}</span>`:''}<h3>${esc(d.t)}${d.ico?`<span class="sh-ico" aria-hidden="true">${d.ico}</span>`:''}</h3><p>${esc(d.u)}</p>
+      <span class="sh-k">${esc(d.k)}</span>${d.award?`<span class="sh-aw">${d.award}</span>`:''}<h3>${esc(d.t)}${d.ico?`<span class="sh-ico" aria-hidden="true">${d.ico}</span>`:''}</h3><p>${esc(noName(d.u))}</p>
       <div class="sh-act"><button type="button" data-g="${g}" data-i="0">열기 · ${d.pages}쪽</button><a href="docs/${d.doc}.pdf" download>PDF 받기</a></div></div>`}).join('');
   return `<section class="slide" id="shares"><div class="in">
     <p class="kicker" style="color:var(--t)"><i></i>공유 자료실</p>
